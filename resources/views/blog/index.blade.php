@@ -33,7 +33,15 @@
             @if (Route::has('login'))
                 <div class="">
                     @auth
-                        <a href="{{ url('/menu_plat') }}" class="btn">Dashboard</a>
+
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                        <a href="{{route('logout')}}" onclick="event.preventDefault();
+                        this.closest('form').submit();" class="btn"> {{ __('Log Out') }}</a>
+
+                    </form>
+                    
                     @else
                         <a href="{{ route('login') }}" class="btn">Log in</a>
 
@@ -60,7 +68,7 @@
     <main>
         <section class="posts">
             <div class="container ">
-                <div class="row my-4">
+                {{-- <div class="row my-4">
                     <div class="col-sm-12 col-md-6">
                         <img src="./images/picture-14.jpg" alt="picture image">
                     </div>
@@ -122,7 +130,30 @@
                             <a href="#" class="btn">Read More</a>
                         </span>
                     </div>
-                </div>
+                </div> --}}
+                @if(Auth::check())
+                    <a href="/blog/create" class="btn">Create Article</a>
+                @endif
+
+                @foreach ($posts as $post)
+                    <div class="row my-4">
+                        <div class="col-sm-12 col-md-6">
+                            <img src="{{$post->image_path}}" alt="picture image">
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <h3 class="title-post text-white mb-3">{{$post->title}}</h3>
+                            <span>
+                                <span class="text-white font-weight-bold">By:</span>
+                                <span class="writer-name text-warning">{{$post->user->name}} </span>
+                                <span class="text-muted">On {{date('d-m-y', strtotime($post->updated_at))}}</span>
+                                <p class="p-post text-white py-2">
+                                    {{$post->description}}
+                                </p>
+                                <a href="/blog/{{$post->slug}}" class="btn">Read More</a>
+                            </span>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </section>
     </main>
