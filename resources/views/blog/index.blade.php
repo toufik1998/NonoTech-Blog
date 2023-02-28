@@ -34,14 +34,17 @@
                 <div class="">
                     @auth
 
-                    <form method="POST" action="{{ route('logout') }}">
+                    <form method="POST" action="{{ route('logout') }}" class="d-inline">
                         @csrf
 
                         <a href="{{route('logout')}}" onclick="event.preventDefault();
-                        this.closest('form').submit();" class="btn"> {{ __('Log Out') }}</a>
+                        this.closest('form').submit();" class="btn "> {{ __('Log Out') }}</a>
 
                     </form>
-                    
+
+                    <a href="{{ url('/dashboard') }}" class="btn ">Dashboard</a>
+
+
                     @else
                         <a href="{{ route('login') }}" class="btn">Log in</a>
 
@@ -138,7 +141,7 @@
                 @foreach ($posts as $post)
                     <div class="row my-4">
                         <div class="col-sm-12 col-md-6">
-                            <img src="{{$post->image_path}}" alt="picture image">
+                            <img class="w-100" src="/images/{{$post->image_path}}" alt="picture image" >
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <h3 class="title-post text-white mb-3">{{$post->title}}</h3>

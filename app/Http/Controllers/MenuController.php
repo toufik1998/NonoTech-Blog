@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 
-class PostController extends Controller
+class MenuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +19,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('blog.index')->with('posts', $posts);
+        return view('dashboard')->with('posts', $posts);
     }
 
     /**
@@ -28,7 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('blog.create');
+        return view("menu.create");
     }
 
     /**
@@ -45,18 +46,6 @@ class PostController extends Controller
             'image_path' => 'required|mimes:jpg,png,jpeg'
         ]);
 
-        // $newImageName = uniqid() . '-' .$request->title . '.' . $request->image_path->extension();
-        // $request->image_path->move(public_path()('images'), $newImageName);
-        // $slug = Str::slug($request->title, '-');
-
-        // Post::create([
-        //     'title' => $request->input('title'),
-        //     'description' => $request->input('description'),
-        //     'slug' => $slug,
-        //     'image_path' => $newImageName,
-        //     'user_id' => auth()->user()->id
-        // ]);
-
         $post = new Post();
         $post->title = $request->input('title');
         $post->description = $request->input('description');
@@ -72,7 +61,8 @@ class PostController extends Controller
 
         $post->save();
 
-        return redirect('blog');
+        return redirect('menu_plat')->with('flash_message', 'plat added secuusefully');
+
     }
 
     /**
@@ -81,9 +71,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        return view('blog.show')->with('post', POST::where('slug', $slug)->first());
+        //
     }
 
     /**
@@ -92,9 +82,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
-        return view('blog.edit')->with('post', POST::where('slug', $slug)->first());
+        $post = Post::find($id);
+        return view('menu.edit')->with('post', $post);
     }
 
     /**
@@ -104,26 +95,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(Request $request, $id)
     {
-
-        // $file= $request->file('image_path');
-        // $filename= date('YmdHi').$file->getClientOriginalName();
-        // $file->move(public_path('images'), $filename);
-
-        // $slug = Str::slug($request->title, '-');
-
-
-        // Post::where('slug', $slug)->update([
-        //     'title' => $request->input('title'),
-        //     'description' => $request->input('description'),
-        //     'slug' => $slug,
-        //     'image_path' => $filename,
-        //     'user_id' => auth()->user()->id
-
-        // ]);
-
-        $post_update = Post::where('slug', $slug)->first();
+        $post_update = Post::where('id', $id)->first();
         // dd($post_update);
         $post_update->title = $request->input('title');
         $slug = Str::slug($request->title, '-');
@@ -137,10 +111,8 @@ class PostController extends Controller
         $post_update->image_path = $filename;
 
         $post_update->update();
-        // return view('blog.index')->with('posts', $posts);
 
-
-        return redirect('blog/'.$slug)->with('Success', 'Update Post succefully');
+        return redirect('menu_plat')->with('flash message', 'student updated');
     }
 
     /**
@@ -149,10 +121,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy($id)
     {
-        Post::where('slug', $slug)->delete();
-
-        return redirect('/blog')->with('delete', 'Post deleted succefully');
+        Post::destroy($id);
+        return redirect('menu_plat')->with('flash_message', 'plat deleted succefully');
     }
 }

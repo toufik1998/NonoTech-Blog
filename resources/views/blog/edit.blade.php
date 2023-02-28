@@ -1,5 +1,5 @@
 @extends('layouts.common')
-@section('title', 'create Page')
+@section('title', 'Update Article Page')
 
 @section('content')
     <!--Start the navbar +-->
@@ -67,10 +67,11 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-sm-12 col-md-8">
-                <form action="{{ url('blog') }}"  method="POST" id="form-task" enctype="multipart/form-data">
+                <form action="/blog/{{$post->slug}}"  method="POST" id="form-task" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                         <div class="modal-header border-0 bg-white">
-                            <h5 class="modal-title text-danger">Add Post</h5>
+                            <h5 class="modal-title text-danger">Update Post</h5>
                             <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
                         </div>
                         <div class="modal-body">
@@ -78,7 +79,7 @@
                                 <input type="hidden" id="product-id" name="product-id">
                                 <div class="mb-3">
                                     <label class="form-label text-white">Post Title</label>
-                                    <input type="text" name="title" class="form-control" id="post-title"/>
+                                    <input type="text" name="title" value="{{$post->title}}" class="form-control" id="post-title"/>
                                 </div>
                                 {{-- <div class="mb-3">
                                     <label class="form-label text-white">Post Category</label>
@@ -92,7 +93,7 @@
 
                                 <div class="mb-3">
                                     <label class="form-label text-white">Post Content</label>
-                                    <textarea class="form-control" name="description" rows="10" id="description"></textarea>
+                                    <textarea class="form-control" name="description" rows="10" id="description">{{$post->description}}</textarea>
                                 </div>
 
                                 <div class="mb-0 w-50">
@@ -103,7 +104,7 @@
 
                     <div class="modal-footer border-0">
                         <a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
-                        <button type="submit"  class="btn btn-primary task-action-btn" id="task-save-btn">Add Post</button>
+                        <button type="submit"  class="btn btn-primary task-action-btn" id="task-save-btn">Update Post</button>
                     </div>
                 </form>
             </div>

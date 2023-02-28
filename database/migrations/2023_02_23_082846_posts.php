@@ -22,6 +22,7 @@ return new class extends Migration
             // $table->timestamp('last_used_at')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->boolean('is_admin')->default(true);
             $table->timestamps();
         });
     }
