@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Category;
 use App\Models\Post;
+
 
 
 
@@ -19,7 +22,10 @@ class MenuController extends Controller
     public function index()
     {
         $posts = Post::all();
+        // $categories = Category::all();
         return view('dashboard')->with('posts', $posts);
+        // return view('dashboard', compact('posts', 'categories'));
+
     }
 
     /**
@@ -29,7 +35,8 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view("menu.create");
+        $categories = Category::all();
+        return view("menu.create", compact('categories'));
     }
 
     /**
@@ -46,8 +53,12 @@ class MenuController extends Controller
             'image_path' => 'required|mimes:jpg,png,jpeg'
         ]);
 
+        
+
         $post = new Post();
         $post->title = $request->input('title');
+        // $post->category_option = $request->input('category_option');
+        $post->category_id =  $request->input('category_id');
         $post->description = $request->input('description');
         $slug = Str::slug($request->input('title'), '-');
         $post->slug = $slug;
@@ -85,7 +96,11 @@ class MenuController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        return view('menu.edit')->with('post', $post);
+        $categories = Category::all();
+
+        // return view('menu.edit')->with('post', $post);
+        return view('menu.edit', compact('post', 'categories'));
+
     }
 
     /**
@@ -100,6 +115,8 @@ class MenuController extends Controller
         $post_update = Post::where('id', $id)->first();
         // dd($post_update);
         $post_update->title = $request->input('title');
+        $post_update->category_option = $request->input('category_option');
+
         $slug = Str::slug($request->title, '-');
         $post_update->description = $request->input('description');
         $post_update->slug = $slug;

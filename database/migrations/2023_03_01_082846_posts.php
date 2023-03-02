@@ -20,11 +20,22 @@ return new class extends Migration
             $table->longText('description');
             $table->string('image_path');
             // $table->timestamp('last_used_at')->nullable();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('category_id')->nullable();
+            // $table->string('category_option');
+            $table->unsignedBigInteger('user_id')->nullable();
+            // $table->foreign('user_id')->references('id')->on('users');
             $table->boolean('is_admin')->default(true);
             $table->timestamps();
+
+
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            // $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
+
+        // Schema::table('posts', function($table) {
+        //     $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
+        // });
     }
 
     /**

@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\CategoryController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +25,9 @@ Route::get('/', function () {
 
 Route::resource('/blog', PostController::class);
 Route::resource('/menu_plat', MenuController::class);
+
+Route::resource('/category', CategoryController::class);
+
 
 
 Route::get('/dashboard', function () {

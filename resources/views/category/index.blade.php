@@ -156,8 +156,8 @@
 				</div>
 
 				<div class="ms-auto">
-				<a href={{ url('/menu_plat/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Post</a>
-                <a href={{ url('/category/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Category</a>
+                <a href={{ url('/menu_plat/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Post</a>
+				<a href={{ url('/category/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Category</a>
 
 			</div>
 			</div>
@@ -248,45 +248,26 @@
 									<thead class="text-white-50" style="background-color:  #2F3843; border-radius: 1rem;">
 										<tr style="color: #8D949D;">
 										<th>Title</th>
-										<th>Description</th>
-                                        <th>Category</th>
-										<th>Created By:</th>
+
 										<th>Actions</th>
 										</tr>
 									</thead>
 									<tbody>
 
-                                        @foreach($posts as $item)
+                                        @foreach($categories as $item)
                                             <tr style="color: #fff; border-bottom: black;">
                                                     <td>
                                                         <div class="d-flex align-items-center">
-                                                            <img
-                                                            {{-- <img src="{{ url('public/images/'.$item->image) }}" --}}
 
-                                                                src="../../images/{{$item->image_path}}"
-                                                                alt=""
-                                                                style="width: 75px; height: 75px"
-                                                                class="rounded-circle bg-white"
-                                                            />
                                                             <div class="ms-3">
-                                                                <p class="fw-bold mb-1">{{ $item->title }}</p>
+                                                                <p class="fw-bold mb-1">{{ $item->category }}</p>
                                                             </div>
                                                         </div>
                                                     </td>
 
-                                                    <td>
-                                                        <span class="badge badge-success rounded-pill ms-4">{{ $item->description }}</span>
-                                                    </td>
 
                                                     <td>
-                                                        <span class="badge badge-success rounded-pill ms-4">{{ $item->category->category }}</span>
-                                                    </td>
-                                                    <td>
-                                                        <p class="fw-normal mb-1 ms-2">{{ $item->user->name }}</p>
-                                                    </td>
-                                                    <td>
-
-                                                            <a href="{{ url('menu_plat/' . $item->id . '/edit') }}" class="btn bg-success text-white btn-sm btn-rounded mt-2">
+                                                            <a href="{{ url('category/' . $item->id . '/edit') }}" class="btn bg-success text-white btn-sm btn-rounded mt-2">
                                                                 <input type="hidden" name="update-id" value="{{$item->id}}">
                                                                 <i class="fa-sharp fa-solid fa-pen-to-square text-white"></i>
                                                             </a>
@@ -294,7 +275,7 @@
                                                                 <input type="hidden" name="update-id" value="{{$item->id}}">
                                                                 <i class="fa-sharp fa-solid fa-pen-to-square text-white"></i>
                                                             </button> --}}
-                                                        <form method="post" action="{{ url('/menu_plat' . '/' . $item->id) }}" style="display: inline;">
+                                                        <form method="post" action="{{ url('/category' . '/' . $item->id) }}" style="display: inline;">
                                                             @csrf
                                                             @method("DELETE")
                                                             {{-- <button type="submit" name="delete" id="buttonDelete" class="d-none">
@@ -308,6 +289,7 @@
                                                     </td>
                                                 </tr>
                                         @endforeach
+
 
 									</tbody>
 								</table>

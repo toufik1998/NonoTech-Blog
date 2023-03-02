@@ -1,6 +1,6 @@
 @extends('layouts.common-dash')
 
-@section('title', 'Dashboard || Admin page')
+@section('title', 'Dashboard || Create category page')
 
 @section('content')
 
@@ -26,7 +26,7 @@
 					<a href="#" class="navbar-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
 						<img src="../../images/user-15.jpg" alt="">
 						<span>
-                            <span class="d-none d-md-inline text-warning">Toufik Shima</span>
+                            <span class="d-none d-md-inline text-warning">{{ Auth::user()->name }}</span>
 							<b class="caret text-warning"></b>
 						</span>
 					</a>
@@ -90,8 +90,8 @@
 					<div class="navigation-side">
 						<ul>
 
-							<li><a href="#" class="btn my-1 category-btn" style="width: 100%; border-bottom-right-radius: 0;">Menu Plat</a></li>
-							<li><a href="#" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">go to ...</a></li>
+							<li><a href="#" class="btn my-1 category-btn" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
+							<li><a href="#" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Categories</a></li>
 
 						</ul>
 
@@ -137,7 +137,7 @@
 					<!-- END page-header -->
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="javascript:;" style="color: #f5be7f">Home</a></li>
-						<li class="breadcrumb-item active" style="color: #ff8906">YouCode Manu || Edit Plat </li>
+						<li class="breadcrumb-item active" style="color: #ff8906">NanoTech || Create Category </li>
 					</ol>
 
 				</div>
@@ -148,49 +148,26 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-sm-12 col-md-8">
-                        <form action="{{ url('menu_plat/'.$post->id) }}"  method="POST" id="form-task" enctype="multipart/form-data">
+                        <form action="{{ url('category') }}"  method="POST" id="form-task" enctype="multipart/form-data">
                             @csrf
-                            @method("PATCH")
                                 <div class="modal-header border-0 bg-white">
-                                    <h5 class="modal-title text-danger">Plat</h5>
+                                    <h5 class="modal-title text-danger">Post</h5>
                                     <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
                                 </div>
                                 <div class="modal-body">
                                         <!-- This Input Allows Storing Task Index  -->
                                         <input type="hidden" id="product-id" name="product-id">
                                         <div class="mb-3">
-                                            <label class="form-label text-white">Post title</label>
-                                            <input type="text" value="{{$post->title}}" name="title" class="form-control" id="plat-name"/>
+                                            <label class="form-label text-white">Category title</label>
+                                            <input type="text" name="category" class="form-control" id="plat-name"/>
                                         </div>
 
-                                        <div class="mb-3">
-                                            <label class="form-label text-white">Post Category</label>
-                                            <select class="form-select" name="category_option" id="post-status">
-                                                <option value="">Please select</option>
-
-                                                @foreach($categories as $item)
-                                                    <option value="{{$item->category}}"> {{$item->category}} </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label text-white">Post Content</label>
-                                            <textarea class="form-control"  name="description" rows="10" id="plat-content">
-                                                {{$post->description}}
-                                            </textarea>
-                                        </div>
-
-                                        <div class="mb-0">
-                                            <label class="form-label text-white">Post Image</label>
-                                            <input type="file" name="image_path" class="form-control" id="plat-image"/>
-                                        </div>
 
                                 </div>
 
                             <div class="modal-footer border-0">
                                 <a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
-                                <button type="submit" name="add-multiple-post" class="btn btn-primary  task-action-btn" id="task-save-btn">Update Plat</button>
+                                <button type="submit" name="add-multiple-post" class="btn btn-primary task-action-btn" id="task-save-btn">Add Category</button>
                             </div>
                         </form>
                     </div>
@@ -205,7 +182,6 @@
 		<!-- END scroll-top-btn -->
 	</div>
 	<!-- END #app -->
-
 
 
 @endsection

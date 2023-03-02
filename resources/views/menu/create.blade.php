@@ -163,9 +163,22 @@
                                         </div>
 
                                         <div class="mb-3">
+                                            <label class="form-label text-white">Post Category</label>
+                                            <select class="form-select" name="category_id" id="post-status">
+                                                <option value="">Please select</option>
+
+                                                @foreach($categories as $item)
+                                                    <option value={{$item->id}}> {{$item->category}} </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
                                             <label class="form-label text-white">Post Content</label>
                                             <textarea class="form-control" name="description" rows="10" id="plat-content"></textarea>
                                         </div>
+
+
 
                                         <div class="mb-0">
                                             <label class="form-label text-white">Post Image</label>

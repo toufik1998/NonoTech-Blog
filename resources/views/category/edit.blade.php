@@ -148,7 +148,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-sm-12 col-md-8">
-                        <form action="{{ url('menu_plat/'.$post->id) }}"  method="POST" id="form-task" enctype="multipart/form-data">
+                        <form action="{{ url('category/'.$category->id) }}"  method="POST" id="form-task" enctype="multipart/form-data">
                             @csrf
                             @method("PATCH")
                                 <div class="modal-header border-0 bg-white">
@@ -159,31 +159,8 @@
                                         <!-- This Input Allows Storing Task Index  -->
                                         <input type="hidden" id="product-id" name="product-id">
                                         <div class="mb-3">
-                                            <label class="form-label text-white">Post title</label>
-                                            <input type="text" value="{{$post->title}}" name="title" class="form-control" id="plat-name"/>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label text-white">Post Category</label>
-                                            <select class="form-select" name="category_option" id="post-status">
-                                                <option value="">Please select</option>
-
-                                                @foreach($categories as $item)
-                                                    <option value="{{$item->category}}"> {{$item->category}} </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label text-white">Post Content</label>
-                                            <textarea class="form-control"  name="description" rows="10" id="plat-content">
-                                                {{$post->description}}
-                                            </textarea>
-                                        </div>
-
-                                        <div class="mb-0">
-                                            <label class="form-label text-white">Post Image</label>
-                                            <input type="file" name="image_path" class="form-control" id="plat-image"/>
+                                            <label class="form-label text-white">category title</label>
+                                            <input type="text" value="{{$category->title}}" name="category" class="form-control" id="plat-name"/>
                                         </div>
 
                                 </div>

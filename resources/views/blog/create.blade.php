@@ -80,6 +80,17 @@
                                     <label class="form-label text-white">Post Title</label>
                                     <input type="text" name="title" class="form-control" id="post-title"/>
                                 </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label text-white">Post Category</label>
+                                    <select class="form-select" name="category_option" id="post-status">
+                                        <option value="">Please select</option>
+
+                                        @foreach($categories as $item)
+                                            <option value="{{$item->category}}"> {{$item->category}} </option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 {{-- <div class="mb-3">
                                     <label class="form-label text-white">Post Category</label>
                                     <select class="form-select" name="category-options[]" id="post-status">
@@ -99,6 +110,12 @@
                                     <label class="form-label text-white">Post Image</label>
                                     <input type="file" name="image_path" class="form-control" id="image_path"/>
                                 </div>
+
+
+
+
+
+
                         </div>
 
                     <div class="modal-footer border-0">

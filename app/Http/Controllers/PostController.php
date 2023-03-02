@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Category;
 use App\Models\Post;
 
 
@@ -19,6 +21,7 @@ class PostController extends Controller
     {
         $posts = Post::all();
         return view('blog.index')->with('posts', $posts);
+        // return view('blog.index', compact('posts', 'categories'));
     }
 
     /**
@@ -28,7 +31,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('blog.create');
+        $categories = Category::all();
+        return view('blog.create', compact('categories'));
     }
 
     /**
@@ -59,6 +63,7 @@ class PostController extends Controller
 
         $post = new Post();
         $post->title = $request->input('title');
+        $post->category_option = $request->input('category_option');
         $post->description = $request->input('description');
         $slug = Str::slug($request->input('title'), '-');
         $post->slug = $slug;
@@ -94,7 +99,10 @@ class PostController extends Controller
      */
     public function edit($slug)
     {
-        return view('blog.edit')->with('post', POST::where('slug', $slug)->first());
+        $categories = Category::all();
+        $post = POST::where('slug', $slug)->first();
+        return view('blog.edit', compact('post','categories'));
+        // return view('blog.edit')->with('post', POST::where('slug', $slug)->first());
     }
 
     /**
@@ -126,6 +134,7 @@ class PostController extends Controller
         $post_update = Post::where('slug', $slug)->first();
         // dd($post_update);
         $post_update->title = $request->input('title');
+        $post_update->category_option = $request->input('category_option');
         $slug = Str::slug($request->title, '-');
         $post_update->description = $request->input('description');
         $post_update->slug = $slug;
