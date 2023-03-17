@@ -26,12 +26,15 @@
 
 
 <!-- ================== BEGIN core-js ================== -->
+<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+
 {{-- <script src="assets/js/vendor.min.js"></script> --}}
 <script src={{url('assets/js/vendor.min.js')}}></script>
     {{-- <script src="assets/js/app.min.js"></script> --}}
     <script src={{url('assets/js/app.min.js')}}></script>
 	<!-- ================== END core-js ================== -->
 	<script src={{url('js/main.js')}}></script>
+    @yield('script')
 
 </body>
 </html>

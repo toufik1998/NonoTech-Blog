@@ -86,6 +86,7 @@ class CategoryController extends Controller
     {
 
         $category_update = Category::where('id', $id)->first();
+        $category_update->category = $request->input('category');
 
         $category_update->update();
 

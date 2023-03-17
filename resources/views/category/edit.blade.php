@@ -90,8 +90,8 @@
 					<div class="navigation-side">
 						<ul>
 
-							<li><a href="#" class="btn my-1 category-btn" style="width: 100%; border-bottom-right-radius: 0;">Menu Plat</a></li>
-							<li><a href="#" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">go to ...</a></li>
+							<li><a href="#" class="btn my-1 category-btn" style="width: 100%; border-bottom-right-radius: 0;">Categories</a></li>
+							<li><a href="#" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
 
 						</ul>
 
@@ -137,7 +137,7 @@
 					<!-- END page-header -->
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="javascript:;" style="color: #f5be7f">Home</a></li>
-						<li class="breadcrumb-item active" style="color: #ff8906">YouCode Manu || Edit Plat </li>
+						<li class="breadcrumb-item active" style="color: #ff8906">YouCode Manu || Edit Post </li>
 					</ol>
 
 				</div>
@@ -167,7 +167,7 @@
 
                             <div class="modal-footer border-0">
                                 <a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
-                                <button type="submit" name="add-multiple-post" class="btn btn-primary  task-action-btn" id="task-save-btn">Update Plat</button>
+                                <button type="submit" name="add-multiple-post" class="btn btn-primary  task-action-btn" id="task-save-btn">Update Post</button>
                             </div>
                         </form>
                     </div>

@@ -90,8 +90,8 @@
 					<div class="navigation-side">
 						<ul>
 
-							<li><a href="#" class="btn my-1 category-btn" style="width: 100%; border-bottom-right-radius: 0;">Menu Plat</a></li>
-							<li><a href="#" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">go to ...</a></li>
+							<li><a href="#" class="btn my-1 category-btn" style="width: 100%; border-bottom-right-radius: 0;">Categories</a></li>
+							<li><a href="#" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
 
 						</ul>
 
@@ -148,7 +148,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-sm-12 col-md-8">
-                        <form action="{{ url('menu_plat/'.$post->id) }}"  method="POST" id="form-task" enctype="multipart/form-data">
+                        <form action="{{ url('dashboard/'.$post->id) }}"  method="POST" id="form-task" enctype="multipart/form-data">
                             @csrf
                             @method("PATCH")
                                 <div class="modal-header border-0 bg-white">
@@ -165,18 +165,18 @@
 
                                         <div class="mb-3">
                                             <label class="form-label text-white">Post Category</label>
-                                            <select class="form-select" name="category_option" id="post-status">
+                                            <select class="form-select" name="category_id" id="post-status">
                                                 <option value="">Please select</option>
 
                                                 @foreach($categories as $item)
-                                                    <option value="{{$item->category}}"> {{$item->category}} </option>
+                                                    <option value="{{$item->id}}"> {{$item->category}} </option>
                                                 @endforeach
                                             </select>
                                         </div>
 
                                         <div class="mb-3">
                                             <label class="form-label text-white">Post Content</label>
-                                            <textarea class="form-control"  name="description" rows="10" id="plat-content">
+                                            <textarea class="form-control"  name="description" rows="10" id="editor">
                                                 {{$post->description}}
                                             </textarea>
                                         </div>
@@ -190,7 +190,7 @@
 
                             <div class="modal-footer border-0">
                                 <a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
-                                <button type="submit" name="add-multiple-post" class="btn btn-primary  task-action-btn" id="task-save-btn">Update Plat</button>
+                                <button type="submit" name="add-multiple-post" class="btn btn-primary  task-action-btn" id="task-save-btn">Update Post</button>
                             </div>
                         </form>
                     </div>
@@ -213,3 +213,13 @@
 
 
 
+@section('script')
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+
+@endsection

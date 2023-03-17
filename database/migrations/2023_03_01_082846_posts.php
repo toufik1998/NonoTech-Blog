@@ -24,7 +24,6 @@ return new class extends Migration
             // $table->string('category_option');
             $table->unsignedBigInteger('user_id')->nullable();
             // $table->foreign('user_id')->references('id')->on('users');
-            $table->boolean('is_admin')->default(true);
             $table->timestamps();
 
 

@@ -23,8 +23,9 @@ class MenuController extends Controller
     {
         $posts = Post::all();
         // $categories = Category::all();
-        return view('dashboard')->with('posts', $posts);
+        // return view('dashboard')->with('posts', $posts);
         // return view('dashboard', compact('posts', 'categories'));
+        return view('dashboard', compact('posts'));
 
     }
 
@@ -53,7 +54,7 @@ class MenuController extends Controller
             'image_path' => 'required|mimes:jpg,png,jpeg'
         ]);
 
-        
+
 
         $post = new Post();
         $post->title = $request->input('title');
@@ -72,7 +73,7 @@ class MenuController extends Controller
 
         $post->save();
 
-        return redirect('menu_plat')->with('flash_message', 'plat added secuusefully');
+        return redirect('dashboard')->with('flash_message', 'plat added secuusefully');
 
     }
 
@@ -84,7 +85,7 @@ class MenuController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('menu.show')->with('post', POST::where('id', $id)->first());
     }
 
     /**
@@ -115,7 +116,7 @@ class MenuController extends Controller
         $post_update = Post::where('id', $id)->first();
         // dd($post_update);
         $post_update->title = $request->input('title');
-        $post_update->category_option = $request->input('category_option');
+        $post_update->category_id = $request->input('category_id');
 
         $slug = Str::slug($request->title, '-');
         $post_update->description = $request->input('description');
@@ -129,7 +130,7 @@ class MenuController extends Controller
 
         $post_update->update();
 
-        return redirect('menu_plat')->with('flash message', 'student updated');
+        return redirect('dashboard')->with('flash message', 'student updated');
     }
 
     /**
@@ -141,6 +142,6 @@ class MenuController extends Controller
     public function destroy($id)
     {
         Post::destroy($id);
-        return redirect('menu_plat')->with('flash_message', 'plat deleted succefully');
+        return redirect('dashboard')->with('flash_message', 'plat deleted succefully');
     }
 }

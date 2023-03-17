@@ -24,15 +24,15 @@ Route::get('/', function () {
 });
 
 Route::resource('/blog', PostController::class);
-Route::resource('/menu_plat', MenuController::class);
+Route::resource('/dashboard', MenuController::class)->middleware(['auth', 'verified']);
 
 Route::resource('/category', CategoryController::class);
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

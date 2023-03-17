@@ -63,7 +63,7 @@ class PostController extends Controller
 
         $post = new Post();
         $post->title = $request->input('title');
-        $post->category_option = $request->input('category_option');
+        $post->category_id = $request->input('category_id');
         $post->description = $request->input('description');
         $slug = Str::slug($request->input('title'), '-');
         $post->slug = $slug;
@@ -86,9 +86,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        return view('blog.show')->with('post', POST::where('slug', $slug)->first());
+        return view('blog.show')->with('post', POST::where('id', $id)->first());
     }
 
     /**
@@ -97,10 +97,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
         $categories = Category::all();
-        $post = POST::where('slug', $slug)->first();
+        $post = POST::where('id', $id)->first();
         return view('blog.edit', compact('post','categories'));
         // return view('blog.edit')->with('post', POST::where('slug', $slug)->first());
     }
@@ -112,7 +112,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(Request $request, $id)
     {
 
         // $file= $request->file('image_path');
@@ -131,10 +131,10 @@ class PostController extends Controller
 
         // ]);
 
-        $post_update = Post::where('slug', $slug)->first();
+        $post_update = Post::where('id', $id)->first();
         // dd($post_update);
         $post_update->title = $request->input('title');
-        $post_update->category_option = $request->input('category_option');
+        $post_update->category_id = $request->input('category_id');
         $slug = Str::slug($request->title, '-');
         $post_update->description = $request->input('description');
         $post_update->slug = $slug;
@@ -149,7 +149,9 @@ class PostController extends Controller
         // return view('blog.index')->with('posts', $posts);
 
 
-        return redirect('blog/'.$slug)->with('Success', 'Update Post succefully');
+        // return redirect('blog/'.$slug)->with('Success', 'Update Post succefully');
+        return redirect('/blog')->with('Success', 'Update Post succefully');
+
     }
 
     /**
@@ -158,9 +160,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy($id)
     {
-        Post::where('slug', $slug)->delete();
+        Post::where('id', $id)->delete();
 
         return redirect('/blog')->with('delete', 'Post deleted succefully');
     }

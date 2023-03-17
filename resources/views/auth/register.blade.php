@@ -55,105 +55,124 @@
 @extends('layouts.common')
 @section('title', 'Register Page')
 
-    <!--Start the navbar +-->
-    <nav class="navbar navbar-expand-md navbar-light  fixed-top shadow" id="navbar-example">
-        <div class="container-fluid">
-        <button class="navbar-toggler bg-white mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon bg-white"></span>
-        </button>
-        <a class="navbar-brand" href="#">NanoTech</a>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+            <a class="navbar-brand" href="#">NanoTech</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item ">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#contact">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/blog">Users Articles</a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Technology</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Economy</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Sport</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Science</a>
+            </li>
+
             </ul>
 
-            <!-- toggling button -->
+
             @if (Route::has('login'))
                 <div class="">
                     @auth
-                        <a href="{{ url('/menu_plat') }}" class="btn">Dashboard</a>
+                        <a href="{{ url('/dashboard') }}" class="btn">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}" class="btn">Log in</a>
+                        {{-- <a href="{{ route('login') }}" class="btn">Log in</a> --}}
+                        <div class="login">
+                            <i class="fa-solid fa-user"></i>
+                            <div class="login-container">
+                                <a href="{{ route('login') }}" class="button">Sign In</a>
+                            </div>
+                        </div>
 
-                        @if (Route::has('register'))
+                        <div class="login-button">
+                            <a href="{{ route('login') }}" class="button">Sign In</a>
+                        </div>
+
+                        {{-- @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="btn mx-3">Register</a>
-                        @endif
+                        @endif --}}
                     @endauth
                 </div>
             @endif
 
-        </div>
-        </div>
-    </nav>
-    <!--Start the navbar-->
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <a href="./search.html" class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
+            </form>
+            </div>
+            </div>
+        </nav>
+    </header>
 
-    <main class="my-4">
-        <div class="container py-5 vh-100">
-        <div class="row d-flex align-items-center justify-content-center h-100">
-
+    <main class="my-5">
+        <div class="container py-0 vh-100">
+          <div class="row d-flex align-items-center justify-content-center h-100">
             <div class="col-md-8 col-lg-7 col-xl-6">
-            <img src="images/sign_foto.png" alt="login" class="img-fluid">
+              <img src={{url('images/login.png')}} alt="login" class="img-fluid">
             </div>
             <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-            <form  method="POST" action="{{ route('register') }}">
+              <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="mb-4">
-                    <label for="username" class="form-label text-white">User name </label>
+                    <label for="username" class="form-label">User name </label>
                     <input type="text" id="name" name="name" class="form-control form-control-lg" :value="old('name')" required>
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
                 <div class="mb-4">
-                    <label for="email" class="form-label text-white"> Address email</label>
+                    <label for="email" class="form-label"> Address email</label>
                     <input type="email" id="email" name="email" class="form-control form-control-lg" :value="old('email')" required>
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
-
                 </div>
                 <div class="mb-4">
-                    <label for="password" class="form-label text-white"> Password</label>
+                    <label for="password" class="form-label"> Password</label>
                     <input type="password" id="password" name="password" class="form-control form-control-lg" required>
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
 
                 </div>
                 <div class="mb-4">
 
-                    <label for="password_confirmation" class="form-label text-white"> Confirm Password</label>
+                    <label for="password_confirmation" class="form-label"> Confirm Password</label>
                     <input type="password" id="password_confirmation" name="password_confirmation" class="form-control form-control-lg" required>
                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
 
                 </div>
                 <button type="submit" class="btn button"> Creat account</button>
-            </form>
-            <div class="d-flex mt-4">
-                <p class="mb-0 text-white">If you have an account</p>
-                <a  href="{{ route('login') }}" class="ms-3">Login</a>
-            </div>
-            <div class="d-flex mt-4">
-                <p class="fw-bold mx-3 mb-0 text-white">
-                 Or you can login with
+              </form>
+              <div class="d-flex mt-4">
+                <p class="mb-0">If you have an account</p>
+                <a href="{{ route('login') }}" class="ms-3">Login</a>
+              </div>
+              <div class="d-flex mt-4">
+                <p class="fw-bold mx-3 mb-0 text-muted">
+                  Or you can login with
                 </p>
-            </div>
-            <div class="social-media-login">
-                <a href="#" class="btn login-buttons" role="button">
-                <i class="fab fa-facebook-f"></i>
+              </div>
+              <div class="social-media-login">
+                <a href="#" class="btn login-button" role="button">
+                  <i class="fab fa-facebook-f"></i>
                 </a>
-                <a href="#" class="btn login-buttons" role="button">
-                <i class="fab fa-twitter"></i>
+                <a href="#" class="btn login-button" role="button">
+                  <i class="fab fa-twitter"></i>
                 </a>
+              </div>
             </div>
-            </div>
-
-
-        </div>
+          </div>
         </div>
     </main>
+
+
 
 
 @section('content')
