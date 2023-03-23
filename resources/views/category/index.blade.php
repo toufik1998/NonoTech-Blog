@@ -104,8 +104,8 @@
 
 						<ul>
 
-							<li><a href="#" class="btn category-btn  my-1" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
-							<li><a href="#" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Categories</a></li>
+							<li><a href="#" class="btn category-btn  my-1" style="width: 100%; border-bottom-right-radius: 0;"> Categories</a></li>
+							<li><a href="{{ url('/adminboard') }}" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
 
 						</ul>
 
@@ -149,14 +149,14 @@
 					</h1>
 					<!-- END page-header -->
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="../../home.php" style="color: #f5be7f">Home</a></li>
+						<li class="breadcrumb-item"><a href="/" style="color: #f5be7f">Home</a></li>
 						<li class="breadcrumb-item active" style="color: #ff8906">NanoTech || Articles </li>
 					</ol>
 
 				</div>
 
 				<div class="ms-auto">
-                <a href={{ url('/dashboard/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Post</a>
+                <a href={{ url('/adminboard/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Post</a>
 				<a href={{ url('/category/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Category</a>
 
 			</div>

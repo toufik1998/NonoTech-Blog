@@ -105,7 +105,7 @@
 
 						<ul>
 
-							<li><a href="#" class="btn category-btn  my-1" style="width: 100%; border-bottom-right-radius: 0;">Categories</a></li>
+							<li><a href={{route('category.index')}} class="btn category-btn  my-1" style="width: 100%; border-bottom-right-radius: 0;">Categories</a></li>
 							<li><a href="#" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
 
 						</ul>
@@ -150,14 +150,14 @@
 					</h1>
 					<!-- END page-header -->
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="../../home.php" style="color: #f5be7f">Home</a></li>
+						<li class="breadcrumb-item"><a href="/" style="color: #f5be7f">Home</a></li>
 						<li class="breadcrumb-item active" style="color: #ff8906">NanoTech || Articles </li>
 					</ol>
 
 				</div>
 
 				<div class="ms-auto">
-				<a href={{ url('/dashboard/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Post</a>
+				<a href={{ url('/adminboard/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Post</a>
                 <a href={{ url('/category/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Category</a>
 
 			</div>
@@ -248,8 +248,8 @@
 								<table class="table align-middle mb-0" style="background-color: #2F3843; border-radius: 1rem;">
 									<thead class="text-white-50" style="background-color:  #2F3843; border-radius: 1rem;">
 										<tr style="color: #8D949D;">
-										<th>Title</th>
-										<th>Description</th>
+										<th>Image / Title</th>
+										{{-- <th>Description</th> --}}
                                         <th>Category</th>
 										<th>Created By:</th>
 										<th>Actions</th>
@@ -275,9 +275,9 @@
                                                         </div>
                                                     </td>
 
-                                                    <td>
+                                                    {{-- <td>
                                                         <span class="badge badge-success rounded-pill ms-4">{!! $item->description !!}</span>
-                                                    </td>
+                                                    </td> --}}
 
                                                     <td>
                                                         <span class="badge badge-success rounded-pill ms-4">{{ $item->category->category }}</span>
@@ -286,11 +286,11 @@
                                                         <p class="fw-normal mb-1 ms-2">{{ $item->user->name }}</p>
                                                     </td>
                                                     <td>
-                                                            <a href="/dashboard/{{$item->id}}" class="btn bg-success text-white btn-sm btn-rounded mt-2">
+                                                            <a href="/adminboard/{{$item->id}}" class="btn bg-success text-white btn-sm btn-rounded mt-2">
                                                                 <i class="fa-regular fa-eye text-white"></i>
                                                             </a>
 
-                                                            <a href="{{ url('dashboard/' . $item->id . '/edit') }}" class="btn bg-success text-white btn-sm btn-rounded mt-2">
+                                                            <a href="{{ url('adminboard/' . $item->id . '/edit') }}" class="btn bg-success text-white btn-sm btn-rounded mt-2">
                                                                 <input type="hidden" name="update-id" value="{{$item->id}}">
                                                                 <i class="fa-sharp fa-solid fa-pen-to-square text-white"></i>
                                                             </a>
@@ -298,7 +298,7 @@
                                                                 <input type="hidden" name="update-id" value="{{$item->id}}">
                                                                 <i class="fa-sharp fa-solid fa-pen-to-square text-white"></i>
                                                             </button> --}}
-                                                        <form method="post" action="{{ url('/dashboard' . '/' . $item->id) }}" style="display: inline;">
+                                                        <form method="post" action="{{ url('/adminboard' . '/' . $item->id) }}" style="display: inline;">
                                                             @csrf
                                                             @method("DELETE")
                                                             {{-- <button type="submit" name="delete" id="buttonDelete" class="d-none">

@@ -31,10 +31,23 @@
 						</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-end me-1">
-						<a href="javascript:;" class="dropdown-item">Edit Profile</a>
+                        <x-responsive-nav-link :href="route('profile.edit')" class="dropdown-item">
+                            {{ __('Profile') }}
+                        </x-responsive-nav-link>
+						{{-- <a href="javascript:;" class="dropdown-item">Edit Profile</a> --}}
 						<a href="javascript:;" class="dropdown-item">Setting</a>
 						<div class="dropdown-divider"></div>
-						<a href="./logout.php" class="dropdown-item">Log Out</a>
+                        <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-responsive-nav-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();" class="dropdown-item">
+                                {{ __('Log Out') }}
+                            </x-responsive-nav-link>
+                        </form>
+						{{-- <a href="./logout.php" class="dropdown-item">Log Out</a> --}}
 					</div>
 				</div>
 			</div>
@@ -90,8 +103,8 @@
 					<div class="navigation-side">
 						<ul>
 
-							<li><a href="#" class="btn my-1 category-btn" style="width: 100%; border-bottom-right-radius: 0;">Categories</a></li>
-							<li><a href="#" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
+							<li><a href={{route('category.index')}} class="btn my-1 category-btn" style="width: 100%; border-bottom-right-radius: 0;">Categories</a></li>
+							<li><a href="{{ url('/adminboard') }}" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
 
 						</ul>
 
@@ -136,8 +149,8 @@
 					</h1>
 					<!-- END page-header -->
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="javascript:;" style="color: #f5be7f">Home</a></li>
-						<li class="breadcrumb-item active" style="color: #ff8906">YouCode Manu || Edit Plat </li>
+						<li class="breadcrumb-item"><a href="/" style="color: #f5be7f">Home</a></li>
+						<li class="breadcrumb-item active" style="color: #ff8906">NanoTech || Edit Post </li>
 					</ol>
 
 				</div>
@@ -148,7 +161,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-sm-12 col-md-8">
-                        <form action="{{ url('dashboard/'.$post->id) }}"  method="POST" id="form-task" enctype="multipart/form-data">
+                        <form action="{{ url('adminboard/'.$post->id) }}"  method="POST" id="form-task" enctype="multipart/form-data">
                             @csrf
                             @method("PATCH")
                                 <div class="modal-header border-0 bg-white">

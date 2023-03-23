@@ -255,7 +255,7 @@
 					</h1>
 					<!-- END page-header -->
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="../../home.php" style="color: #f5be7f">Home</a></li>
+						<li class="breadcrumb-item"><a href="/" style="color: #f5be7f">Home</a></li>
 						<li class="breadcrumb-item active" style="color: #ff8906">NanoTech || Articles </li>
 					</ol>
 

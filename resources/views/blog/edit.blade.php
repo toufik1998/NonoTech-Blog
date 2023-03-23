@@ -229,7 +229,7 @@
 						<ul>
 
 							<li><a href="#" class="btn category-btn  my-1" style="width: 100%; border-bottom-right-radius: 0;">More settings</a></li>
-							<li><a href="#" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
+							<li><a href={{route('blog.index')}} class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
 
 						</ul>
 
@@ -273,8 +273,8 @@
 					</h1>
 					<!-- END page-header -->
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="../../home.php" style="color: #f5be7f">Home</a></li>
-						<li class="breadcrumb-item active" style="color: #ff8906">NanoTech || Articles </li>
+						<li class="breadcrumb-item"><a href="/" style="color: #f5be7f">Home</a></li>
+						<li class="breadcrumb-item active" style="color: #ff8906">NanoTech || Edit Article </li>
 					</ol>
 
 				</div>

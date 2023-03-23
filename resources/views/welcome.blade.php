@@ -247,16 +247,16 @@
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Technology</a>
+                <a class="nav-link" href="#">Web</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Economy</a>
+                <a class="nav-link" href="#">Mobile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Sport</a>
+                <a class="nav-link" href="#">Desktop</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Science</a>
+                <a class="nav-link" href="#">Game</a>
             </li>
 
             </ul>
@@ -266,7 +266,7 @@
                 <div class="">
                     @auth
                         @if(Auth::user()->is_admin == 1)
-                            <a href="{{ url('/dashboard') }}" class="btn">Dashboard</a>
+                            <a href="{{ url('/adminboard') }}" class="btn">Dashboard</a>
                         @else
                             <a href="{{ url('/blog') }}" class="btn">Dashboard</a>
                         @endif
@@ -340,7 +340,7 @@
                 </div>
                 <div class="col-lg-5">
                   <div class="header-articles">
-                    <a href="article.html" class="article-link">
+                    {{-- <a href="article.html" class="article-link">
                       <div class="row">
                         <div class="col-5">
                           <img src="./images/picture-12.jpg" alt="...">
@@ -384,7 +384,29 @@
                           </div>
                         </div>
                       </div>
-                    </a>
+                    </a> --}}
+
+                    @foreach ($previousthreeRows as $item)
+                    {{-- <a href="/blog/{{$post->slug}}" class="btn">Read More</a> --}}
+                        <a href="/home/{{$item->id}}" class="article-link" >
+                            <div class="row">
+                            <div class="col-5">
+                                <img src="../../images/{{$item->image_path}}" alt="...">
+                            </div>
+                            <div class="col-7">
+                                <div class="article-text">
+                                <span class="article-category">
+                                    {{$item->category->category}}
+                                </span>
+                                <h5 class="article-title">
+                                    {{-- Lorem ipsum dolor sit amet consectetur adipisicing eliT, Aliquid deserunt dolores ipsa, repudiandae adipisci vel. --}}
+                                    {{$item->title}}
+                                </h5>
+                                </div>
+                            </div>
+                            </div>
+                        </a>
+                    @endforeach
                   </div>
                 </div>
               </div>
@@ -399,7 +421,7 @@
               <h2 class="section-title">
                 Top Articles
               </h2>
-              <div class="row">
+              {{-- <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-6 mt-4">
                     <a href="./article.html" class="article-link">
                       <img src="./images/picture-13.jpg" alt="...">
@@ -504,7 +526,26 @@
                     </div>
                   </a>
                 </div>
-              </div>
+              </div> --}}
+            <div class="row">
+                @foreach ($random_posts as $item)
+                    <div class="col-lg-3 col-md-4 col-sm-6 mt-4">
+                        <a href="./article.html" class="article-link">
+                        <img src="../../images/{{$item->image_path}}" alt="..." class="img-fluid" style="width: 100%; height: 170px">
+                        <div class="article-text mt-3">
+                            <span class="article-category">
+                                {{$item->category->category}}
+                            </span>
+                            <h5 class="article-title">
+                            {{-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, sit vero? Perferendis praesentium consectetur. --}}
+                                {{$item->title}}
+                            </h5>
+                        </div>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+
               <div class="text-center mt-5">
                 <a href="#" class="btn button">
                   More
@@ -512,6 +553,289 @@
               </div>
             </div>
         </section>
+
+        <section class="news">
+            <div class="container">
+              <h2 class="section-title">
+                Top Articles Web
+              </h2>
+              {{-- <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 mt-4">
+                    <a href="./article.html" class="article-link">
+                      <img src="./images/picture-13.jpg" alt="...">
+                      <div class="article-text mt-3">
+                        <span class="article-category">
+                          Economy
+                        </span>
+                        <h5 class="article-title">
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, sit vero? Perferendis praesentium consectetur.
+                        </h5>
+                      </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mt-4">
+                    <a href="./article.html" class="article-link">
+                      <img src="./images/picture-13.jpg" alt="...">
+                      <div class="article-text mt-3">
+                        <span class="article-category">
+                          Economy
+                        </span>
+                        <h5 class="article-title">
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, sit vero? Perferendis praesentium consectetur.
+                        </h5>
+                      </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mt-4">
+                    <a href="./article.html" class="article-link">
+                      <img src="./images/picture-13.jpg" alt="...">
+                      <div class="article-text mt-3">
+                        <span class="article-category">
+                          Economy
+                        </span>
+                        <h5 class="article-title">
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, sit vero? Perferendis praesentium consectetur.
+                        </h5>
+                      </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mt-4">
+                    <a href="./article.html" class="article-link">
+                      <img src="./images/picture-13.jpg" alt="...">
+                      <div class="article-text mt-3">
+                        <span class="article-category">
+                          Economy
+                        </span>
+                        <h5 class="article-title">
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, sit vero? Perferendis praesentium consectetur.
+                        </h5>
+                      </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mt-4">
+                    <a href="./article.html" class="article-link">
+                      <img src="./images/picture-13.jpg" alt="...">
+                      <div class="article-text mt-3">
+                        <span class="article-category">
+                          Economy
+                        </span>
+                        <h5 class="article-title">
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, sit vero? Perferendis praesentium consectetur.
+                        </h5>
+                      </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mt-4">
+                    <a href="./article.html" class="article-link">
+                      <img src="./images/picture-13.jpg" alt="...">
+                      <div class="article-text mt-3">
+                        <span class="article-category">
+                          Economy
+                        </span>
+                        <h5 class="article-title">
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, sit vero? Perferendis praesentium consectetur.
+                        </h5>
+                      </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mt-4">
+                    <a href="./article.html" class="article-link">
+                      <img src="./images/picture-13.jpg" alt="...">
+                      <div class="article-text mt-3">
+                        <span class="article-category">
+                          Economy
+                        </span>
+                        <h5 class="article-title">
+                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, sit vero? Perferendis praesentium consectetur.
+                        </h5>
+                      </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mt-4">
+                  <a href="./article.html" class="article-link">
+                    <img src="./images/picture-13.jpg" alt="...">
+                    <div class="article-text mt-3">
+                      <span class="article-category">
+                        Economy
+                      </span>
+                      <h5 class="article-title">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, sit vero? Perferendis praesentium consectetur.
+                      </h5>
+                    </div>
+                  </a>
+                </div>
+              </div> --}}
+
+                <div class="owl-carousel owl-theme">
+
+                    @foreach ($all_posts as $item)
+                        @foreach ($all_categories as $category)
+
+                            @if ($item->category_id == $category->id && $item->category->category == 'Web')
+                                <div class="item">
+                                    <div>
+                                        <a href="./article.html" class="article-link">
+                                            <img src="../../images/{{$item->image_path}}" alt="..." class="img-fluid" style="width: 100%; height: 170px">
+                                            <div class="article-text mt-3">
+                                                <span class="article-category">
+                                                    {{$item->category->category}}
+                                                </span>
+                                                <h5 class="article-title">
+                                                    {{-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, sit vero? Perferendis praesentium consectetur. --}}
+                                                    {{$item->title}}
+                                                </h5>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif
+
+                        @endforeach
+                    @endforeach
+
+                </div>
+
+                <div class="text-center mt-5">
+                    <a href="#" class="btn button">
+                      More
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="news">
+            <div class="container">
+              <h2 class="section-title">
+                Top Articles Mobile App
+              </h2>
+
+
+                <div class="owl-carousel owl-theme">
+
+                    @foreach ($all_posts as $item)
+                        @foreach ($all_categories as $category)
+
+                            @if ($item->category_id == $category->id && $item->category->category == 'Mobile')
+                                <div class="item">
+                                    <div>
+                                        <a href="./article.html" class="article-link">
+                                            <img src="../../images/{{$item->image_path}}" alt="..." class="img-fluid" style="width: 100%; height: 170px">
+                                            <div class="article-text mt-3">
+                                                <span class="article-category">
+                                                    {{$item->category->category}}
+                                                </span>
+                                                <h5 class="article-title">
+                                                    {{-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, sit vero? Perferendis praesentium consectetur. --}}
+                                                    {{$item->title}}
+                                                </h5>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif
+
+                        @endforeach
+                    @endforeach
+
+                </div>
+
+                <div class="text-center mt-5">
+                    <a href="#" class="btn button">
+                      More
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="news">
+            <div class="container">
+              <h2 class="section-title">
+                Top Articles Desktop App
+              </h2>
+
+
+                <div class="owl-carousel owl-theme">
+
+                    @foreach ($all_posts as $item)
+                        @foreach ($all_categories as $category)
+
+                            @if ($item->category_id == $category->id && $item->category->category == 'Desktop')
+                                <div class="item">
+                                    <div>
+                                        <a href="./article.html" class="article-link">
+                                            <img src="../../images/{{$item->image_path}}" alt="..." class="img-fluid" style="width: 100%; height: 170px">
+                                            <div class="article-text mt-3">
+                                                <span class="article-category">
+                                                    {{$item->category->category}}
+                                                </span>
+                                                <h5 class="article-title">
+                                                    {{-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, sit vero? Perferendis praesentium consectetur. --}}
+                                                    {{$item->title}}
+                                                </h5>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif
+
+                        @endforeach
+                    @endforeach
+
+                </div>
+
+                <div class="text-center mt-5">
+                    <a href="#" class="btn button">
+                      More
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="news">
+            <div class="container">
+              <h2 class="section-title">
+                Top Articles Game App
+              </h2>
+
+
+                <div class="owl-carousel owl-theme">
+
+                    @foreach ($all_posts as $item)
+                        @foreach ($all_categories as $category)
+
+                            @if ($item->category_id == $category->id && $item->category->category == 'Game')
+                                <div class="item">
+                                    <div>
+                                        <a href="./article.html" class="article-link">
+                                            <img src="../../images/{{$item->image_path}}" alt="..." class="img-fluid" style="width: 100%; height: 170px">
+                                            <div class="article-text mt-3">
+                                                <span class="article-category">
+                                                    {{$item->category->category}}
+                                                </span>
+                                                <h5 class="article-title">
+                                                    {{-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, sit vero? Perferendis praesentium consectetur. --}}
+                                                    {{$item->title}}
+                                                </h5>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif
+
+                        @endforeach
+                    @endforeach
+
+                </div>
+
+                <div class="text-center mt-5">
+                    <a href="#" class="btn button">
+                      More
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
 
         <section class="most-read">
             <div class="container">
@@ -776,40 +1100,48 @@
               </h2>
               <div class="row">
                 <div class="col-md-6">
-                  <a href="article.html" class="article-link">
-                    <img src="./images/picture-17.jpg" alt="...">
-                    <div class="card-text mt-3">
-                      <span class="article-category">Economy</span>
-                      <h5 class="article-title">Lorem, ipsum dolor. Lorem, ipsum.</h5>
-                      <p>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                            Unde, voluptatum doloribus. Adipisci, libero itaque
-                            quibusdam natus atque commodi iusto eos totam,
-                            aperiam laudantium, magni consequuntur et molestiae dolores ullam officia?
-                      </p>
-                    </div>
-                  </a>
+                   @foreach ($last_post as $item)
+                        <a href="article.html" class="article-link">
+                            <img src="../../images/{{$item->image_path}}" alt="...">
+                            <div class="card-text mt-3">
+                                <span class="article-category">{{$item->category->category}}</span>
+                                <h5 class="article-title">{{$item->title}}</h5>
+                                <p>
+                                        {{-- Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                                        Unde, voluptatum doloribus. Adipisci, libero itaque
+                                        quibusdam natus atque commodi iusto eos totam,
+                                        aperiam laudantium, magni consequuntur et molestiae dolores ullam officia? --}}
+                                        {!! $item->description !!}
+                                </p>
+                            </div>
+                        </a>
+                   @endforeach
                 </div>
                 <div class="col-md-6">
-                  <a href="article.html" class="article-link">
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <img src="./images/picture-10.jpg" alt="...">
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="card-text">
-                          <span class="article-category">
-                            Technology
-                          </span>
-                          <h5 class="article-title">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, magnam. amet consectetur adipisicing elit.
-                          </h5>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
+                    @foreach ($last_two_posts as $item)
+                        @if(!$loop->first)
+                            <a href="article.html" class="article-link">
+                                <div class="row">
+                                <div class="col-sm-6">
+                                    <img src="../../images/{{$item->image_path}}" alt="...">
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="card-text">
+                                    <span class="article-category">
+                                        {{$item->category->category}}
+                                    </span>
+                                    <h5 class="article-title">
+                                        {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, magnam. amet consectetur adipisicing elit. --}}
+                                        {{$item->title}}
+                                    </h5>
+                                    </div>
+                                </div>
+                                </div>
+                            </a>
+                        @endif
+                    @endforeach
                   <div class="row mt-4">
-                    <div class="col-sm-6">
+                    {{-- <div class="col-sm-6">
                       <a href="article.html" class="article-link">
                         <img src="./images/picture-13.jpg" alt="...">
                         <div class="card-text mt-3">
@@ -834,7 +1166,44 @@
                           </h5>
                         </div>
                       </a>
-                    </div>
+                    </div> --}}
+
+
+
+                    @foreach($last_four_posts as $item)
+                        @if($loop->iteration > 2)
+                            <div class="col-sm-6">
+                                <a href="article.html" class="article-link">
+                                    <img src="../../images/{{$item->image_path}}" alt="..." class="img-fluid" style="width: 100%; height: 170px">
+                                    <div class="card-text mt-3">
+                                    <span class="article-category">
+                                        {{$item->category->category}}
+                                    </span>
+                                    <h5 class="article-title">
+                                        {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, magnam. amet consectetur adipisicing elit. --}}
+                                            {{$item->title}}
+                                    </h5>
+                                    </div>
+                                </a>
+                            </div>
+                        @endif
+                        {{-- @if(!$loop->first)
+                        <div class="col-sm-6">
+                            <a href="article.html" class="article-link">
+                                <img src="../../images/{{$item->image_path}}" alt="..." class="img-fluid" style="width: 100%; height: 170px">
+                                <div class="card-text mt-3">
+                                  <span class="article-category">
+                                    {{$item->category->category}}
+                                  </span>
+                                  <h5 class="article-title">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, magnam. amet consectetur adipisicing elit.
+                                        {{$item->title}}
+                                 </h5>
+                                </div>
+                            </a>
+                        </div>
+                        @endif --}}
+                    @endforeach
                   </div>
                 </div>
               </div>

@@ -73,7 +73,7 @@ class MenuController extends Controller
 
         $post->save();
 
-        return redirect('dashboard')->with('flash_message', 'plat added secuusefully');
+        return redirect('adminboard')->with('flash_message', 'plat added secuusefully');
 
     }
 
@@ -130,7 +130,7 @@ class MenuController extends Controller
 
         $post_update->update();
 
-        return redirect('dashboard')->with('flash message', 'student updated');
+        return redirect('adminboard')->with('flash message', 'student updated');
     }
 
     /**
@@ -142,6 +142,6 @@ class MenuController extends Controller
     public function destroy($id)
     {
         Post::destroy($id);
-        return redirect('dashboard')->with('flash_message', 'plat deleted succefully');
+        return redirect('adminboard')->with('flash_message', 'plat deleted succefully');
     }
 }
