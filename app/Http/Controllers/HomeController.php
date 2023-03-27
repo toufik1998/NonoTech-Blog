@@ -29,7 +29,9 @@ class HomeController extends Controller
         $all_posts = Post::all();
         $all_categories = Category::all();
 
-        return view('welcome', compact('random_posts', 'all_posts', 'all_categories', 'last_four_posts', 'last_post', 'last_two_posts', 'previousthreeRows'));
+        $most_read_posts = Post::orderByDesc('views')->take(3)->get();
+
+        return view('welcome', compact('random_posts', 'all_posts', 'all_categories', 'last_four_posts', 'last_post', 'last_two_posts', 'previousthreeRows', 'most_read_posts'));
 
     }
 
@@ -62,9 +64,12 @@ class HomeController extends Controller
      */
     public function show($id)
     {
+
         $post = Post::find($id);
+        $post->increment('views');
         $random_posts = Post::inRandomOrder()->limit(3)->get();
-        return view('home.show', compact('post', 'random_posts'));
+        $most_read_posts = Post::orderByDesc('views')->take(5)->get();
+        return view('home.show', compact('post', 'random_posts', 'most_read_posts'));
 
 
         // return view('home.show')->with('post', POST::where('id', $id)->first());

@@ -567,7 +567,7 @@
                         </a> --}}
 
                         @foreach ($random_posts as $item)
-                            <a href="#" class="article-link">
+                            <a href="/home/{{$item->id}}" class="article-link">
                                 <div class="story-card mt-5">
                                 <div class="row">
                                     <div class="col-sm-4">
@@ -704,7 +704,7 @@
                 <div class="col-md-4">
                   <div class="most-read">
                     <h2>Most Read</h2>
-                    <a href="#" class="article-link">
+                    {{-- <a href="#" class="article-link">
                       <div class="most-read-article">
                         <img src="./images/picture-13.jpg" alt="...">
                         <div class="most-read-text">
@@ -747,7 +747,21 @@
                           <time datetime="01/01/2023">Sunday 01/01/2023</time>
                         </div>
                       </div>
-                    </a>
+                    </a> --}}
+
+                    @foreach ($most_read_posts as $item)
+                        <a href="#" class="article-link">
+                            <div class="most-read-article">
+                                <img src="/images/{{$item->image_path}}" alt="...">
+                                <div class="most-read-text">
+                                    <h4 class="article-title">
+                                        {{$item->title}}
+                                    </h4>
+                                    <time datetime="01/01/2023">{{date('d-m-y', strtotime($post->updated_at))}}</time>
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
                   </div>
                 </div>
               </div>

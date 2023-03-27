@@ -45,6 +45,11 @@ img {
     @include section-title($black-color, $main-color)
 }
 
+.navbar-small {
+    padding: 0 !important;
+    transition: all .5s;
+}
+
 
 header {
     .navbar {
@@ -213,7 +218,7 @@ header {
 
 section {
     &.news {
-       padding: 50px; 
+       padding: 50px;
        .article-link {
         img {
             max-height: 170px;
@@ -464,7 +469,7 @@ footer {
                         //     left: 280px;
                         // }
                     }
-                }  
+                }
 
                 &-text {
                     h3{
@@ -570,7 +575,7 @@ footer {
                     }
                 }
 
-                
+
 
                 &-indicators {
                     left: 0;
@@ -609,7 +614,7 @@ footer {
                         text-overflow: ellipsis;
                         display: -webkit-box;
                         -webkit-line-clamp: 3; /* number of lines to show */
-                                line-clamp: 3; 
+                                line-clamp: 3;
                         -webkit-box-orient: vertical;
                     }
                     time {

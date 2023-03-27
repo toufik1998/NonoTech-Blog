@@ -235,7 +235,7 @@
     </main> --}}
 
     <header>
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
             <div class="container">
             <a class="navbar-brand" href="#">NanoTech</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -247,16 +247,16 @@
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Web</a>
+                <a class="nav-link" href="#web">Web</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Mobile</a>
+                <a class="nav-link" href="#mobile">Mobile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Desktop</a>
+                <a class="nav-link" href="#desktop">Desktop</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Game</a>
+                <a class="nav-link" href="#game">Game</a>
             </li>
 
             </ul>
@@ -530,7 +530,7 @@
             <div class="row">
                 @foreach ($random_posts as $item)
                     <div class="col-lg-3 col-md-4 col-sm-6 mt-4">
-                        <a href="./article.html" class="article-link">
+                        <a href="/home/{{$item->id}}" class="article-link">
                         <img src="../../images/{{$item->image_path}}" alt="..." class="img-fluid" style="width: 100%; height: 170px">
                         <div class="article-text mt-3">
                             <span class="article-category">
@@ -554,7 +554,7 @@
             </div>
         </section>
 
-        <section class="news">
+        <section class="news" id="web">
             <div class="container">
               <h2 class="section-title">
                 Top Articles Web
@@ -674,7 +674,7 @@
                             @if ($item->category_id == $category->id && $item->category->category == 'Web')
                                 <div class="item">
                                     <div>
-                                        <a href="./article.html" class="article-link">
+                                        <a href="/home/{{$item->id}}" class="article-link">
                                             <img src="../../images/{{$item->image_path}}" alt="..." class="img-fluid" style="width: 100%; height: 170px">
                                             <div class="article-text mt-3">
                                                 <span class="article-category">
@@ -703,7 +703,7 @@
             </div>
         </section>
 
-        <section class="news">
+        <section class="news" id="mobile">
             <div class="container">
               <h2 class="section-title">
                 Top Articles Mobile App
@@ -718,7 +718,7 @@
                             @if ($item->category_id == $category->id && $item->category->category == 'Mobile')
                                 <div class="item">
                                     <div>
-                                        <a href="./article.html" class="article-link">
+                                        <a href="/home/{{$item->id}}" class="article-link">
                                             <img src="../../images/{{$item->image_path}}" alt="..." class="img-fluid" style="width: 100%; height: 170px">
                                             <div class="article-text mt-3">
                                                 <span class="article-category">
@@ -747,7 +747,7 @@
             </div>
         </section>
 
-        <section class="news">
+        <section class="news" id="desktop">
             <div class="container">
               <h2 class="section-title">
                 Top Articles Desktop App
@@ -762,7 +762,7 @@
                             @if ($item->category_id == $category->id && $item->category->category == 'Desktop')
                                 <div class="item">
                                     <div>
-                                        <a href="./article.html" class="article-link">
+                                        <a href="/home/{{$item->id}}" class="article-link">
                                             <img src="../../images/{{$item->image_path}}" alt="..." class="img-fluid" style="width: 100%; height: 170px">
                                             <div class="article-text mt-3">
                                                 <span class="article-category">
@@ -791,7 +791,7 @@
             </div>
         </section>
 
-        <section class="news">
+        <section class="news" id="game">
             <div class="container">
               <h2 class="section-title">
                 Top Articles Game App
@@ -806,7 +806,7 @@
                             @if ($item->category_id == $category->id && $item->category->category == 'Game')
                                 <div class="item">
                                     <div>
-                                        <a href="./article.html" class="article-link">
+                                        <a href="/home/{{$item->id}}" class="article-link">
                                             <img src="../../images/{{$item->image_path}}" alt="..." class="img-fluid" style="width: 100%; height: 170px">
                                             <div class="article-text mt-3">
                                                 <span class="article-category">
@@ -842,7 +842,7 @@
               <h2 class="section-title">
                 Most Read
               </h2>
-              <div class="card-news">
+              {{-- <div class="card-news">
                 <a href="./article.html">
                   <div class="row">
                     <div class="col-md-5">
@@ -864,21 +864,9 @@
                     </div>
                   </div>
                 </a>
-              </div>
-              <div class="card-news">
-                <a href="./article.html">
-                  <div class="card-img">
-                    <img src="./images/picture-15.jpg" alt="...">
-                  </div>
-                  <div class="card-text">
-                    <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, sit vero? Perferendis praesentium consectetur.</h4>
-                    <time datetime="18-12-2022">
-                        Sunday, 22/02/2023
-                    </time>
-                  </div>
-                </a>
-              </div>
-              <div class="card-news">
+              </div> --}}
+
+              {{-- <div class="card-news">
                 <a href="./article.html">
                   <div class="row">
                     <div class="col-md-5">
@@ -900,7 +888,52 @@
                     </div>
                   </div>
                 </a>
+              </div> --}}
+
+                @foreach ($most_read_posts as $item)
+                    @if(!$loop->first)
+                        <div class="card-news">
+                            <a href="/home/{{$item->id}}">
+                            <div class="row">
+                                <div class="col-md-5">
+                                <img src="../../images/{{$item->image_path}}" alt="...">
+                                </div>
+                                <div class="col-md-7">
+                                <div class="card-text ">
+                                    <h4>{{$item->title}}</h4>
+                                    <p class="">
+                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. <br>
+                                        Amet atque natus nulla perferendis. Adipisci perferendis, <br>
+                                        eius ex officiis quae doloremque, dolores, at ad velit <br>
+                                        repudiandae minus et alias reprehenderit voluptate? <br>
+                                        {!! $item->title !!}
+                                    </p>
+                                    <time datetime="18-12-2022">
+                                        {{date('d-m-y', strtotime($item->updated_at))}}
+                                    </time>
+                                </div>
+                                </div>
+                            </div>
+                            </a>
+                        </div>
+                    @endif
+                @endforeach
+              <div class="card-news">
+                <a href="/home/{{$most_read_posts[0]->id}}">
+                  <div class="card-img">
+                    <img src="../../images/{{ $most_read_posts[0]->image_path }}" alt="...">
+                  </div>
+                  <div class="card-text">
+                    <h4>{{ $most_read_posts[0]->title }}</h4>
+                    <time datetime="18-12-2022">
+                        {{date('d-m-y', strtotime($most_read_posts[0]->updated_at))}}
+                        {{-- {{ array_first($most_read_posts)->name }} --}}
+                    </time>
+                  </div>
+                </a>
               </div>
+
+
             </div>
         </section>
 
@@ -1101,7 +1134,7 @@
               <div class="row">
                 <div class="col-md-6">
                    @foreach ($last_post as $item)
-                        <a href="article.html" class="article-link">
+                        <a href="/home/{{$item->id}}" class="article-link">
                             <img src="../../images/{{$item->image_path}}" alt="...">
                             <div class="card-text mt-3">
                                 <span class="article-category">{{$item->category->category}}</span>
@@ -1120,7 +1153,7 @@
                 <div class="col-md-6">
                     @foreach ($last_two_posts as $item)
                         @if(!$loop->first)
-                            <a href="article.html" class="article-link">
+                            <a href="/home/{{$item->id}}" class="article-link">
                                 <div class="row">
                                 <div class="col-sm-6">
                                     <img src="../../images/{{$item->image_path}}" alt="...">
@@ -1173,7 +1206,7 @@
                     @foreach($last_four_posts as $item)
                         @if($loop->iteration > 2)
                             <div class="col-sm-6">
-                                <a href="article.html" class="article-link">
+                                <a href="/home/{{$item->id}}" class="article-link">
                                     <img src="../../images/{{$item->image_path}}" alt="..." class="img-fluid" style="width: 100%; height: 170px">
                                     <div class="card-text mt-3">
                                     <span class="article-category">
