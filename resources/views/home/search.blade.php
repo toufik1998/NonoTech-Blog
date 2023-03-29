@@ -39,7 +39,6 @@
                             <a href="{{ url('/blog') }}" class="btn">Dashboard</a>
                         @endif
                     @else
-                        {{-- <a href="{{ route('login') }}" class="btn">Log in</a> --}}
                         <div class="login">
                             <i class="fa-solid fa-user"></i>
                             <div class="login-container">
@@ -51,9 +50,6 @@
                             <a href="{{ route('login') }}" class="button">Sign In</a>
                         </div>
 
-                        {{-- @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="btn mx-3">Register</a>
-                        @endif --}}
                     @endauth
                 </div>
             @endif
@@ -94,102 +90,6 @@
               </div>
               <hr>
               <div class="search-articles" id="search-articles">
-                {{-- <div class="article-card">
-                  <a href="article.html" class="article-link">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <img src="./images/picture-12.jpg" alt="...">
-                      </div>
-                      <div class="col-md-8">
-                        <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h4>
-                        <p>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim, atque mollitia placeat voluptatibus magni dolore sunt ut qui, earum nobis saepe numquam non tenetur accusantium maxime fugit consequuntur hic debitis.
-                        </p>
-                        <time datetime="01/01/2023">Sunday، 01/01/2023</time>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div class="article-card">
-                  <a href="article.html" class="article-link">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <img src="./images/picture-15.jpg" alt="...">
-                      </div>
-                      <div class="col-md-8">
-                        <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h4>
-                        <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim, atque mollitia placeat voluptatibus magni dolore sunt ut qui, earum nobis saepe numquam non tenetur accusantium maxime fugit consequuntur hic debitis.
-                        </p>
-                        <time datetime="01/01/2023">Sunday، 01/01/2023</time>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div class="article-card">
-                  <a href="article.html" class="article-link">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <img src="./images/picture-16.jpg" alt="...">
-                      </div>
-                      <div class="col-md-8">
-                        <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h4>
-                        <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat a maiores nihil harum! Ullam fugit soluta facilis optio earum beatae? Esse culpa doloribus repellat quisquam nulla veniam minus accusantium reprehenderit?
-                        </p>
-                          <time datetime="01/01/2023">Sunday، 01/01/2023</time>
-                        </div>
-                    </div>
-                  </a>
-                </div>
-                <div class="article-card">
-                  <a href="article.html" class="article-link">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <img src="./images/picture-1.jpg" alt="...">
-                      </div>
-                      <div class="col-md-8">
-                        <h4>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</h4>
-                        <p>
-                          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur magnam atque adipisci maiores, nulla, aliquid harum perferendis ea illo, sapiente dignissimos quas tempora optio temporibus tempore molestias tenetur saepe doloremque.
-                        </p>
-                          <time datetime="01/01/2023">Sunday، 01/01/2023</time>
-                        </div>
-                    </div>
-                  </a>
-                </div>
-                <div class="article-card">
-                  <a href="article.html" class="article-link">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <img src="./images/picture-14.jpg" alt="...">
-                      </div>
-                      <div class="col-md-8">
-                        <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h4>
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati consequuntur possimus culpa a distinctio, cum quod. Officia id libero enim repudiandae architecto exercitationem optio, tempora aperiam deserunt obcaecati sed ab!
-                        </p>
-                          <time datetime="01/01/2023">Sunday، 01/01/2023</time>
-                        </div>
-                    </div>
-                  </a>
-                </div>
-                <div class="article-card">
-                  <a href="article.html" class="article-link">
-                    <div class="row">
-                      <div class="col-md-4">
-                        <img src="./images/picture-11.jpg" alt="...">
-                      </div>
-                      <div class="col-md-8">
-                        <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat soluta eveniet excepturi explicabo pariatur deleniti consectetur, quam veniam! Tenetur ipsam eaque iste sapiente. Vitae ducimus id beatae debitis accusamus dolores!
-                        </p>
-                        <time datetime="01/01/2023">Sunday، 01/01/2023</time>
-                      </div>
-                    </div>
-                  </a>
-                </div> --}}
 
                 @foreach ($posts as $item)
                     <div class="article-card">
