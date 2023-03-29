@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Category;
-use App\Models\Post;
+
 use App\Models\Comment;
+use App\Models\Post;
+
 
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,24 +18,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        $totalRows = Post::count();
-        $skipRows = max($totalRows - 3, 0);
-        $previousthreeRows = Post::skip($skipRows)->take(3)->get();
-
-
-        $last_post = Post::latest()->limit(1)->get();
-        $last_two_posts = Post::latest()->limit(2)->get();
-        $last_four_posts = Post::latest()->limit(4)->get();
-
-        $random_posts = Post::inRandomOrder()->limit(8)->get();
-        $all_posts = Post::all();
-        $all_categories = Category::all();
-
-        $most_read_posts = Post::orderByDesc('views')->take(3)->get();
-
-        return view('welcome', compact('random_posts', 'all_posts', 'all_categories', 'last_four_posts', 'last_post', 'last_two_posts', 'previousthreeRows', 'most_read_posts'));
-
+        //
     }
 
     /**
@@ -55,7 +39,23 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'comment' => 'required',
+
+        ]);
+
+        $comment = new Comment();
+        $comment->comment = $request->input('comment');
+        $comment->post_id = $request->input('post_id');
+        $comment->user_id = auth()->user()->id;
+
+        $comment->save();
+
+        return redirect()->back()->with('success', 'Comment submitted successfully!');
+
+
+
+
     }
 
     /**
@@ -66,20 +66,7 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-
-        $post = Post::find($id);
-        $post->increment('views');
-        $random_posts = Post::inRandomOrder()->limit(3)->get();
-        $most_read_posts = Post::orderByDesc('views')->take(5)->get();
-        // $comments = $post->comments->get();
-
-        $comments = Comment::where('post_id', $id)->get();
-
-        return view('home.show', compact('post', 'random_posts', 'most_read_posts', 'comments'));
-
-
-        // return view('home.show')->with('post', POST::where('id', $id)->first());
-
+        //
     }
 
     /**
@@ -102,7 +89,24 @@ class HomeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $request->validate([
+            'comment' => 'required',
+
+        ]);
+
+        $comment_update = Comment::where('id', $id)->first();
+        $comment_update->comment = $request->input('comment');
+        $comment_update->post_id = $request->input('post_id');
+        $comment_update->user_id = auth()->user()->id;
+
+        $comment_update->update();
+
+        session()->flash('updated_comment_id', $comment_update->id);
+
+        return redirect()->back()->with('success', 'Comment updated successfully!');
+
+
     }
 
     /**
@@ -113,6 +117,7 @@ class HomeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Comment::destroy($id);
+        return redirect()->back();
     }
 }

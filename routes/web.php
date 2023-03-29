@@ -5,6 +5,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CommentController;
+
 
 
 use Illuminate\Support\Facades\Route;
@@ -28,6 +30,8 @@ Route::resource('/blog', PostController::class);
 Route::resource('/adminboard', MenuController::class);
 
 Route::resource('/category', CategoryController::class);
+Route::resource('/comments', CommentController::class);
+
 Route::resource('/', HomeController::class);
 
 Route::resource('/home', HomeController::class);
