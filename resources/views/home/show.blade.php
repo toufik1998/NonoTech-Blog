@@ -634,45 +634,61 @@
                                     Related articles
                                 </h2>
                                 <div class="row">
-                                <div class="col-sm-4">
-                                    <a href="article.html" class="article-link">
-                                    <img src="./images/picture-12.jpg" alt="...">
-                                    <div class="article-text mt-3">
-                                        <span class="article-category">
-                                        Economy
-                                        </span>
-                                        <h5 class="article-title">
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibu giat obcaecati distinctio!
-                                        </h5>
+                                    {{-- <div class="col-sm-4">
+                                        <a href="article.html" class="article-link">
+                                        <img src="./images/picture-12.jpg" alt="...">
+                                        <div class="article-text mt-3">
+                                            <span class="article-category">
+                                            Economy
+                                            </span>
+                                            <h5 class="article-title">
+                                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibu giat obcaecati distinctio!
+                                            </h5>
+                                        </div>
+                                        </a>
                                     </div>
-                                    </a>
-                                </div>
-                                <div class="col-sm-4">
-                                    <a href="article.html" class="article-link">
-                                    <img src="./images/picture-10.jpg" alt="...">
-                                    <div class="article-text mt-3">
-                                        <span class="article-category">
-                                        Sport
-                                        </span>
-                                        <h5 class="article-title">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, eum assumenda quo ratione numquam beatae?
-                                        </h5>
+                                    <div class="col-sm-4">
+                                        <a href="article.html" class="article-link">
+                                        <img src="./images/picture-10.jpg" alt="...">
+                                        <div class="article-text mt-3">
+                                            <span class="article-category">
+                                            Sport
+                                            </span>
+                                            <h5 class="article-title">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, eum assumenda quo ratione numquam beatae?
+                                            </h5>
+                                        </div>
+                                        </a>
                                     </div>
-                                    </a>
-                                </div>
-                                <div class="col-sm-4">
-                                    <a href="article.html" class="article-link">
-                                    <img src="./images/picture-15.jpg" alt="...">
-                                    <div class="article-text mt-3">
-                                        <span class="article-category">
-                                        Health
-                                        </span>
-                                        <h5 class="article-title">
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo at, possimus impedit rem mollitia commodi?
-                                        </h5>
-                                    </div>
-                                    </a>
-                                </div>
+                                    <div class="col-sm-4">
+                                        <a href="article.html" class="article-link">
+                                        <img src="./images/picture-15.jpg" alt="...">
+                                        <div class="article-text mt-3">
+                                            <span class="article-category">
+                                            Health
+                                            </span>
+                                            <h5 class="article-title">
+                                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo at, possimus impedit rem mollitia commodi?
+                                            </h5>
+                                        </div>
+                                        </a>
+                                    </div> --}}
+
+                                    @foreach ($related_posts as $item)
+                                        <div class="col-sm-4">
+                                            <a href="/home/{{$item->id}}" class="article-link">
+                                            <img src="/images/{{$item->image_path}}" alt="...">
+                                            <div class="article-text mt-3">
+                                                <span class="article-category">
+                                                    {{$item->category->category}}
+                                                </span>
+                                                <h5 class="article-title">
+                                                    {{$item->title}}
+                                                </h5>
+                                            </div>
+                                            </a>
+                                        </div>
+                                    @endforeach
                                 </div>
                                 <div class="text-center">
                                 <a href="#" class="btn button">

@@ -67,18 +67,25 @@ class HomeController extends Controller
     public function show($id)
     {
 
+
+
         $post = Post::find($id);
         $post->increment('views');
         $random_posts = Post::inRandomOrder()->limit(3)->get();
         $most_read_posts = Post::orderByDesc('views')->take(5)->get();
-        // $comments = $post->comments->get();
+
+        // Find related posts based on category
+        $related_posts = Post::where('category_id', $post->category_id)
+        ->where('id', '<>', $post->id)
+        ->orderBy('created_at', 'desc')
+        ->take(3)
+        ->get();
 
         $comments = Comment::where('post_id', $id)->get();
 
-        return view('home.show', compact('post', 'random_posts', 'most_read_posts', 'comments'));
 
+        return view('home.show', compact('post', 'random_posts', 'most_read_posts', 'comments', 'related_posts'));
 
-        // return view('home.show')->with('post', POST::where('id', $id)->first());
 
     }
 
