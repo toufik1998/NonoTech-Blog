@@ -58,10 +58,10 @@
                 </div>
             @endif
 
-            <form class="d-flex" role="search" action="{{ route('home.search') }}" method="GET" >
+            {{-- <form class="d-flex" role="search" action="{{ route('home.search') }}" method="GET" >
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <a href="./search.html" class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
-            </form>
+            </form> --}}
             </div>
             </div>
         </nav>
@@ -74,19 +74,23 @@
               <div class="search-form">
                 <form  action="{{ route('home.search') }}" method="POST">
                     @csrf
-                  <input type="text" placeholder="Search here" name="search" required>
+                  <input type="text" placeholder="Search here" name="search" value="{{$searchTerm}}" required>
                   <button type="submit" class="button">Search</button>
                 </form>
               </div>
               <div class="search-line">
                 <span>Best 50 result</span>
-                <div class="ranking">
+                {{-- <div class="ranking">
                   <span>Order:</span>
-                  <select name="ranking_by" id="ranking_by">
-                    <option value="date">Date</option>
-                    <option value="related">Reltion</option>
-                  </select>
-                </div>
+                  <form action="{{route('home.search')}}" method="POST">
+                    @csrf
+                    <select name="ranking_by" id="ranking_by">
+                        <option value="date">Date</option>
+                        <option value="alphabet" >Alphabet</option>
+                      </select>
+                      <button type="submit">submit</button>
+                  </form>
+                </div> --}}
               </div>
               <hr>
               <div class="search-articles" id="search-articles">

@@ -422,7 +422,7 @@
 
 @section('content')
     <header>
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
             <div class="container">
             <a class="navbar-brand" href="#">NanoTech</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -477,9 +477,13 @@
                 </div>
             @endif
 
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <a href="./search.html" class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <form class="d-flex" role="search" action="{{ route('home.search') }}" method="POST" >
+                @csrf
+                <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                <button type="submit" class="search-icon bg-white" >
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                {{-- <a href="./search.html"  class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a> --}}
             </form>
             </div>
             </div>
@@ -487,7 +491,7 @@
     </header>
 
     <main>
-            <div class="article-header">
+            <div class="article-header" >
                 <div class="container">
                 <div class="header-category">
                     <span class="me-1">Technology</span> | <span class="ms-1">Microsoft</span>

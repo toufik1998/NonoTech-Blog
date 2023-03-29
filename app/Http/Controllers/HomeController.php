@@ -127,8 +127,13 @@ class HomeController extends Controller
     {
         $searchTerm = $request->input('search');
 
-        $posts = Post::where('title', 'like', '%'.$searchTerm.'%')->get();
-                    // dd($posts);
+        // if ($request->input('ranking_by') == 'alphabet') {
+        //     $posts = Post::where('title', 'like', '%'.$searchTerm.'%')->orderBy('title')->get();
+        // }else{
+        //     $posts = Post::where('title', 'like', '%'.$searchTerm.'%')->orderBy('created_at', 'desc')->get();
+        // }
+
+        $posts = Post::where('title', 'like', '%'.$searchTerm.'%')->orderBy('created_at', 'desc')->paginate(5);
 
         return view('home.search', compact('posts', 'searchTerm'));
     }
