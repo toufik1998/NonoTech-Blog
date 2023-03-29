@@ -122,4 +122,14 @@ class HomeController extends Controller
     {
         //
     }
+
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('search');
+
+        $posts = Post::where('title', 'like', '%'.$searchTerm.'%')->get();
+                    // dd($posts);
+
+        return view('home.search', compact('posts', 'searchTerm'));
+    }
 }

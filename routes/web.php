@@ -34,9 +34,11 @@ Route::resource('/comments', CommentController::class);
 
 Route::resource('/', HomeController::class);
 
-Route::resource('/home', HomeController::class);
-
-
+Route::controller(HomeController::class)->group(function(){
+    Route::get('/home','index');
+    Route::post('/home','search')->name('home.search');
+    Route::get('/home/{id}', 'show');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

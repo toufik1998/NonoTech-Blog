@@ -290,9 +290,13 @@
                 </div>
             @endif
 
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <a href="./search.html" class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <form class="d-flex" role="search" action="{{ route('home.search') }}" method="POST" >
+                @csrf
+                <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                <button type="submit" class="search-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                {{-- <a href="./search.html"  class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></a> --}}
             </form>
             </div>
             </div>
