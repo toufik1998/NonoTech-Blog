@@ -390,6 +390,19 @@
                                             </select>
                                         </div>
 
+                                        <div class="form-group mb-3">
+                                            <label for="tags" class="text-white d-block mb-3 form-label">Tags:</label>
+                                            @foreach($tags as $item)
+                                            <div class="form-check form-check-inline">
+                                              <input class="form-check-input cursor-pointer" type="checkbox" name="tags[]" value="{{ $item->id }}" id="{{ $item->name }}"
+                                                {{ collect(old('tags'))->contains($item->id) ? 'checked' : '' }}>
+                                              <label class="form-check-label text-white" for="{{ $item->name }}">
+                                                {{ $item->name }}
+                                              </label>
+                                            </div>
+                                            @endforeach
+                                        </div>
+
                                         <div class="mb-3">
                                             <label class="form-label text-white">Post Content</label>
                                             <textarea class="form-control" name="description" rows="10" id="editor">{{$post->description}}</textarea>

@@ -12,7 +12,7 @@ class Post extends Model
 
 
     protected $fillable = [
-        'title', 'slug', 'description', 'image_path', 'user_id', 'category_id',
+        'title', 'slug', 'description', 'image_path', 'user_id', 'category_id'
     ];
 
     public function user(){
@@ -25,5 +25,9 @@ class Post extends Model
 
     public function comments(){
         return $this->hasMany(Comment::class);
+    }
+
+    public function tags(){
+        return $this->belongsToMany(Tag::class, 'post_tag');
     }
 }

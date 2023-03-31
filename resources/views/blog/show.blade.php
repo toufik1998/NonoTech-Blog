@@ -239,6 +239,18 @@
                             {!! $post->description !!}
                         </div>
                     </div>
+
+                    <div class="form-group mb-3">
+                        <label for="tags" class="text-white d-block mb-3 form-label">Tags:</label>
+                        @foreach($post->tags as $item)
+                        
+                        <a href="#" id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906">
+                            <i class="fa-solid fa-tags"></i>
+                             {{$item->name}}
+                        </a>
+
+                        @endforeach
+                    </div>
                 </div>
 
 			</div>

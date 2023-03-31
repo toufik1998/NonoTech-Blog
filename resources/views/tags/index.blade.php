@@ -29,9 +29,8 @@
 							<b class="caret text-warning"></b>
 						</span>
 					</a>
-
-                    <div class="dropdown-menu dropdown-menu-end me-1">
-                        <x-responsive-nav-link :href="route('profile.edit')" class="dropdown-item">
+					<div class="dropdown-menu dropdown-menu-end me-1">
+                        <x-responsive-nav-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-responsive-nav-link>
 						{{-- <a href="javascript:;" class="dropdown-item">Edit Profile</a> --}}
@@ -43,7 +42,7 @@
 
                             <x-responsive-nav-link :href="route('logout')"
                                     onclick="event.preventDefault();
-                                                this.closest('form').submit();" class="dropdown-item">
+                                                this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-responsive-nav-link>
                         </form>
@@ -105,8 +104,8 @@
 
 						<ul>
 
-							<li><a href={{route('category.index')}} class="btn category-btn  my-1" style="width: 100%; border-bottom-right-radius: 0;">Categories</a></li>
-							<li><a href="#" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
+							<li><a href="#" class="btn category-btn  my-1" style="width: 100%; border-bottom-right-radius: 0;"> Categories</a></li>
+							<li><a href="{{ url('/adminboard') }}" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
 
 						</ul>
 
@@ -157,8 +156,8 @@
 				</div>
 
 				<div class="ms-auto">
-				<a href={{ url('/adminboard/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Post</a>
-                <a href={{ url('/category/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Category</a>
+                <a href={{ url('/adminboard/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Post</a>
+				<a href={{ url('/category/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Category</a>
                 <a href={{ url('/tag/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Tag</a>
 
 
@@ -250,49 +249,27 @@
 								<table class="table align-middle mb-0" style="background-color: #2F3843; border-radius: 1rem;">
 									<thead class="text-white-50" style="background-color:  #2F3843; border-radius: 1rem;">
 										<tr style="color: #8D949D;">
-										<th>Image / Title</th>
-										{{-- <th>Description</th> --}}
-                                        <th>Category</th>
-										<th>Created By:</th>
+										<th>Title</th>
+
 										<th>Actions</th>
 										</tr>
 									</thead>
 									<tbody>
 
-                                        @foreach($posts as $item)
+                                        @foreach($tags as $item)
                                             <tr style="color: #fff; border-bottom: black;">
                                                     <td>
                                                         <div class="d-flex align-items-center">
-                                                            <img
-                                                            {{-- <img src="{{ url('public/images/'.$item->image) }}" --}}
 
-                                                                src="../../images/{{$item->image_path}}"
-                                                                alt=""
-                                                                style="width: 75px; height: 75px"
-                                                                class="rounded-circle bg-white"
-                                                            />
                                                             <div class="ms-3">
-                                                                <p class="fw-bold mb-1">{{ $item->title }}</p>
+                                                                <p class="fw-bold mb-1">{{ $item->name }}</p>
                                                             </div>
                                                         </div>
                                                     </td>
 
-                                                    {{-- <td>
-                                                        <span class="badge badge-success rounded-pill ms-4">{!! $item->description !!}</span>
-                                                    </td> --}}
 
                                                     <td>
-                                                        <span class="badge badge-success rounded-pill ms-4">{{ $item->category->category }}</span>
-                                                    </td>
-                                                    <td>
-                                                        <p class="fw-normal mb-1 ms-2">{{ $item->user->name }}</p>
-                                                    </td>
-                                                    <td>
-                                                            <a href="/adminboard/{{$item->id}}" class="btn bg-success text-white btn-sm btn-rounded mt-2">
-                                                                <i class="fa-regular fa-eye text-white"></i>
-                                                            </a>
-
-                                                            <a href="{{ url('adminboard/' . $item->id . '/edit') }}" class="btn bg-success text-white btn-sm btn-rounded mt-2">
+                                                            <a href="{{ url('tag/' . $item->id . '/edit') }}" class="btn bg-success text-white btn-sm btn-rounded mt-2">
                                                                 <input type="hidden" name="update-id" value="{{$item->id}}">
                                                                 <i class="fa-sharp fa-solid fa-pen-to-square text-white"></i>
                                                             </a>
@@ -300,7 +277,7 @@
                                                                 <input type="hidden" name="update-id" value="{{$item->id}}">
                                                                 <i class="fa-sharp fa-solid fa-pen-to-square text-white"></i>
                                                             </button> --}}
-                                                        <form method="post" action="{{ url('/adminboard' . '/' . $item->id) }}" style="display: inline;">
+                                                        <form method="post" action="{{ url('/tag' . '/' . $item->id) }}" style="display: inline;">
                                                             @csrf
                                                             @method("DELETE")
                                                             {{-- <button type="submit" name="delete" id="buttonDelete" class="d-none">
@@ -314,6 +291,7 @@
                                                     </td>
                                                 </tr>
                                         @endforeach
+
 
 									</tbody>
 								</table>

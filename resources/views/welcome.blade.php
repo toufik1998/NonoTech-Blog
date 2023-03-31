@@ -268,7 +268,7 @@
                     @foreach ($all_posts as $item)
                         @foreach ($all_categories as $category)
 
-                            @if ($item->category_id == $category->id && $item->category->category == 'Desktop')
+                            @if ($item->category_id == $category->id && $item->category->category == 'desktop')
                                 <div class="item">
                                     <div>
                                         <a href="/home/{{$item->id}}" class="article-link">
@@ -645,7 +645,7 @@
                                 </a>
                             </div>
                         @endif
-                        
+
                     @endforeach
 
                   </div>

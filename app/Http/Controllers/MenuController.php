@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
+
 
 
 
@@ -37,7 +39,8 @@ class MenuController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view("menu.create", compact('categories'));
+        $tags = Tag::all();
+        return view("menu.create", compact('categories', 'tags'));
     }
 
     /**
@@ -64,16 +67,25 @@ class MenuController extends Controller
         $slug = Str::slug($request->input('title'), '-');
         $post->slug = $slug;
         $post->user_id = auth()->user()->id;
-        // $menu->uploadfile = $request->input('uploadfile');
+
+
 
         $file= $request->file('image_path');
         $filename= date('YmdHi').$file->getClientOriginalName();
         $file->move(public_path('images'), $filename);
         $post->image_path = $filename;
 
+        //tags
+        $tags = $request->input('tags');
+
         $post->save();
 
-        return redirect('adminboard')->with('flash_message', 'plat added secuusefully');
+        // $post->tags()->sync($tags);
+        $post->tags()->attach($tags);
+
+
+
+        return redirect('adminboard')->with('flash_message', 'Post added secuusefully');
 
     }
 
@@ -85,6 +97,7 @@ class MenuController extends Controller
      */
     public function show($id)
     {
+        // dd(POST::where('id', $id)->first());
         return view('menu.show')->with('post', POST::where('id', $id)->first());
     }
 
@@ -96,11 +109,16 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::find($id);
+        // $post = Post::find($id);
+        $post = Post::with('tags')->find($id);
+
         $categories = Category::all();
+        $tags = Tag::all();
+
+        // dd($post);
 
         // return view('menu.edit')->with('post', $post);
-        return view('menu.edit', compact('post', 'categories'));
+        return view('menu.edit', compact('post', 'categories', 'tags'));
 
     }
 
@@ -128,7 +146,21 @@ class MenuController extends Controller
         $file->move(public_path('images'), $filename);
         $post_update->image_path = $filename;
 
-        $post_update->update();
+        $post_update->save();
+
+        $tags = $request->input('tags');
+        $post_update->tags()->sync($tags);
+
+        // //tags
+        // $tags = $request->input('tags');
+        // // dd($tags);
+
+        // $post_update->tags()->detach();
+        // $post_update->tags()->attach($post_update->id,$tags);
+
+        // $post_update->update();
+
+
 
         return redirect('adminboard')->with('flash message', 'student updated');
     }

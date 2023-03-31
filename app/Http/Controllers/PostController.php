@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
+
 
 
 use Illuminate\Http\Request;
@@ -32,7 +34,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('blog.create', compact('categories'));
+        $tags = Tag::all();
+        return view('blog.create', compact('categories', 'tags'));
     }
 
     /**
@@ -68,14 +71,20 @@ class PostController extends Controller
         $slug = Str::slug($request->input('title'), '-');
         $post->slug = $slug;
         $post->user_id = auth()->user()->id;
-        // $menu->uploadfile = $request->input('uploadfile');
+
 
         $file= $request->file('image_path');
         $filename= date('YmdHi').$file->getClientOriginalName();
         $file->move(public_path('images'), $filename);
         $post->image_path = $filename;
 
+        //tags
+        $tags = $request->input('tags');
+
         $post->save();
+
+        // $post->tags()->sync($tags);
+        $post->tags()->attach($tags);
 
         return redirect('blog');
     }
@@ -101,7 +110,8 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $post = POST::where('id', $id)->first();
-        return view('blog.edit', compact('post','categories'));
+        $tags = Tag::all();
+        return view('blog.edit', compact('post','categories', 'tags'));
         // return view('blog.edit')->with('post', POST::where('slug', $slug)->first());
     }
 
@@ -145,8 +155,10 @@ class PostController extends Controller
         $file->move(public_path('images'), $filename);
         $post_update->image_path = $filename;
 
-        $post_update->update();
-        // return view('blog.index')->with('posts', $posts);
+        $post_update->save();
+
+        $tags = $request->input('tags');
+        $post_update->tags()->sync($tags);
 
 
         // return redirect('blog/'.$slug)->with('Success', 'Update Post succefully');
