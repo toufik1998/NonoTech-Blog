@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Illuminate\Http\UploadedFile;
+
 class RegisteredUserController extends Controller
 {
     /**
@@ -22,6 +26,14 @@ class RegisteredUserController extends Controller
     {
         return view('auth.register');
     }
+
+    // protected function storeProfilePicture(UploadedFile $file)
+    // {
+    // $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+    // $file->storeAs('public/profile_pictures', $filename);
+
+    // return $filename;
+    // }
 
     /**
      * Handle an incoming registration request.
@@ -34,12 +46,21 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'profile_picture' => 'default.png',
         ]);
+
+        // $profile_picture = $request->file('profile_picture');
+        // $profile_picture_path = null;
+
+        // if ($profile_picture) {
+        //     $profile_picture_path = $profile_picture->store('profile_pictures', 'public');
+        // }
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'profile_picture' => 'default.png',
         ]);
 
         event(new Registered($user));

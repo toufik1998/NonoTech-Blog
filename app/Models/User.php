@@ -22,6 +22,8 @@ class User extends Authenticatable
         'email',
         'password',
         'is_admin',
+        'profile_picture',
+
     ];
 
     /**
@@ -42,6 +44,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getProfilePhotoPathAttribute($value)
+    {
+        return $value ? asset('storage/' . $value) : asset('images/default.png');
+    }
 
 
     public function post(){
