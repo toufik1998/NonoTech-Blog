@@ -24,7 +24,7 @@
 
 				<div class="navbar-item navbar-user dropdown">
 					<a href="#" class="navbar-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
-						<img src="../../images/user-15.jpg" alt="">
+                        <img src="/images/{{  Auth::user()->profile_picture }}" alt="">
 						<span>
                             <span class="d-none d-md-inline text-warning">{{ Auth::user()->name }}</span>
 							<b class="caret text-warning"></b>
@@ -65,7 +65,7 @@
 						<a href="javascript:;" class="menu-profile-link" data-toggle="app-sidebar-profile" data-target="#appSidebarProfileMenu">
 							<div class="menu-profile-cover with-shadow"></div>
 							<div class="menu-profile-image">
-                                <img src="../../images/user-15.jpg" alt="">
+                                <img src="/images/{{  Auth::user()->profile_picture }}" alt="">
 							</div>
 							<div class="menu-profile-info">
 								<div class="d-flex align-items-center">
