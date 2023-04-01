@@ -25,10 +25,7 @@
                 </div>
             </div>
 
-            
-
-            <img src="/images/{{ $user->profile_picture }}" alt="{{ $user->name }}" class="rounded-full h-20 w-20 object-cover">
-
+        
         </div>
     </div>
 </x-app-layout>

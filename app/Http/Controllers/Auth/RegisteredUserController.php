@@ -27,13 +27,6 @@ class RegisteredUserController extends Controller
         return view('auth.register');
     }
 
-    // protected function storeProfilePicture(UploadedFile $file)
-    // {
-    // $filename = uniqid() . '.' . $file->getClientOriginalExtension();
-    // $file->storeAs('public/profile_pictures', $filename);
-
-    // return $filename;
-    // }
 
     /**
      * Handle an incoming registration request.
@@ -49,12 +42,6 @@ class RegisteredUserController extends Controller
             'profile_picture' => 'default.png',
         ]);
 
-        // $profile_picture = $request->file('profile_picture');
-        // $profile_picture_path = null;
-
-        // if ($profile_picture) {
-        //     $profile_picture_path = $profile_picture->store('profile_pictures', 'public');
-        // }
 
         $user = User::create([
             'name' => $request->name,

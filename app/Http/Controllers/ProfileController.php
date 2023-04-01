@@ -42,8 +42,6 @@ class ProfileController extends Controller
 
 
         // Check if a new image was uploaded
-
-
         if ($request->hasFile('profile_picture')) {
             $file = $request->file('profile_picture');
             $filename = date('YmdHi') . $file->getClientOriginalName();

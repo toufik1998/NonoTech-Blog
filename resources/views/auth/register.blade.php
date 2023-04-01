@@ -148,10 +148,7 @@
                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
 
                 </div>
-                {{-- <div class="mb-4">
-                    <label for="profile_picture" class="form-label">Profile Picture:</label>
-                    <input id="profile_picture" type="file" name="profile_picture" class="form-control form-control-lg" required>
-                </div> --}}
+                
 
 
                 <button type="submit" class="btn button"> Creat account</button>
