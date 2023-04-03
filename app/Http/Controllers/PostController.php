@@ -19,7 +19,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     // public function index()
     // {
     //     $posts = Post::all();
@@ -36,7 +36,9 @@ class PostController extends Controller
             $posts->where('title', 'like', "%$searchQuery%")
                 ->orWhere('description', 'like', "%$searchQuery%");
         }
-        $posts = $posts->get();
+        // $posts = $posts->paginate(10);
+        $posts = $posts->where('user_id', auth()->user()->id)->paginate(10);
+
         return view('blog.index', compact('posts'));
     }
 

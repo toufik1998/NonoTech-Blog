@@ -349,8 +349,8 @@
 
                                         @foreach($posts as $item)
 
+                                            {{-- @if ($item->user_id == Auth::user()->id) --}}
 
-                                            @if ($item->user_id == Auth::user()->id)
                                                 <tr style="color: #fff; border-bottom: black;">
                                                     <td>
                                                         <div class="d-flex align-items-center">
@@ -405,11 +405,33 @@
                                                         </form>
                                                     </td>
                                                 </tr>
-                                            @endif
+                                            {{-- @endif --}}
                                         @endforeach
 
 									</tbody>
 								</table>
+
+                                <div class="d-flex justify-content-center my-3">
+                                    <nav aria-label="...">
+                                        <ul class="pagination">
+                                            @if ($posts->onFirstPage())
+                                                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                                            @else
+                                                <li class="page-item"><a class="page-link" href="{{ $posts->previousPageUrl() }}" rel="prev">&laquo;</a></li>
+                                            @endif
+
+                                            @foreach ($posts as $key => $post)
+                                                <li class="page-item"><a class="page-link" href="#">{{ $key + 1 }}</a></li>
+                                            @endforeach
+
+                                            @if ($posts->hasMorePages())
+                                                <li class="page-item"><a class="page-link" href="{{ $posts->nextPageUrl() }}" rel="next">&raquo;</a></li>
+                                            @else
+                                                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                                            @endif
+                                        </ul>
+                                    </nav>
+                                </div>
 							</div>
 						</div>
 					</div>

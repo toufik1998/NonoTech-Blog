@@ -29,7 +29,7 @@ class TagController extends Controller
         if ($searchQuery) {
             $tags->where('name', 'like', "%$searchQuery%");
         }
-        $tags = $tags->get();
+        $tags = $tags->paginate(5);
         return view('tags.index', compact('tags'));
     }
 

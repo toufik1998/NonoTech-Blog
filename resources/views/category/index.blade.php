@@ -304,6 +304,29 @@
 
 									</tbody>
 								</table>
+
+                                <div class="d-flex justify-content-center my-3">
+                                    <nav aria-label="...">
+                                        <ul class="pagination">
+                                            @if ($categories->onFirstPage())
+                                                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                                            @else
+                                                <li class="page-item"><a class="page-link" href="{{ $categories->previousPageUrl() }}" rel="prev">&laquo;</a></li>
+                                            @endif
+
+                                            @foreach ($categories as $key => $category)
+                                                <li class="page-item"><a class="page-link" href="#">{{ $key + 1 }}</a></li>
+                                            @endforeach
+
+                                            @if ($categories->hasMorePages())
+                                                <li class="page-item"><a class="page-link" href="{{ $categories->nextPageUrl() }}" rel="next">&raquo;</a></li>
+                                            @else
+                                                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                                            @endif
+                                        </ul>
+                                    </nav>
+                                </div>
+
 							</div>
 						</div>
 					</div>

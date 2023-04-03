@@ -27,7 +27,7 @@ class CategoryController extends Controller
         if ($searchQuery) {
             $categories->where('category', 'like', "%$searchQuery%");
         }
-        $categories = $categories->get();
+        $categories = $categories->paginate(5);
         return view('category.index', compact('categories'));
     }
 
