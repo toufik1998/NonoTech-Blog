@@ -54,7 +54,9 @@ class MenuController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'image_path' => 'required|mimes:jpg,png,jpeg'
+            'image_path' => 'required|mimes:jpg,png,jpeg',
+            'category_id' => 'required',
+            'tags' => 'required'
         ]);
 
 
@@ -131,6 +133,14 @@ class MenuController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'image_path' => 'required|mimes:jpg,png,jpeg',
+            'category_id' => 'required',
+            'tags' => 'required'
+        ]);
+
         $post_update = Post::where('id', $id)->first();
         // dd($post_update);
         $post_update->title = $request->input('title');

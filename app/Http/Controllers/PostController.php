@@ -49,20 +49,11 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'image_path' => 'required|mimes:jpg,png,jpeg'
+            'image_path' => 'required|mimes:jpg,png,jpeg',
+            'category_id' => 'required',
+            'tags' => 'required'
         ]);
 
-        // $newImageName = uniqid() . '-' .$request->title . '.' . $request->image_path->extension();
-        // $request->image_path->move(public_path()('images'), $newImageName);
-        // $slug = Str::slug($request->title, '-');
-
-        // Post::create([
-        //     'title' => $request->input('title'),
-        //     'description' => $request->input('description'),
-        //     'slug' => $slug,
-        //     'image_path' => $newImageName,
-        //     'user_id' => auth()->user()->id
-        // ]);
 
         $post = new Post();
         $post->title = $request->input('title');
@@ -125,21 +116,13 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
 
-        // $file= $request->file('image_path');
-        // $filename= date('YmdHi').$file->getClientOriginalName();
-        // $file->move(public_path('images'), $filename);
-
-        // $slug = Str::slug($request->title, '-');
-
-
-        // Post::where('slug', $slug)->update([
-        //     'title' => $request->input('title'),
-        //     'description' => $request->input('description'),
-        //     'slug' => $slug,
-        //     'image_path' => $filename,
-        //     'user_id' => auth()->user()->id
-
-        // ]);
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'image_path' => 'required|mimes:jpg,png,jpeg',
+            'category_id' => 'required',
+            'tags' => 'required'
+        ]);
 
         $post_update = Post::where('id', $id)->first();
         // dd($post_update);

@@ -105,15 +105,20 @@
 
 							<li><a href={{route('category.index')}} class="btn my-1 category-btn" style="width: 100%; border-bottom-right-radius: 0;">Categories</a></li>
 							<li><a href="{{ url('/adminboard') }}" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
+                            <li><a href="{{ url('/tag') }}" class="btn tag-btn mt-1" style="width: 100%; border-bottom-right-radius: 0;">Tags</a></li>
 
 						</ul>
 
 						<a href="#" class="icon-post text-center mb-3">
 							<i class="fa-solid fa-blog  fa-2x text-warning"></i>
 						</a>
-						<a href="#" class="icon-post2 text-center">
+						<a href="#" class="icon-post2 text-center mb-3">
 							<i class="fa-brands fa-typo3 fa-2x text-warning"></i>
 						</a>
+                        <a href="#" class="icon-post3 text-center">
+							<i class="fa-brands fa-typo3 fa-2x text-warning"></i>
+						</a>
+
 
 					</div>
 
@@ -128,6 +133,12 @@
 					<!-- BEGIN minify-button -->
 					<div class="menu-item d-flex">
 						<a href="javascript:;"  class="app-sidebar-minify-btn ms-auto toggler-btn2" data-toggle="app-sidebar-minify"><i class="fa fa-angle-double-left"></i></a>
+					</div>
+					<!-- END minify-button -->
+
+                    <!-- BEGIN minify-button -->
+					<div class="menu-item d-flex">
+						<a href="javascript:;"  class="app-sidebar-minify-btn ms-auto toggler-btn3" data-toggle="app-sidebar-minify"><i class="fa fa-angle-double-left"></i></a>
 					</div>
 					<!-- END minify-button -->
 				</div>
@@ -171,46 +182,78 @@
                                 <div class="modal-body">
                                         <!-- This Input Allows Storing Task Index  -->
                                         <input type="hidden" id="product-id" name="product-id">
+
+
                                         <div class="mb-3">
-                                            <label class="form-label text-white">Post title</label>
-                                            <input type="text" value="{{$post->title}}" name="title" class="form-control" id="plat-name"/>
+                                            <label class="form-label text-white" for="plat-name">Post title</label>
+                                            <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" id="plat-name" value="{{ old('title', $post->title) }}"/>
+                                            @error('title')
+                                                <div class="invalid-feedback text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
+
 
                                         <div class="mb-3">
                                             <label class="form-label text-white">Post Category</label>
-                                            <select class="form-select" name="category_id" id="post-status">
+                                            <select class="form-select @error('category_id') is-invalid @enderror" name="category_id" id="post-status">
                                                 <option value="">Please select</option>
 
                                                 @foreach($categories as $item)
-                                                    <option value="{{$item->id}}"> {{$item->category}} </option>
+                                                    <option value="{{$item->id}}" {{ (old('category_id') ?? $post->category_id) == $item->id ? 'selected' : '' }}> {{$item->category}} </option>
                                                 @endforeach
                                             </select>
+
+                                            @error('category_id')
+                                                <div class="invalid-feedback text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
+
 
                                         <div class="form-group mb-3">
                                             <label for="tags" class="text-white d-block mb-3 form-label">Tags:</label>
                                             @foreach($tags as $item)
-                                            <div class="form-check form-check-inline">
-                                              <input class="form-check-input cursor-pointer" type="checkbox" name="tags[]" value="{{ $item->id }}" id="{{ $item->name }}"
-                                                {{ collect(old('tags'))->contains($item->id) ? 'checked' : '' }}>
-                                              <label class="form-check-label text-white" for="{{ $item->name }}">
-                                                {{ $item->name }}
-                                              </label>
-                                            </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input cursor-pointer" type="checkbox" name="tags[]" value="{{ $item->id }}" id="{{ $item->name }}"
+                                                    {{ in_array($item->id, $post->tags->pluck('id')->toArray()) ? 'checked' : '' }}>
+                                                    <label class="form-check-label text-white" for="{{ $item->name }}">
+                                                        {{ $item->name }}
+                                                    </label>
+                                                </div>
                                             @endforeach
+                                            @error('tags')
+                                                <div class="invalid-feedback text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
+
 
                                         <div class="mb-3">
                                             <label class="form-label text-white">Post Content</label>
-                                            <textarea class="form-control"  name="description" rows="10" id="editor">
-                                                {{$post->description}}
+                                            <textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="10" id="editor">
+                                                {{ old('description', $post->description) }}
                                             </textarea>
+                                            @error('description')
+                                                <div class="invalid-feedback text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
+
 
                                         <div class="mb-0">
                                             <label class="form-label text-white">Post Image</label>
-                                            <input type="file" name="image_path" class="form-control" id="plat-image"/>
+                                            <input type="file" name="image_path" class="form-control @error('image_path') is-invalid @enderror" id="plat-image"/>
+                                            @error('image_path')
+                                                <div class="invalid-feedback text-danger">{{ $message }}</div>
+                                            @enderror
+                                            @if ($post->image_path)
+                                                <div class="mt-2">
+                                                    {{-- <img src="{{ asset($post->image_path) }}" alt="Post Image" width="150"> --}}
+                                                    <img src="../../images/{{$post->image_path}}" alt="Post Image"
+                                                        style="width: 75px; height: 75px"
+                                                        class="rounded-circle bg-white"
+                                                    >
+                                                </div>
+                                            @endif
                                         </div>
+
 
                                 </div>
 

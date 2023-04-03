@@ -24,7 +24,7 @@
 				<div class="navbar-item navbar-user dropdown">
 					<a href="#" class="navbar-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
 						{{-- <img src="../../images/user-15.jpg" alt=""> --}}
-                        <img src="/images/{{ $user->profile_picture }}" alt="{{ $user->name }}">
+                        <img src="/images/{{  Auth::user()->profile_picture }}" alt="">
 
 						<span>
                             <span class="d-none d-md-inline text-warning">{{ Auth::user()->name }}</span>
@@ -67,7 +67,7 @@
 						<a href="javascript:;" class="menu-profile-link" data-toggle="app-sidebar-profile" data-target="#appSidebarProfileMenu">
 							<div class="menu-profile-cover with-shadow"></div>
 							<div class="menu-profile-image">
-                                <img src="/images/{{ $user->profile_picture }}" alt="{{ $user->name }}">
+                                <img src="/images/{{  Auth::user()->profile_picture }}" alt="">
 							</div>
 							<div class="menu-profile-info">
 								<div class="d-flex align-items-center">
@@ -109,13 +109,18 @@
 
 							<li><a href={{route('category.index')}} class="btn category-btn  my-1" style="width: 100%; border-bottom-right-radius: 0;">Categories</a></li>
 							<li><a href="#" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
+                            <li><a href="{{ url('/tag') }}" class="btn post-btn mt-1 tag-btn" style="width: 100%; border-bottom-right-radius: 0;">Tags</a></li>
+
 
 						</ul>
 
 						<a href="#" class="icon-post text-center mb-3">
 							<i class="fa-solid fa-blog  fa-2x text-warning"></i>
 						</a>
-						<a href="#" class="icon-post2 text-center">
+						<a href="#" class="icon-post2 text-center mb-3">
+							<i class="fa-brands fa-typo3 fa-2x text-warning"></i>
+						</a>
+                        <a href="#" class="icon-post3 text-center">
 							<i class="fa-brands fa-typo3 fa-2x text-warning"></i>
 						</a>
 					</div>
@@ -131,6 +136,12 @@
 					<!-- BEGIN minify-button -->
 					<div class="menu-item d-flex">
 						<a href="javascript:;"  class="app-sidebar-minify-btn ms-auto toggler-btn2" data-toggle="app-sidebar-minify"><i class="fa fa-angle-double-left"></i></a>
+					</div>
+					<!-- END minify-button -->
+
+                    <!-- BEGIN minify-button -->
+					<div class="menu-item d-flex">
+						<a href="javascript:;"  class="app-sidebar-minify-btn ms-auto toggler-btn3" data-toggle="app-sidebar-minify"><i class="fa fa-angle-double-left"></i></a>
 					</div>
 					<!-- END minify-button -->
 				</div>

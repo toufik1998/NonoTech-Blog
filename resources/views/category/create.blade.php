@@ -105,15 +105,20 @@
 
 							<li><a href="{{ url('/category') }}" class="btn my-1 category-btn" style="width: 100%; border-bottom-right-radius: 0;"> Categories</a></li>
 							<li><a href="{{ url('/adminboard') }}" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
+                            <li><a href="{{ url('/tag') }}" class="btn tag-btn mt-1" style="width: 100%; border-bottom-right-radius: 0;">Tags</a></li>
 
 						</ul>
 
 						<a href="#" class="icon-post text-center mb-3">
 							<i class="fa-solid fa-blog  fa-2x text-warning"></i>
 						</a>
-						<a href="#" class="icon-post2 text-center">
+						<a href="#" class="icon-post2 text-center mb-3">
 							<i class="fa-brands fa-typo3 fa-2x text-warning"></i>
 						</a>
+                        <a href="#" class="icon-post3 text-center">
+							<i class="fa-brands fa-typo3 fa-2x text-warning"></i>
+						</a>
+
 
 					</div>
 
@@ -128,6 +133,12 @@
 					<!-- BEGIN minify-button -->
 					<div class="menu-item d-flex">
 						<a href="javascript:;"  class="app-sidebar-minify-btn ms-auto toggler-btn2" data-toggle="app-sidebar-minify"><i class="fa fa-angle-double-left"></i></a>
+					</div>
+					<!-- END minify-button -->
+
+                    <!-- BEGIN minify-button -->
+					<div class="menu-item d-flex">
+						<a href="javascript:;"  class="app-sidebar-minify-btn ms-auto toggler-btn3" data-toggle="app-sidebar-minify"><i class="fa fa-angle-double-left"></i></a>
 					</div>
 					<!-- END minify-button -->
 				</div>
@@ -170,9 +181,17 @@
                                 <div class="modal-body">
                                         <!-- This Input Allows Storing Task Index  -->
                                         <input type="hidden" id="product-id" name="product-id">
-                                        <div class="mb-3">
+                                        {{-- <div class="mb-3">
                                             <label class="form-label text-white">Category title</label>
                                             <input type="text" name="category" class="form-control" id="plat-name"/>
+                                        </div> --}}
+
+                                        <div class="mb-3">
+                                            <label class="form-label text-white">Category Title</label>
+                                            <input type="text" name="category" class="form-control @error('category') is-invalid @enderror" id="plat-name" value="{{ old('category') }}"/>
+                                            @error('category')
+                                                <div class="invalid-feedback text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
 

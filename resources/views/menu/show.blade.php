@@ -107,6 +107,7 @@
 
 							<li><a href={{route('category.index')}} class="btn category-btn  my-1" style="width: 100%; border-bottom-right-radius: 0;">Categories</a></li>
                             <li><a href="{{ url('/adminboard') }}" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
+                            <li><a href="{{ url('/tag') }}" class="btn tag-btn mt-1" style="width: 100%; border-bottom-right-radius: 0;">Tags</a></li>
 
 
 						</ul>
@@ -115,7 +116,11 @@
 							<i class="fa-solid fa-blog  fa-2x text-warning"></i>
 						</a>
 
-                        <a href="#" class="icon-post2 text-center">
+                        <a href="#" class="icon-post2 text-center mb-3">
+							<i class="fa-brands fa-typo3 fa-2x text-warning"></i>
+						</a>
+
+                        <a href="#" class="icon-post3 text-center">
 							<i class="fa-brands fa-typo3 fa-2x text-warning"></i>
 						</a>
 
@@ -132,6 +137,12 @@
                     <!-- BEGIN minify-button -->
 					<div class="menu-item d-flex">
 						<a href="javascript:;"  class="app-sidebar-minify-btn ms-auto toggler-btn2" data-toggle="app-sidebar-minify"><i class="fa fa-angle-double-left"></i></a>
+					</div>
+					<!-- END minify-button -->
+
+                    <!-- BEGIN minify-button -->
+					<div class="menu-item d-flex">
+						<a href="javascript:;"  class="app-sidebar-minify-btn ms-auto toggler-btn3" data-toggle="app-sidebar-minify"><i class="fa fa-angle-double-left"></i></a>
 					</div>
 					<!-- END minify-button -->
 
