@@ -19,11 +19,25 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    
+    // public function index()
+    // {
+    //     $posts = Post::all();
+    //     return view('blog.index')->with('posts', $posts);
+    //     // return view('blog.index', compact('posts', 'categories'));
+    // }
+
+    public function index(Request $request)
     {
-        $posts = Post::all();
-        return view('blog.index')->with('posts', $posts);
-        // return view('blog.index', compact('posts', 'categories'));
+        $searchQuery = $request->input('searchQuery');
+
+        $posts = Post::query();
+        if ($searchQuery) {
+            $posts->where('title', 'like', "%$searchQuery%")
+                ->orWhere('description', 'like', "%$searchQuery%");
+        }
+        $posts = $posts->get();
+        return view('blog.index', compact('posts'));
     }
 
     /**

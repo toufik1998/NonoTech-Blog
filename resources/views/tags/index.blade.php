@@ -242,9 +242,9 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-12 col-md-7 col-lg-5">
-						<form action="" method="POST" class="d-flex">
-							<input class="form-control me-2" name="search" type="search" placeholder="Search for post" aria-label="Search">
-							<button class="btn btn-outline-warning" name="show" type="submit">Search</button>
+						<form action="{{ url('tag') }}" method="GET" class="d-flex">
+							<input class="form-control me-2" name="searchQuery" type="search" placeholder="Search for tag" aria-label="Search">
+							<button class="btn btn-outline-warning"  type="submit">Search</button>
 						</form>
 					</div>
 				</div>

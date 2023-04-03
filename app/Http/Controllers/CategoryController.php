@@ -13,10 +13,22 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    // public function index()
+    // {
+    //     $categories = Category::all();
+    //     return view('category.index')->with('categories', $categories);
+    // }
+
+    public function index(Request $request)
     {
-        $categories = Category::all();
-        return view('category.index')->with('categories', $categories);
+        $searchQuery = $request->input('searchQuery');
+
+        $categories = Category::query();
+        if ($searchQuery) {
+            $categories->where('category', 'like', "%$searchQuery%");
+        }
+        $categories = $categories->get();
+        return view('category.index', compact('categories'));
     }
 
     /**

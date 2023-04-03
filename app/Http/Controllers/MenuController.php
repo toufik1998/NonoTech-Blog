@@ -21,15 +21,36 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $posts = Post::all();
-        // $categories = Category::all();
-        // return view('dashboard')->with('posts', $posts);
-        // return view('dashboard', compact('posts', 'categories'));
-        return view('dashboard', compact('posts'));
+    // public function index()
+    // {
+    //     $searchQuery = $request->input('searchQuery');
 
+    //     $posts = Post::all();
+    //     // $categories = Category::all();
+    //     // return view('dashboard')->with('posts', $posts);
+    //     // return view('dashboard', compact('posts', 'categories'));
+    //     if ($searchQuery) {
+    //         $posts->where('title', 'like', "%$searchQuery%")
+    //             ->orWhere('description', 'like', "%$searchQuery%");
+    //     }
+    //     $posts = $posts->get();
+    //     return view('dashboard', compact('posts'));
+
+    // }
+
+    public function index(Request $request)
+    {
+        $searchQuery = $request->input('searchQuery');
+
+        $posts = Post::query();
+        if ($searchQuery) {
+            $posts->where('title', 'like', "%$searchQuery%")
+                ->orWhere('description', 'like', "%$searchQuery%");
+        }
+        $posts = $posts->paginate(10);
+        return view('dashboard', compact('posts'));
     }
+
 
     /**
      * Show the form for creating a new resource.

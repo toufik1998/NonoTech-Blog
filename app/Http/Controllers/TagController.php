@@ -13,12 +13,24 @@ class TagController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    // public function index()
+    // {
+    //     $tags = Tag::all();
+
+    //     return view('tags.index', compact('tags'));
+
+    // }
+
+    public function index(Request $request)
     {
-        $tags = Tag::all();
+        $searchQuery = $request->input('searchQuery');
 
+        $tags = Tag::query();
+        if ($searchQuery) {
+            $tags->where('name', 'like', "%$searchQuery%");
+        }
+        $tags = $tags->get();
         return view('tags.index', compact('tags'));
-
     }
 
     /**

@@ -246,13 +246,22 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-12 col-md-7 col-lg-5">
-						<form action="" method="POST" class="d-flex">
-							<input class="form-control me-2" name="search" type="search" placeholder="Search for post" aria-label="Search">
-							<button class="btn btn-outline-warning" name="show" type="submit">Search</button>
+						<form action="{{ url('adminboard') }}" method="GET" class="d-flex">
+							<input class="form-control me-2" name="searchQuery" type="search" placeholder="Search for post" aria-label="Search">
+							<button class="btn btn-outline-warning"  type="submit">Search</button>
 						</form>
 					</div>
 				</div>
 			</div>
+
+
+            {{-- <form method="GET" action="{{ route('dashboard.index') }}">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search" name="searchQuery">
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form> --}}
+
 
 			<!-- section of table -->
 			<div class="container-fluid my-2 section-table">
@@ -330,6 +339,35 @@
 
 									</tbody>
 								</table>
+
+                                {{-- {{ $posts->links() }} --}}
+                                <div class="d-flex justify-content-center my-3">
+                                    <nav aria-label="...">
+                                        <ul class="pagination">
+                                            @if ($posts->onFirstPage())
+                                                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                                            @else
+                                                <li class="page-item"><a class="page-link" href="{{ $posts->previousPageUrl() }}" rel="prev">&laquo;</a></li>
+                                            @endif
+
+                                            @foreach ($posts as $key => $post)
+                                                <li class="page-item"><a class="page-link" href="#">{{ $key + 1 }}</a></li>
+                                            @endforeach
+
+                                            @if ($posts->hasMorePages())
+                                                <li class="page-item"><a class="page-link" href="{{ $posts->nextPageUrl() }}" rel="next">&raquo;</a></li>
+                                            @else
+                                                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                                            @endif
+                                        </ul>
+                                    </nav>
+                                </div>
+
+
+
+
+
+
 							</div>
 						</div>
 					</div>
