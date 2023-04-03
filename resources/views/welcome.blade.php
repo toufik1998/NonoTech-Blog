@@ -396,100 +396,28 @@
             </div>
         </section>
 
+
+
         <section class="opinions">
             <div class="container">
               <h2 class="section-title">
                 Opinion articles
             </h2>
               <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                  <a href="./article.html">
-                    <div class="opinions-card">
-                        <h5>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</h5>
-                        <div class="user-info">
-                        <img src="./images/user_img/user_1.jpg" alt="...">
-                        <span>Hilal halim</span>
-                      </div>
+
+                @foreach ($users_posts as $item)
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <a href="/home/{{$item->id}}">
+                            <div class="opinions-card">
+                                <h5>{{$item->title}}</h5>
+                                <div class="user-info">
+                                <img src="../../images/{{$item->image_path}}" alt="...">
+                                <span>{{$item->user->name}}</span>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                  </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                  <a href="./article.html">
-                    <div class="opinions-card">
-                        <h5>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</h5>
-                        <div class="user-info">
-                        <img src="./images/user_img/user_7.jpg" alt="...">
-                        <span>Ramadan</span>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                  <a href="./article.html">
-                    <div class="opinions-card">
-                        <h5>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</h5>
-                        <div class="user-info">
-                        <img src="./images/user_img/user_6.jpg" alt="...">
-                        <span>Said ghila</span>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                  <a href="./article.html">
-                    <div class="opinions-card">
-                        <h5>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</h5>
-                        <div class="user-info">
-                        <img src="./images/user_img/user_5.jpg" alt="...">
-                        <span>Khalil khalil</span>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                  <a href="./article.html">
-                    <div class="opinions-card">
-                        <h5>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</h5>
-                        <div class="user-info">
-                        <img src="./images/user_img/user_4.jpg" alt="...">
-                        <span>Majed jekil</span>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                  <a href="./article.html">
-                    <div class="opinions-card">
-                        <h5>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</h5>
-                        <div class="user-info">
-                        <img src="./images/user_img/user_1.jpg" alt="...">
-                        <span>Adil chije</span>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                  <a href="./article.html">
-                    <div class="opinions-card">
-                        <h5>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</h5>
-                        <div class="user-info">
-                        <img src="./images/user_img/user_3.jpg" alt="...">
-                        <span>Reda gadi</span>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                  <a href="./article.html">
-                    <div class="opinions-card">
-                      <h5>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</h5>
-                      <div class="user-info">
-                        <img src="./images/user_img/user_2.jpg" alt="...">
-                        <span>Toufik Shima</span>
-                      </div>
-                    </div>
-                  </a>
-                </div>
+                @endforeach
               </div>
             </div>
         </section>

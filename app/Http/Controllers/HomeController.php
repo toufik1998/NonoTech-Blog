@@ -33,7 +33,14 @@ class HomeController extends Controller
 
         $most_read_posts = Post::orderByDesc('views')->take(3)->get();
 
-        return view('welcome', compact('random_posts', 'all_posts', 'all_categories', 'last_four_posts', 'last_post', 'last_two_posts', 'previousthreeRows', 'most_read_posts'));
+        $users_posts = Post::join('users', 'posts.user_id', '=', 'users.id')
+            ->where('users.is_admin', false)
+            ->inRandomOrder()
+            ->limit(8)
+            ->get();
+
+
+        return view('welcome', compact('random_posts', 'all_posts', 'all_categories', 'last_four_posts', 'last_post', 'last_two_posts', 'previousthreeRows', 'most_read_posts', 'users_posts'));
 
     }
 
