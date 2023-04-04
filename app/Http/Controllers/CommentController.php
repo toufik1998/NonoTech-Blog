@@ -87,27 +87,46 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // public function update(Request $request, $id)
+    // {
+
+    //     $request->validate([
+    //         'comment' => 'required',
+
+    //     ]);
+
+    //     $comment_update = Comment::where('id', $id)->first();
+    //     $comment_update->comment = $request->input('comment');
+    //     $comment_update->post_id = $request->input('post_id');
+    //     $comment_update->user_id = auth()->user()->id;
+
+    //     $comment_update->update();
+
+    //     session()->flash('updated_comment_id', $comment_update->id);
+
+    //     return redirect()->back()->with('success', 'Comment updated successfully!');
+
+
+    // }
+
     public function update(Request $request, $id)
     {
-
+        // dd($id);
         $request->validate([
             'comment' => 'required',
-
         ]);
 
-        $comment_update = Comment::where('id', $id)->first();
-        $comment_update->comment = $request->input('comment');
-        $comment_update->post_id = $request->input('post_id');
-        $comment_update->user_id = auth()->user()->id;
-
-        $comment_update->update();
-
-        session()->flash('updated_comment_id', $comment_update->id);
-
-        return redirect()->back()->with('success', 'Comment updated successfully!');
-
-
+        $comment = Comment::find($id);
+        $comment->comment = $request->input('comment');
+        $comment->save();
+        // dd($comment);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Comment updated successfully!',
+            'comment' => $comment
+        ]);
     }
+
 
     /**
      * Remove the specified resource from storage.
