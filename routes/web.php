@@ -33,6 +33,8 @@ Route::resource('/adminboard', MenuController::class);
 
 Route::resource('/category', CategoryController::class);
 Route::resource('/comments', CommentController::class);
+Route::post('/comments/reply', [CommentController::class, 'reply'])->name('comments.reply');
+
 Route::resource('/tag', TagController::class);
 
 

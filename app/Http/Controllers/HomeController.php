@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\Reply;
 
 
 use Illuminate\Http\Request;
@@ -88,10 +89,18 @@ class HomeController extends Controller
         ->take(3)
         ->get();
 
+        // $comments = Comment::where('post_id', $id)->get();
+         // Fetch parent comments and their child comments
+        //  $comments = Comment::where('post_id', $id)->where('parent_id', null)->with('replies')->get();
+        $replies = Reply::all();
         $comments = Comment::where('post_id', $id)->get();
 
 
-        return view('home.show', compact('post', 'random_posts', 'most_read_posts', 'comments', 'related_posts'));
+         return view('home.show', compact('post', 'random_posts', 'most_read_posts', 'comments','replies', 'related_posts'));
+
+
+
+        // return view('home.show', compact('post', 'random_posts', 'most_read_posts', 'comments', 'related_posts'));
 
 
     }

@@ -145,10 +145,10 @@ header {
     }
 
     .header-news {
-        margin-top: 5rem;
+        margin-top: 5rem !important;
         .carousel {
             &-news {
-                margin-top: 20px;
+                margin-top: 30px;
                 position: relative;
                 &::after {
                     position: absolute;
@@ -207,7 +207,7 @@ header {
         }
 
         .header-articles {
-            margin-top: 22px;
+            margin-top: 30px;
             .row {
                 margin-top: 22px;
             }

@@ -67,7 +67,7 @@
             </div>
         </nav>
 
-        <div class="header-news mt-5">
+        <div class="header-news" style="margin-top: 6rem" >
             <div class="container">
               <div class="row">
                 <div class="col-lg-7">

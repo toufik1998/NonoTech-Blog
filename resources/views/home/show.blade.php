@@ -68,7 +68,7 @@
     </header>
 
     <main>
-            <div class="article-header" >
+            <div class="article-header" style="margin-top: 5rem">
                 <div class="container">
                 <div class="header-category">
                     <span class="me-1">Technology</span> | <span class="ms-1">Microsoft</span>
@@ -241,60 +241,14 @@
                                                 <div class="row">
                                                     <div class="col-lg-2 col-3">
                                                         <div class="user-photo">
-                                                            <img src="/images/{{  Auth::user()->profile_picture }}" alt="...">
+                                                            <img src="/images/{{  $item->user->profile_picture }}" alt="...">
 
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-10 col-9">
-                                                        {{-- <div class="comment-text">
-                                                            <div class="d-flex justify-content-between">
-                                                                <span class="user-name">{{$item->user->name}}</span>
-                                                                @if(Auth::check() && Auth::user()->id == $item->user_id)
-                                                                    <form action="{{ url('/comments' . '/' . $item->id) }}" method="post" class="delete-form">
-                                                                        @csrf
-                                                                        @method('DELETE')
-                                                                        <button type="submit" onclick="return confirm('Confirm delete?')" class="btn bg-danger text-white btn-sm btn-rounded mt-2 ">
-                                                                            <i class="fa-solid fa-trash text-white"></i>
-                                                                        </button>
-                                                                    </form>
-                                                                    <button class="btn bg-info text-white btn-sm btn-rounded mt-2 edit-comment" data-comment-id="{{ $item->id }}">
-                                                                        <i class="fa-solid fa-edit text-white"></i>
-                                                                    </button>
-                                                                @endif
-                                                            </div>
-                                                            <p class="comment-paragraph" id="comment-paragraph-{{ $item->id }}">
-                                                                {{ $item->comment }}
-                                                            </p>
-                                                            <textarea class="form-control comment-edit-textarea d-none" id="comment-edit-textarea-{{ $item->id }}" rows="3">{{ $item->comment }}</textarea>
-                                                            <button class="btn btn-primary btn-sm btn-rounded mt-2 save-comment d-none" data-comment-id="{{ $item->id }}">Save</button>
-                                                            <button class="btn btn-secondary btn-sm btn-rounded mt-2 cancel-edit-comment d-none" data-comment-id="{{ $item->id }}">Cancel</button>
-                                                        </div> --}}
+
 
                                                         {{-- <div class="comment-text">
-                                                            <div class="d-flex justify-content-between">
-                                                                <span class="user-name">{{ $item->user->name }}</span>
-                                                                @if(Auth::check() && Auth::user()->id == $item->user_id)
-                                                                    <form action="{{ url('/comments' . '/' . $item->id) }}" method="post" class="delete-form">
-                                                                        @csrf
-                                                                        @method('DELETE')
-                                                                        <button type="submit" onclick="return confirm('Confirm delete?')" class="btn bg-danger text-white btn-sm btn-rounded mt-2">
-                                                                            <i class="fa-solid fa-trash text-white"></i>
-                                                                        </button>
-                                                                    </form>
-                                                                    <button class="btn bg-info text-white btn-sm btn-rounded mt-2 edit-comment" data-comment-id="{{ $item->id }}" data-post-id="{{ $item->post_id }}">
-                                                                        <i class="fa-solid fa-edit text-white"></i>
-                                                                    </button>
-                                                                @endif
-                                                            </div>
-                                                            <p class="comment-paragraph" id="comment-paragraph-{{ $item->id }}">
-                                                                {{ $item->comment }}
-                                                            </p>
-                                                            <textarea class="form-control comment-edit-textarea d-none" id="comment-edit-textarea-{{ $item->id }}" rows="3">{{ $item->comment }}</textarea>
-                                                            <button class="btn btn-primary btn-sm btn-rounded mt-2 save-comment d-none" data-comment-id="{{ $item->id }}" data-post-id="{{ $item->post_id }}">Save</button>
-                                                            <button class="btn btn-secondary btn-sm btn-rounded mt-2 cancel-edit-comment d-none" data-comment-id="{{ $item->id }}" data-post-id="{{ $item->post_id }}">Cancel</button>
-                                                        </div> --}}
-
-                                                        <div class="comment-text">
                                                             <div class="d-flex justify-content-between align-items-center mb-2">
                                                               <span class="user-name">{{ $item->user->name }}</span>
                                                                 <span class="d-flex justify-content-between align-items-center mb-2">
@@ -318,6 +272,104 @@
                                                               <button class="btn btn-primary btn-sm rounded-pill save-comment d-none" data-comment-id="{{ $item->id }}" data-post-id="{{ $item->post_id }}">Save</button>
                                                               <button class="btn btn-secondary btn-sm rounded-pill cancel-edit-comment d-none ml-2" data-comment-id="{{ $item->id }}" data-post-id="{{ $item->post_id }}">Cancel</button>
                                                             </div>
+
+                                                            <div class="reply-form mt-2 ml-4 d-none" id="reply-form-{{ $item->id }}">
+                                                                <form action="{{ route('comments.reply') }}" method="post">
+                                                                    @csrf
+                                                                    <input type="hidden" name="post_id" value="{{ $item->post_id }}">
+                                                                    <input type="hidden" name="parent_id" value="{{ $item->id }}">
+                                                                    <div class="form-group">
+                                                                        <textarea name="comment" class="form-control" rows="3" placeholder="Write your reply here..."></textarea>
+                                                                    </div>
+                                                                    <button type="submit" class="btn btn-primary btn-sm rounded-pill">Submit reply</button>
+                                                                    <button type="button" class="btn btn-secondary btn-sm rounded-pill ml-2 cancel-reply-comment" data-parent-id="{{ $item->id }}">Cancel</button>
+                                                                </form>
+                                                            </div>
+                                                        </div> --}}
+
+                                                        <div class="comment-text">
+                                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                                <span class="user-name">{{ $item->user->name }}</span>
+                                                                <span class="d-flex justify-content-between align-items-center mb-2">
+                                                                    @if(Auth::check() && Auth::user()->id == $item->user_id)
+                                                                        <form action="{{ url('/comments' . '/' . $item->id) }}" method="post" class="delete-form">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <button type="submit" onclick="return confirm('Confirm delete?')" class="btn btn-danger btn-sm rounded-pill ml-2 delete-form" >
+                                                                                <i class="fas fa-trash text-white"></i>
+                                                                            </button>
+                                                                        </form>
+                                                                        <button class="btn btn-info btn-sm rounded-pill ml-2 edit-comment" data-comment-id="{{ $item->id }}" data-post-id="{{ $item->post_id }}">
+                                                                            <i class="fas fa-edit text-white"></i>
+                                                                        </button>
+                                                                    @endif
+                                                                    <button class="btn btn-primary btn-sm rounded-pill ml-2 reply-comment" data-comment-id="{{ $item->id }}">Reply</button>
+
+                                                                    {{-- @if(count($replies) > 0)
+                                                                        <button class="btn btn-secondary btn-sm rounded-pill ml-2 show-replies" data-comment-id="{{ $item->id }}" data-show="false">Show Replies</button>
+                                                                    @endif --}}
+
+                                                                    @foreach($replies as $reply)
+                                                                        @if($item->id == $reply->comment_id )
+                                                                            <button class="btn btn-secondary btn-sm rounded-pill ml-2 show-replies" data-comment-id="{{ $item->id }}" data-show="false">Show Replies</button>
+                                                                        @endif
+                                                                    @endforeach
+
+                                                                </span>
+                                                            </div>
+                                                            <p class="comment-paragraph" id="comment-paragraph-{{ $item->id }}">{{ $item->comment }}</p>
+                                                            <textarea class="form-control comment-edit-textarea d-none" id="comment-edit-textarea-{{ $item->id }}" rows="3">{{ $item->comment }}</textarea>
+                                                            <div class="mt-2">
+                                                                <button class="btn btn-primary btn-sm rounded-pill save-comment d-none" data-comment-id="{{ $item->id }}" data-post-id="{{ $item->post_id }}">Save</button>
+                                                                <button class="btn btn-secondary btn-sm rounded-pill cancel-edit-comment d-none ml-2" data-comment-id="{{ $item->id }}" data-post-id="{{ $item->post_id }}">Cancel</button>
+                                                            </div>
+
+                                                            <div class="reply-form mt-2 ml-4 d-none" id="reply-form-{{ $item->id }}">
+                                                                <form action="{{ route('comments.reply') }}" method="post">
+                                                                    @csrf
+                                                                    <input type="hidden" name="id" value="{{ $item->id }}">
+
+                                                                    <input type="hidden" name="post_id" value="{{ $item->post_id }}">
+                                                                    <div class="form-group">
+                                                                        <textarea name="comment" class="form-control" rows="3" placeholder="Write your reply here..."></textarea>
+                                                                    </div>
+                                                                    <button type="submit" class="btn btn-primary btn-sm rounded-pill mt-2">Submit reply</button>
+                                                                    <button type="button" class="btn btn-secondary btn-sm rounded-pill mt-2 ml-2 cancel-reply-comment" data-parent-id="{{ $item->id }}">Cancel</button>
+                                                                </form>
+                                                            </div>
+
+                                                            @foreach($replies as $reply)
+                                                            @if($item->id == $reply->comment_id )
+                                                                <div class="replies mt-2 ml-4 d-none" id="replies-{{ $item->id }}">
+                                                                    <div class="comment-text ml-4">
+                                                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                                                            <span class="user-name">{{$reply->user->name}}</span>
+                                                                            <span class="d-flex justify-content-between align-items-center mb-2">
+                                                                                @if(Auth::check() && Auth::user()->id == $reply->user_id)
+                                                                                    <form action="{{ url('/comments' . '/' . $reply->id) }}" method="post" class="delete-form">
+                                                                                        @csrf
+                                                                                        @method('DELETE')
+                                                                                        <button type="submit" onclick="return confirm('Confirm delete?')" class="btn btn-danger btn-sm rounded-pill ml-2 delete-form" >
+                                                                                            <i class="fas fa-trash text-white"></i>
+                                                                                        </button>
+                                                                                    </form>
+                                                                                    <button class="btn btn-info btn-sm rounded-pill ml-2 edit-comment" data-comment-id="{{ $reply->id }}" data-post-id="{{ $item->post_id }}" >
+                                                                                        <i class="fas fa-edit text-white"></i>
+                                                                                    </button>
+                                                                                @endif
+                                                                            </span>
+                                                                        </div>
+                                                                        <p class="comment-paragraph" id="comment-paragraph-{{ $reply->id }}">{{ $reply->reply }}</p>
+                                                                        <textarea class="form-control comment-edit-textarea d-none" id="comment-edit-textarea-{{ $reply->id }}" rows="3" >{{ $reply->reply }}</textarea>
+                                                                        <div class="mt-2">
+                                                                            <button class="btn btn-primary btn-sm rounded-pill mt-2 save-comment d-none" data-comment-id="{{ $reply->id }}" ata-post-id="{{ $item->post_id }}"  >Save</button>
+                                                                            <button class="btn btn-secondary btn-sm rounded-pill mt-2 cancel-edit-comment d-none ml-2" data-comment-id="{{ $reply->id }}" ata-post-id="{{ $item->post_id }}" >Cancel</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                            @endforeach
+
                                                         </div>
 
 
@@ -367,7 +419,7 @@
                                 <h2>Most Read</h2>
 
                                 @foreach ($most_read_posts as $item)
-                                    <a href="#" class="article-link">
+                                    <a href="/home/{{$item->id}}" class="article-link">
                                         <div class="most-read-article">
                                             <img src="/images/{{$item->image_path}}" alt="...">
                                             <div class="most-read-text">
@@ -401,6 +453,7 @@
         $(`#comment-edit-textarea-${commentId}`).val($(`#comment-paragraph-${commentId}`).text().trim());
         $(this).addClass('d-none');
         $(this).siblings('.delete-form').addClass('d-none'); // add this line
+        $(this).siblings('.reply-comment').addClass('d-none');
 
         $(`[data-comment-id="${commentId}"].save-comment`).removeClass('d-none');
         $(`[data-comment-id="${commentId}"].cancel-edit-comment`).removeClass('d-none');
@@ -415,6 +468,8 @@
         $(`[data-comment-id="${commentId}"].save-comment`).addClass('d-none');
         $(`[data-comment-id="${commentId}"].edit-comment`).removeClass('d-none');
         $('.delete-form').removeClass('d-none');
+        $('.reply-comment').removeClass('d-none');
+
 
 
 
@@ -423,6 +478,7 @@
     // Handle save comment button click
     $(document).on('click', '.save-comment', function() {
         const commentId = $(this).data('comment-id');
+        // console.log(commentId);
 
         const comment = $(`#comment-edit-textarea-${commentId}`).val().trim();
         if (comment !== '') {
@@ -441,6 +497,7 @@
 
                 },
                 success: function(response) {
+                    console.log(response);
                     if (response.status === 'success') {
                         $(`#comment-paragraph-${commentId}`).text(comment);
                         $(`#comment-paragraph-${commentId}`).removeClass('d-none');
@@ -449,6 +506,7 @@
                         $(`[data-comment-id="${commentId}"].cancel-edit-comment`).addClass('d-none');
                         $(`[data-comment-id="${commentId}"].edit-comment`).removeClass('d-none');
                         $('.delete-form').removeClass('d-none');
+                        $('.reply-comment').removeClass('d-none');
 
                     } else {
                         alert('Failed to update comment. Please try again later.');
@@ -460,6 +518,53 @@
             });
         }
     });
+
+
+
+    $(document).ready(function() {
+    // Show reply form when clicking "Reply" button
+        $('.reply-comment').on('click', function() {
+            var commentId = $(this).data('comment-id');
+            $(this).addClass('d-none');
+            $('#reply-form-' + commentId).removeClass('d-none');
+            $('.delete-form').addClass('d-none'); // edit-comment
+            $('.edit-comment').addClass('d-none'); // edit-comment
+
+
+        });
+
+        // Hide reply form when clicking "Cancel" button
+        $('.cancel-reply-comment').on('click', function() {
+            var parentId = $(this).data('parent-id');
+            $('#reply-form-' + parentId).addClass('d-none');
+            $('.delete-form').removeClass('d-none');
+            $('.edit-comment').removeClass('d-none');
+            $('.reply-comment').removeClass('d-none');
+
+        });
+    });
+
+
+    $(document).ready(function() {
+    // Show/hide replies
+    $('.show-replies').click(function() {
+        var commentId = $(this).data('comment-id');
+        var repliesSection = $('#replies-' + commentId);
+        var show = $(this).data('show');
+
+        if (show == 'false') {
+            repliesSection.removeClass('d-none');
+            $(this).text('Hide Replies');
+            $(this).data('show', 'true');
+        } else {
+            repliesSection.addClass('d-none');
+            $(this).text('Show Replies');
+            $(this).data('show', 'false');
+        }
+    });
+});
+
+
 </script>
 
 

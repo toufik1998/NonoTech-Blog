@@ -10,11 +10,13 @@ class Comment extends Model
     use HasFactory;
 
     protected $table = 'comments';
+    protected $appends = ['new_attribute'];
 
 
     protected $fillable = [
-        'comment', 'user_id', 'post_id'
+        'id','comment', 'user_id', 'post_id'
     ];
+
 
     public function user()
     {
@@ -25,4 +27,25 @@ class Comment extends Model
     {
         return $this->belongsTo(Post::class);
     }
+
+    // public function parent()
+    // {
+    //     return $this->belongsTo(Comment::class, 'parent_id');
+    // }
+
+    // public function children()
+    // {
+    //     return $this->hasMany(Comment::class, 'parent_id');
+    // }
+
+    // public function parentComment()
+    // {
+    //     return $this->belongsTo(Comment::class, 'parent_id');
+    // }
+
+    // public function replies()
+    // {
+    //     return $this->hasMany(Comment::class, 'parent_id')->with('replies');
+    // }
+
 }
