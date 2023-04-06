@@ -49,9 +49,13 @@ class PostController extends Controller
      */
     public function create()
     {
+        $posts = Post::all();
+        $postCount = $posts->where('user_id', auth()->user()->id)->count();
+
         $categories = Category::all();
         $tags = Tag::all();
-        return view('blog.create', compact('categories', 'tags'));
+
+        return view('blog.create', compact('categories', 'tags', 'postCount'));
     }
 
     /**
@@ -104,7 +108,14 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return view('blog.show')->with('post', POST::where('id', $id)->first());
+        // return view('blog.show')->with('post', POST::where('id', $id)->first());
+        $posts = Post::all();
+        $postCount = $posts->where('user_id', auth()->user()->id)->count();
+
+        $post = Post::find($id);
+
+        return view('blog.show', compact('post', 'postCount'));
+
     }
 
     /**
@@ -115,10 +126,13 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+        $posts = Post::all();
+        $postCount = $posts->where('user_id', auth()->user()->id)->count();
+
         $categories = Category::all();
         $post = POST::where('id', $id)->first();
         $tags = Tag::all();
-        return view('blog.edit', compact('post','categories', 'tags'));
+        return view('blog.edit', compact('post','categories', 'tags', 'postCount'));
         // return view('blog.edit')->with('post', POST::where('slug', $slug)->first());
     }
 

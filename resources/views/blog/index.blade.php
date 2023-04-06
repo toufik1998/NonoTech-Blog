@@ -286,7 +286,7 @@
 								</div>
 								<div class="text-end">
 									<h3>
-										5
+                                        {{$posts->count()}}
 									</h3>
 									<p class="mb-0">Articles</p>
 								</div>

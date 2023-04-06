@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\User;
+
 
 
 
@@ -21,25 +23,15 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-    //     $searchQuery = $request->input('searchQuery');
-
-    //     $posts = Post::all();
-    //     // $categories = Category::all();
-    //     // return view('dashboard')->with('posts', $posts);
-    //     // return view('dashboard', compact('posts', 'categories'));
-    //     if ($searchQuery) {
-    //         $posts->where('title', 'like', "%$searchQuery%")
-    //             ->orWhere('description', 'like', "%$searchQuery%");
-    //     }
-    //     $posts = $posts->get();
-    //     return view('dashboard', compact('posts'));
-
-    // }
 
     public function index(Request $request)
     {
+        $categoryCount = Category::count();
+        $tagCount = Tag::count();
+        $postCount = Post::count();
+        $userCount = User::count();
+
+
         $searchQuery = $request->input('searchQuery');
 
         $posts = Post::query();
@@ -48,7 +40,7 @@ class MenuController extends Controller
                 ->orWhere('description', 'like', "%$searchQuery%");
         }
         $posts = $posts->paginate(10);
-        return view('dashboard', compact('posts'));
+        return view('dashboard', compact('posts', 'categoryCount', 'tagCount', 'postCount', 'userCount'));
     }
 
 
@@ -120,8 +112,16 @@ class MenuController extends Controller
      */
     public function show($id)
     {
-        // dd(POST::where('id', $id)->first());
-        return view('menu.show')->with('post', POST::where('id', $id)->first());
+        $categoryCount = Category::count();
+        $tagCount = Tag::count();
+        $postCount = Post::count();
+        $userCount = User::count();
+
+        $post = Post::find($id);
+        // return view('menu.show')->with('post', POST::where('id', $id)->first());
+
+        return view('menu.show', compact('post', 'categoryCount', 'tagCount', 'postCount', 'userCount'));
+
     }
 
     /**

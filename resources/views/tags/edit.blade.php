@@ -167,6 +167,88 @@
 
 			</div>
 
+            <div class="container-fluid">
+				<section>
+					<div class="row">
+						<div class="col-12 mt-3 mb-1">
+							<h5 class="text-uppercase" style="color: #ff8906">Minimal Statistics</h5>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xl-3 col-sm-6 col-12 mb-4">
+							<div class="card">
+							<div class="card-body">
+								<div class="d-flex justify-content-between px-md-1">
+								<div class="align-self-center">
+									<i class="fa-brands fa-readme text-info fa-3x"></i>
+								</div>
+								<div class="text-end">
+									<h3>
+										{{$postCount}}
+									</h3>
+									<p class="mb-0">Articles</p>
+								</div>
+								</div>
+							</div>
+						   </div>
+						</div>
+						<div class="col-xl-3 col-sm-6 col-12 mb-4">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between px-md-1">
+									<div class="align-self-center">
+										<i class="fa-solid fa-chart-bar text-danger fa-3x"></i>
+									</div>
+									<div class="text-end">
+										<h3>
+											{{$categoryCount}}
+										</h3>
+										<p class="mb-0">Categories</p>
+									</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+                        <div class="col-xl-3 col-sm-6 col-12 mb-4">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between px-md-1">
+									<div class="align-self-center">
+										<i class="fa-solid fa-chart-bar text-danger fa-3x"></i>
+									</div>
+									<div class="text-end">
+										<h3>
+											{{$tagCount}}
+										</h3>
+										<p class="mb-0">Tags</p>
+									</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xl-3 col-sm-6 col-12 mb-4">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between px-md-1">
+									<div class="align-self-center">
+										<i class="fa-solid fa-lock-open text-warning fa-3x"></i>
+									</div>
+									<div class="text-end">
+										<h3>
+											{{$userCount}}
+										</h3>
+										<p class="mb-0">Users</p>
+									</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+
 
             <div class="container">
                 <div class="row justify-content-center">

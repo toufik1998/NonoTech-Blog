@@ -196,7 +196,7 @@
 								</div>
 								<div class="text-end">
 									<h3>
-										5
+										{{$postCount}}
 									</h3>
 									<p class="mb-0">Articles</p>
 								</div>
@@ -213,7 +213,7 @@
 									</div>
 									<div class="text-end">
 										<h3>
-											3
+											{{$categoryCount}}
 										</h3>
 										<p class="mb-0">Categories</p>
 									</div>
@@ -222,7 +222,41 @@
 							</div>
 						</div>
 
+                        <div class="col-xl-3 col-sm-6 col-12 mb-4">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between px-md-1">
+									<div class="align-self-center">
+										<i class="fa-solid fa-chart-bar text-danger fa-3x"></i>
+									</div>
+									<div class="text-end">
+										<h3>
+											{{$tagCount}}
+										</h3>
+										<p class="mb-0">Tags</p>
+									</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
+						<div class="col-xl-3 col-sm-6 col-12 mb-4">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between px-md-1">
+									<div class="align-self-center">
+										<i class="fa-solid fa-lock-open text-warning fa-3x"></i>
+									</div>
+									<div class="text-end">
+										<h3>
+											{{$userCount}}
+										</h3>
+										<p class="mb-0">Users</p>
+									</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</section>
 			</div>
@@ -261,6 +295,13 @@
 
                         @endforeach
                     </div>
+
+                    <div class="d-flex align-items-center bg-dark p-3 rounded">
+                        <i class="fas fa-thumbs-up me-3 text-primary"></i>
+                        <div class="text-white">Likes<span class="ms-3">{{ $post->likes()->count() }}</span></div>
+                    </div>
+
+
                 </div>
 
 			</div>

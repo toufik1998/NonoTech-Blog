@@ -303,7 +303,7 @@
 								</div>
 								<div class="text-end">
 									<h3>
-										5
+										{{$postCount}}
 									</h3>
 									<p class="mb-0">Articles</p>
 								</div>

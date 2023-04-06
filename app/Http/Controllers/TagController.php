@@ -1,7 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Category;
+use App\Models\Post;
 use App\Models\Tag;
+use App\Models\User;
 
 
 use Illuminate\Http\Request;
@@ -23,6 +27,11 @@ class TagController extends Controller
 
     public function index(Request $request)
     {
+        $categoryCount = Category::count();
+        $tagCount = Tag::count();
+        $postCount = Post::count();
+        $userCount = User::count();
+
         $searchQuery = $request->input('searchQuery');
 
         $tags = Tag::query();
@@ -30,7 +39,7 @@ class TagController extends Controller
             $tags->where('name', 'like', "%$searchQuery%");
         }
         $tags = $tags->paginate(5);
-        return view('tags.index', compact('tags'));
+        return view('tags.index', compact('tags', 'categoryCount', 'tagCount', 'postCount', 'userCount'));
     }
 
     /**
@@ -40,7 +49,12 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('tags.create');
+        $categoryCount = Category::count();
+        $tagCount = Tag::count();
+        $postCount = Post::count();
+        $userCount = User::count();
+
+        return view('tags.create', compact('categoryCount', 'tagCount', 'postCount', 'userCount'));
     }
 
     /**
@@ -91,10 +105,13 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        // return view('tags.edit', compact('tag'));
+        $categoryCount = Category::count();
+        $tagCount = Tag::count();
+        $postCount = Post::count();
+        $userCount = User::count();
 
         $tag = Tag::find($id);
-        return view('tags.edit')->with('tag', $tag);
+        return view('tags.edit', compact('tag', 'categoryCount', 'tagCount', 'postCount', 'userCount'));
     }
 
     /**

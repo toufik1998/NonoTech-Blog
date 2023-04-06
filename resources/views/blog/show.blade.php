@@ -119,7 +119,7 @@
 							<i class="fa-brands fa-typo3 fa-2x text-warning"></i>
 						</a>
 
-                        
+
 
 					</div>
 
@@ -186,7 +186,7 @@
 								</div>
 								<div class="text-end">
 									<h3>
-										5
+										{{$postCount}}
 									</h3>
 									<p class="mb-0">Articles</p>
 								</div>
@@ -252,6 +252,11 @@
                         </a>
 
                         @endforeach
+                    </div>
+
+                    <div class="d-flex align-items-center bg-dark p-3 rounded">
+                        <i class="fas fa-thumbs-up me-3 text-primary"></i>
+                        <div class="text-white ">Likes<span class="ms-3">{{ $post->likes()->count() }}</span></div>
                     </div>
                 </div>
 

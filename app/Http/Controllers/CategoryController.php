@@ -1,7 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Category;
+use App\Models\Post;
+use App\Models\Tag;
+use App\Models\User;
 
 
 use Illuminate\Http\Request;
@@ -21,6 +25,11 @@ class CategoryController extends Controller
 
     public function index(Request $request)
     {
+        $categoryCount = Category::count();
+        $tagCount = Tag::count();
+        $postCount = Post::count();
+        $userCount = User::count();
+
         $searchQuery = $request->input('searchQuery');
 
         $categories = Category::query();
@@ -28,7 +37,7 @@ class CategoryController extends Controller
             $categories->where('category', 'like', "%$searchQuery%");
         }
         $categories = $categories->paginate(5);
-        return view('category.index', compact('categories'));
+        return view('category.index', compact('categories', 'categoryCount', 'tagCount', 'postCount', 'userCount'));
     }
 
     /**
@@ -38,7 +47,12 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category.create');
+        $categoryCount = Category::count();
+        $tagCount = Tag::count();
+        $postCount = Post::count();
+        $userCount = User::count();
+
+        return view('category.create', compact('categoryCount', 'tagCount', 'postCount', 'userCount'));
     }
 
     /**
@@ -83,8 +97,13 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        $categoryCount = Category::count();
+        $tagCount = Tag::count();
+        $postCount = Post::count();
+        $userCount = User::count();
+
         $category = Category::find($id);
-        return view('category.edit')->with('category', $category);
+        return view('category.edit', compact('category', 'categoryCount', 'tagCount', 'postCount', 'userCount'));
     }
 
     /**
