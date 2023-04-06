@@ -7,6 +7,10 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\PostLikeController;
+;
+
+
 
 
 
@@ -36,6 +40,12 @@ Route::resource('/comments', CommentController::class);
 Route::post('/comments/reply', [CommentController::class, 'reply'])->name('comments.reply');
 
 Route::resource('/tag', TagController::class);
+
+Route::post('/posts/{post}/like', [PostLikeController::class, 'store'])->name('posts.like');
+Route::delete('/posts/{post}/like', [PostLikeController::class, 'destroy'])->name('posts.unlike');
+
+
+
 
 
 Route::resource('/', HomeController::class);

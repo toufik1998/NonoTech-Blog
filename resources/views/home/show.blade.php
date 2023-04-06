@@ -87,9 +87,37 @@
                             <div class="article-img">
                                 <img src="/images/{{$post->image_path}}" alt="...">
                             </div>
-                            <div class="article-subtitle">
+                            {{-- <div class="article-subtitle">
                                 <span>{{$post->title}}</span>
+
+                                @if ($post->likedBy(auth()->user()))
+                                    <form id="unlike-form-{{ $post->id }}" action="{{ route('posts.unlike', $post) }}" method="POST" class="form-unlike">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-500">Unlike</button>
+                                    </form>
+                                    @else
+                                    <form id="like-form-{{ $post->id }}" action="{{ route('posts.like', $post) }}" method="POST" class="form-like">
+                                        @csrf
+                                        <button type="submit" class="text-blue-500">Like</button>
+                                    </form>
+                                @endif
+
+                                <span id="like-count-{{ $post->id }}">
+                                    {{ $post->likes->count() }} {{ Str::plural('like', $post->likes->count()) }}
+                                </span>
+
+                            </div> --}}
+
+                            <div class="article-subtitle d-flex align-items-center">
+                                <span>{{$post->title}}</span>
+
+
+                                <livewire:like-post :post="$post" />
+
+
                             </div>
+
                             <div class="article-datetime">
                                 <time datetime="01-01-2023">{{date('d-m-y', strtotime($post->updated_at))}}</time>
                             </div>
@@ -305,9 +333,6 @@
                                                                     @endif
                                                                     <button class="btn btn-primary btn-sm rounded-pill ml-2 reply-comment" data-comment-id="{{ $item->id }}">Reply</button>
 
-                                                                    {{-- @if(count($replies) > 0)
-                                                                        <button class="btn btn-secondary btn-sm rounded-pill ml-2 show-replies" data-comment-id="{{ $item->id }}" data-show="false">Show Replies</button>
-                                                                    @endif --}}
 
                                                                     @foreach($replies as $reply)
                                                                         @if($item->id == $reply->comment_id )
@@ -548,21 +573,22 @@
     $(document).ready(function() {
     // Show/hide replies
     $('.show-replies').click(function() {
-        var commentId = $(this).data('comment-id');
-        var repliesSection = $('#replies-' + commentId);
-        var show = $(this).data('show');
+            var commentId = $(this).data('comment-id');
+            var repliesSection = $('#replies-' + commentId);
+            var show = $(this).data('show');
 
-        if (show == 'false') {
-            repliesSection.removeClass('d-none');
-            $(this).text('Hide Replies');
-            $(this).data('show', 'true');
-        } else {
-            repliesSection.addClass('d-none');
-            $(this).text('Show Replies');
-            $(this).data('show', 'false');
-        }
+            if (show == 'false') {
+                repliesSection.removeClass('d-none');
+                $(this).text('Hide Replies');
+                $(this).data('show', 'true');
+            } else {
+                repliesSection.addClass('d-none');
+                $(this).text('Show Replies');
+                $(this).data('show', 'false');
+            }
+        });
     });
-});
+
 
 
 </script>
