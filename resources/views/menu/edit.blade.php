@@ -116,7 +116,7 @@
 							<i class="fa-brands fa-typo3 fa-2x text-warning"></i>
 						</a>
                         <a href="#" class="icon-post3 text-center">
-							<i class="fa-brands fa-typo3 fa-2x text-warning"></i>
+                            <i class="fa-solid fa-tag fa-2x text-warning"></i>
 						</a>
 
 
