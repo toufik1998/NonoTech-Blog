@@ -29,9 +29,8 @@
 							<b class="caret text-warning"></b>
 						</span>
 					</a>
-
-                    <div class="dropdown-menu dropdown-menu-end me-1">
-                        <x-responsive-nav-link :href="route('profile.edit')" class="dropdown-item">
+					<div class="dropdown-menu dropdown-menu-end me-1">
+                        <x-responsive-nav-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-responsive-nav-link>
 						{{-- <a href="javascript:;" class="dropdown-item">Edit Profile</a> --}}
@@ -43,7 +42,7 @@
 
                             <x-responsive-nav-link :href="route('logout')"
                                     onclick="event.preventDefault();
-                                                this.closest('form').submit();" class="dropdown-item">
+                                                this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-responsive-nav-link>
                         </form>
@@ -105,21 +104,18 @@
 
 						<ul>
 
-							<li><a href={{route('category.index')}} class="btn category-btn  my-1" style="width: 100%; border-bottom-right-radius: 0;">Categories</a></li>
-                            <li><a href="{{ url('/adminboard') }}" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
+							<li><a href="#" class="btn category-btn  my-1" style="width: 100%; border-bottom-right-radius: 0;"> Categories</a></li>
+							<li><a href="{{ url('/adminboard') }}" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
                             <li><a href="{{ url('/tag') }}" class="btn tag-btn mt-1" style="width: 100%; border-bottom-right-radius: 0;">Tags</a></li>
-
 
 						</ul>
 
 						<a href="#" class="icon-post text-center mb-3">
 							<i class="fa-solid fa-blog  fa-2x text-warning"></i>
 						</a>
-
-                        <a href="#" class="icon-post2 text-center mb-3">
+						<a href="#" class="icon-post2 text-center mb-3">
 							<i class="fa-brands fa-typo3 fa-2x text-warning"></i>
 						</a>
-
                         <a href="#" class="icon-post3 text-center">
                             <i class="fa-solid fa-tag fa-2x text-warning"></i>
 						</a>
@@ -134,7 +130,7 @@
 					</div>
 					<!-- END minify-button -->
 
-                    <!-- BEGIN minify-button -->
+					<!-- BEGIN minify-button -->
 					<div class="menu-item d-flex">
 						<a href="javascript:;"  class="app-sidebar-minify-btn ms-auto toggler-btn2" data-toggle="app-sidebar-minify"><i class="fa fa-angle-double-left"></i></a>
 					</div>
@@ -145,8 +141,6 @@
 						<a href="javascript:;"  class="app-sidebar-minify-btn ms-auto toggler-btn3" data-toggle="app-sidebar-minify"><i class="fa fa-angle-double-left"></i></a>
 					</div>
 					<!-- END minify-button -->
-
-
 				</div>
 				<!-- END menu -->
 			</div>
@@ -167,14 +161,15 @@
 					<!-- END page-header -->
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="/" style="color: #f5be7f">Home</a></li>
-						<li class="breadcrumb-item active" style="color: #ff8906">NanoTech || Show Article </li>
+						<li class="breadcrumb-item active" style="color: #ff8906">NanoTech || Articles </li>
 					</ol>
 
 				</div>
 
 				<div class="ms-auto">
-				<a href={{ url('/adminboard/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Post</a>
-                <a href={{ url('/category/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Category</a>
+                <a href={{ url('/adminboard/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Post</a>
+				<a href={{ url('/category/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Category</a>
+                <a href={{ url('/subcategory/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add SubCategory</a>
 
 			</div>
 			</div>
@@ -263,74 +258,99 @@
 
 			<!-- section of Search for posts -->
 			<div class="container">
-
-                <div class="row justify-content-center">
-
-
-                    <div class="head-post">
-                        <h3 class="title-post text-white mb-3">{{$post->title}}</h3>
-                        <span>
-                            <span class="text-white font-weight-bold">By:</span>
-                            <span class="writer-name text-warning">{{$post->user->name}} </span>
-                            <span class="text-muted">On {{date('d-m-y', strtotime($post->updated_at))}}</span>
-
-                        </span>
-                    </div>
-
-                    <div class="body-post">
-                        <div class="image-post">
-                            <img class="w-100" style="height: 70vh" src="/images/{{$post->image_path}}" alt="picture image" >
-                        </div>
-                        <div class="p-post text-white py-4">{!! $post->description !!} </div>
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label for="tags" class="text-white d-block mb-3 form-label">Tags:</label>
-                        @foreach($post->tags as $item)
-
-                        <a href="#" id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906">
-                            <i class="fa-solid fa-tags"></i>
-                             {{$item->name}}
-                        </a>
-
-                        @endforeach
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label for="tags" class="text-white d-block mb-3 form-label">Category:</label>
-
-                        <a href="#" id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906">
-                            <i class="fa-solid fa-tags"></i>
-                            {{ $post->category->category }}
-                        </a>
-
-                    </div>
-
-
-                    <div class="form-group mb-3">
-                        <label for="tags" class="text-white d-block mb-3 form-label">SubCategory:</label>
-
-                        <a href="#" id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906">
-                            <i class="fa-solid fa-tags"></i>
-                            {{ $post->SubCategory->subcategory }}
-                        </a>
-
-                    </div>
-
-
-
-                    <div class="d-flex align-items-center bg-dark p-3 rounded">
-                        <i class="fas fa-thumbs-up me-3 text-primary"></i>
-                        <div class="text-white">Likes<span class="ms-3">{{ $post->likes()->count() }}</span></div>
-                    </div>
-
-
-                </div>
-
+				<div class="row">
+					<div class="col-sm-12 col-md-7 col-lg-5">
+						<form action="{{ url('category') }}" method="GET" class="d-flex">
+							<input class="form-control me-2" name="searchQuery" type="search" placeholder="Search for post" aria-label="Search">
+							<button class="btn btn-outline-warning"  type="submit">Search</button>
+						</form>
+					</div>
+				</div>
 			</div>
 
 			<!-- section of table -->
+			<div class="container-fluid my-2 section-table">
+				<div class="row">
+					<div class="col">
+						<div class="shadow-4 rounded-5 overflow-hidden">
+							<div class="table-responsive">
+								<table class="table align-middle mb-0" style="background-color: #2F3843; border-radius: 1rem;">
+									<thead class="text-white-50" style="background-color:  #2F3843; border-radius: 1rem;">
+										<tr style="color: #8D949D;">
+										<th>Title</th>
 
+										<th>Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+
+                                        @foreach($subcategories as $item)
+                                            <tr style="color: #fff; border-bottom: black;">
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+
+                                                            <div class="ms-3">
+                                                                <p class="fw-bold mb-1">{{ $item->subcategory }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+
+                                                    <td>
+                                                            <a href="{{ url('subcategory/' . $item->id . '/edit') }}" class="btn bg-success text-white btn-sm btn-rounded mt-2">
+                                                                <input type="hidden" name="update-id" value="{{$item->id}}">
+                                                                <i class="fa-sharp fa-solid fa-pen-to-square text-white"></i>
+                                                            </a>
+                                                            {{-- <button type="button" id="update-btn" onclick="editTask({{$item->id}})" class="btn bg-success text-white btn-sm btn-rounded mt-2" data-bs-toggle="modal" data-bs-target="#modal-task">
+                                                                <input type="hidden" name="update-id" value="{{$item->id}}">
+                                                                <i class="fa-sharp fa-solid fa-pen-to-square text-white"></i>
+                                                            </button> --}}
+                                                        <form method="post" action="{{ url('/subcategory' . '/' . $item->id) }}" style="display: inline;">
+                                                            @csrf
+                                                            @method("DELETE")
+                                                            {{-- <button type="submit" name="delete" id="buttonDelete" class="d-none">
+                                                                <input type="hidden" name="delete-id" value="{{$item->id}}">
+                                                            </button> --}}
+                                                            <button type="submit"  name="delete" onclick="return confirm('Confirm delete?')" class="btn bg-danger text-white btn-sm btn-rounded mt-2 ">
+                                                                <input type="hidden" name="delete-id" value="{{$item->id}}">
+                                                                <i class="fa-solid fa-trash text-white"></i>
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                        @endforeach
+
+
+									</tbody>
+								</table>
+
+                                <div class="d-flex justify-content-center my-3">
+                                    <nav aria-label="...">
+                                        <ul class="pagination">
+                                            @if ($subcategories->onFirstPage())
+                                                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+                                            @else
+                                                <li class="page-item"><a class="page-link" href="{{ $subcategories->previousPageUrl() }}" rel="prev">&laquo;</a></li>
+                                            @endif
+
+                                            @foreach ($subcategories as $key => $subcategory)
+                                                <li class="page-item"><a class="page-link" href="#">{{ $key + 1 }}</a></li>
+                                            @endforeach
+
+                                            @if ($subcategories->hasMorePages())
+                                                <li class="page-item"><a class="page-link" href="{{ $subcategories->nextPageUrl() }}" rel="next">&raquo;</a></li>
+                                            @else
+                                                <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+                                            @endif
+                                        </ul>
+                                    </nav>
+                                </div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<!-- END #content -->
 
@@ -345,6 +365,5 @@
 
 
 @endsection
-
 
 

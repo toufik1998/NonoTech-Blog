@@ -1,20 +1,21 @@
 @extends('layouts.common-dash')
 
-@section('title', 'Dashboard || Admin page')
+@section('title', 'Dashboard || Create category page')
 
 @section('content')
 
+
 	<!-- BEGIN #app -->
-	<div id="app" class="app app-header-fixed app-sidebar-fixed" >
+	<div id="app" class="app app-header-fixed app-sidebar-fixed">
 		<!-- BEGIN #header -->
 		<div id="header" class="app-header" style="background-color: #2D353C;">
 			<!-- BEGIN navbar-header -->
 			<div class="navbar-header">
-				<a href="#" class="navbar-brand text-warning">NanoTech </a>
+				<a href="#" class="navbar-brand text-warning">NanoTech</a>
 				<button type="button" class="navbar-mobile-toggler" data-toggle="app-sidebar-mobile">
-					<span class="icon-bar bg-warning"></span>
-					<span class="icon-bar bg-warning"></span>
-					<span class="icon-bar bg-warning"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
 				</button>
 			</div>
 			<!-- END navbar-header -->
@@ -29,8 +30,7 @@
 							<b class="caret text-warning"></b>
 						</span>
 					</a>
-
-                    <div class="dropdown-menu dropdown-menu-end me-1">
+					<div class="dropdown-menu dropdown-menu-end me-1">
                         <x-responsive-nav-link :href="route('profile.edit')" class="dropdown-item">
                             {{ __('Profile') }}
                         </x-responsive-nav-link>
@@ -101,28 +101,24 @@
 					</div>
 
 					<div class="navigation-side">
-
-
 						<ul>
 
-							<li><a href={{route('category.index')}} class="btn category-btn  my-1" style="width: 100%; border-bottom-right-radius: 0;">Categories</a></li>
-                            <li><a href="{{ url('/adminboard') }}" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
+							<li><a href="{{ url('/category') }}" class="btn my-1 category-btn" style="width: 100%; border-bottom-right-radius: 0;"> Categories</a></li>
+							<li><a href="{{ url('/adminboard') }}" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
                             <li><a href="{{ url('/tag') }}" class="btn tag-btn mt-1" style="width: 100%; border-bottom-right-radius: 0;">Tags</a></li>
-
 
 						</ul>
 
 						<a href="#" class="icon-post text-center mb-3">
 							<i class="fa-solid fa-blog  fa-2x text-warning"></i>
 						</a>
-
-                        <a href="#" class="icon-post2 text-center mb-3">
+						<a href="#" class="icon-post2 text-center mb-3">
 							<i class="fa-brands fa-typo3 fa-2x text-warning"></i>
 						</a>
-
                         <a href="#" class="icon-post3 text-center">
                             <i class="fa-solid fa-tag fa-2x text-warning"></i>
 						</a>
+
 
 					</div>
 
@@ -130,11 +126,11 @@
 
 					<!-- BEGIN minify-button -->
 					<div class="menu-item d-flex">
-						<a href="javascript:;"  class="app-sidebar-minify-btn ms-auto toggler-btn" data-toggle="app-sidebar-minify"><i class="fa fa-angle-double-left"></i></a>
+						<a href="javascript:;" class="app-sidebar-minify-btn ms-auto toggler-btn" data-toggle="app-sidebar-minify"><i class="fa fa-angle-double-left"></i></a>
 					</div>
 					<!-- END minify-button -->
 
-                    <!-- BEGIN minify-button -->
+					<!-- BEGIN minify-button -->
 					<div class="menu-item d-flex">
 						<a href="javascript:;"  class="app-sidebar-minify-btn ms-auto toggler-btn2" data-toggle="app-sidebar-minify"><i class="fa fa-angle-double-left"></i></a>
 					</div>
@@ -145,8 +141,6 @@
 						<a href="javascript:;"  class="app-sidebar-minify-btn ms-auto toggler-btn3" data-toggle="app-sidebar-minify"><i class="fa fa-angle-double-left"></i></a>
 					</div>
 					<!-- END minify-button -->
-
-
 				</div>
 				<!-- END menu -->
 			</div>
@@ -157,7 +151,7 @@
 		<!-- END #sidebar -->
 
 		<!-- BEGIN #content -->
-		<div id="content" class="app-content" >
+		<div id="content" class="app-content">
 			<div class="d-flex align-items-center mb-3">
 				<div>
 					<!-- BEGIN page-header -->
@@ -167,19 +161,14 @@
 					<!-- END page-header -->
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="/" style="color: #f5be7f">Home</a></li>
-						<li class="breadcrumb-item active" style="color: #ff8906">NanoTech || Show Article </li>
+						<li class="breadcrumb-item active" style="color: #ff8906">NanoTech || Create Category </li>
 					</ol>
 
 				</div>
 
-				<div class="ms-auto">
-				<a href={{ url('/adminboard/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Post</a>
-                <a href={{ url('/category/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Category</a>
-
-			</div>
 			</div>
 
-			<div class="container-fluid">
+            <div class="container-fluid">
 				<section>
 					<div class="row">
 						<div class="col-12 mt-3 mb-1">
@@ -261,76 +250,47 @@
 				</section>
 			</div>
 
-			<!-- section of Search for posts -->
-			<div class="container">
 
+            <div class="container">
                 <div class="row justify-content-center">
+                    <div class="col-sm-12 col-md-8">
+                        <form action="{{ url('subcategory') }}"  method="POST" id="form-task" enctype="multipart/form-data">
+                            @csrf
+                                <div class="modal-header border-0 bg-white">
+                                    <h5 class="modal-title text-danger">Post</h5>
+                                    <a href="#" class="btn-close" data-bs-dismiss="modal"></a>
+                                </div>
+                                <div class="modal-body">
+                                        <!-- This Input Allows Storing Task Index  -->
+                                        <input type="hidden" id="product-id" name="product-id">
+                                        <div class="mb-3">
+                                            <select name="category_id" class="form-control ">
+                                                <option value="">Select</option>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{$category->id}}">{{$category->category}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label text-white">SubCategory Title</label>
+                                            <input type="text" name="subcategory" class="form-control @error('subcategory') is-invalid @enderror" id="plat-name" value="{{ old('subcategory') }}"/>
+                                            @error('subcategory')
+                                                <div class="invalid-feedback text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
 
 
-                    <div class="head-post">
-                        <h3 class="title-post text-white mb-3">{{$post->title}}</h3>
-                        <span>
-                            <span class="text-white font-weight-bold">By:</span>
-                            <span class="writer-name text-warning">{{$post->user->name}} </span>
-                            <span class="text-muted">On {{date('d-m-y', strtotime($post->updated_at))}}</span>
+                                </div>
 
-                        </span>
+                            <div class="modal-footer border-0">
+                                <a href="#" class="btn btn-white" data-bs-dismiss="modal">Cancel</a>
+                                <button type="submit" name="add-multiple-post" class="btn btn-primary task-action-btn" id="task-save-btn">Add SubCategory</button>
+                            </div>
+                        </form>
                     </div>
-
-                    <div class="body-post">
-                        <div class="image-post">
-                            <img class="w-100" style="height: 70vh" src="/images/{{$post->image_path}}" alt="picture image" >
-                        </div>
-                        <div class="p-post text-white py-4">{!! $post->description !!} </div>
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label for="tags" class="text-white d-block mb-3 form-label">Tags:</label>
-                        @foreach($post->tags as $item)
-
-                        <a href="#" id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906">
-                            <i class="fa-solid fa-tags"></i>
-                             {{$item->name}}
-                        </a>
-
-                        @endforeach
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label for="tags" class="text-white d-block mb-3 form-label">Category:</label>
-
-                        <a href="#" id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906">
-                            <i class="fa-solid fa-tags"></i>
-                            {{ $post->category->category }}
-                        </a>
-
-                    </div>
-
-
-                    <div class="form-group mb-3">
-                        <label for="tags" class="text-white d-block mb-3 form-label">SubCategory:</label>
-
-                        <a href="#" id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906">
-                            <i class="fa-solid fa-tags"></i>
-                            {{ $post->SubCategory->subcategory }}
-                        </a>
-
-                    </div>
-
-
-
-                    <div class="d-flex align-items-center bg-dark p-3 rounded">
-                        <i class="fas fa-thumbs-up me-3 text-primary"></i>
-                        <div class="text-white">Likes<span class="ms-3">{{ $post->likes()->count() }}</span></div>
-                    </div>
-
-
                 </div>
-
-			</div>
-
-			<!-- section of table -->
-
+            </div>
 		</div>
 		<!-- END #content -->
 
@@ -342,9 +302,8 @@
 	<!-- END #app -->
 
 
-
-
 @endsection
+
 
 
 

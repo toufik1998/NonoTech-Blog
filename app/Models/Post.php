@@ -12,7 +12,7 @@ class Post extends Model
 
 
     protected $fillable = [
-        'title', 'slug', 'description', 'image_path', 'user_id', 'category_id'
+        'title', 'slug', 'description', 'image_path', 'user_id', 'category_id', 'subcategory_id'
     ];
 
     public function user(){
@@ -21,6 +21,10 @@ class Post extends Model
 
     public function category(){
         return $this->belongsTo(Category::class);
+    }
+
+    public function SubCategory(){
+        return $this->belongsTo(Subcategory::class, 'subcategory_id');
     }
 
     public function comments(){

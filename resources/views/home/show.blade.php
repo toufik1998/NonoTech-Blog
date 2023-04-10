@@ -245,7 +245,8 @@
                                 <h2 class="section-title">
                                     Comments
                                 </h2>
-                                @if (Auth::check())
+
+                                {{-- @if (Auth::check())
                                     <form action="{{ url('/comments') }}" method="POST">
                                         @csrf
                                         <textarea name="comment" id="comment" class="comment-textarea" placeholder="Write your comment here"></textarea>
@@ -258,7 +259,25 @@
                                             Login to add comments
                                         </h2>
                                     </section>
-                                @endif
+                                @endif --}}
+
+
+
+                                    <div>
+                                        @if (Auth::check())
+                                            @livewire('add-comment', ['postId' => $post->id])
+                                         @else
+                                            <section class="comments mt-5">
+                                                <h2 class="section-title">
+                                                    Login to add comments
+                                                </h2>
+                                            </section>
+                                        @endif
+
+                                    </div>
+
+
+
                                 <hr>
                                 <div class="comment-cards" id="comment-cards">
                                     @if ($comments->isEmpty())
@@ -331,12 +350,15 @@
                                                                             <i class="fas fa-edit text-white"></i>
                                                                         </button>
                                                                     @endif
-                                                                    <button class="btn btn-primary btn-sm rounded-pill ml-2 reply-comment" data-comment-id="{{ $item->id }}">Reply</button>
+                                                                    {{-- <button class="btn btn-primary btn-sm rounded-pill ml-2 reply-comment" >Reply</button> --}}
+                                                                    <button class="btn btn-primary btn-sm rounded-pill ml-2 reply-comment" data-comment-id="{{ $item->id }}" wire:click="$emit('openReplyForm', {{ $item->id }})">Reply</button>
+
 
 
                                                                     @foreach($replies as $reply)
                                                                         @if($item->id == $reply->comment_id )
                                                                             <button class="btn btn-secondary btn-sm rounded-pill ml-2 show-replies" data-comment-id="{{ $item->id }}" data-show="false">Show Replies</button>
+
                                                                         @endif
                                                                     @endforeach
 
@@ -346,11 +368,11 @@
                                                             <textarea class="form-control comment-edit-textarea d-none" id="comment-edit-textarea-{{ $item->id }}" rows="3">{{ $item->comment }}</textarea>
                                                             <div class="mt-2">
                                                                 <button class="btn btn-primary btn-sm rounded-pill save-comment d-none" data-comment-id="{{ $item->id }}" data-post-id="{{ $item->post_id }}">Save</button>
-                                                                <button class="btn btn-secondary btn-sm rounded-pill cancel-edit-comment d-none ml-2" data-comment-id="{{ $item->id }}" data-post-id="{{ $item->post_id }}">Cancel</button>
+                                                                <button class="btn btn-secondary btn-sm rounded-pill cancel-edit-comment d-none ml-2" data-comment-id="{{ $item->id }}" data-post-id="{{ $item->post_id }}" data-parent-id="{{ $item->id }}">Cancel</button>
                                                             </div>
 
                                                             <div class="reply-form mt-2 ml-4 d-none" id="reply-form-{{ $item->id }}">
-                                                                <form action="{{ route('comments.reply') }}" method="post">
+                                                                {{-- <form action="{{ route('comments.reply') }}" method="post">
                                                                     @csrf
                                                                     <input type="hidden" name="id" value="{{ $item->id }}">
 
@@ -360,7 +382,22 @@
                                                                     </div>
                                                                     <button type="submit" class="btn btn-primary btn-sm rounded-pill mt-2">Submit reply</button>
                                                                     <button type="button" class="btn btn-secondary btn-sm rounded-pill mt-2 ml-2 cancel-reply-comment" data-parent-id="{{ $item->id }}">Cancel</button>
-                                                                </form>
+                                                                </form> --}}
+
+                                                                {{-- <div wire:ignore id="reply-form-{{ $item->id }}">
+                                                                    @livewire('reply-comment', ['commentId' => $item->id, 'postId' => $item->post_id])
+                                                                </div> --}}
+
+                                                                {{-- @livewire('add-reply', ['commentId' => $item->id], key($item->id)) --}}
+                                                                @livewire('add-reply', ['commentId' => $item->id, 'postId' => $post->id], key($item->id), ['parent_id' => $item->id])
+                                                                <button type="button" class="btn btn-secondary btn-sm rounded-pill mt-2 ml-2 cancel-reply-comment d-inline" data-parent-id="{{ $item->id }}">Cancel</button>
+                                                                <button type="submit" class="btn btn-primary btn-sm rounded-pill mt-2 submit-reply-comment" data-parent-id="{{ $item->id }}">Submit reply</button>
+
+
+
+
+
+
                                                             </div>
 
                                                             @foreach($replies as $reply)
@@ -561,32 +598,90 @@
         // Hide reply form when clicking "Cancel" button
         $('.cancel-reply-comment').on('click', function() {
             var parentId = $(this).data('parent-id');
+            // var commentId = $(this).data('comment-id');
+            console.log(parentId);
             $('#reply-form-' + parentId).addClass('d-none');
+            // $('#reply-form-' + commentId).addClass('d-none');
+            console.log('#reply-form-' + parentId);
             $('.delete-form').removeClass('d-none');
             $('.edit-comment').removeClass('d-none');
             $('.reply-comment').removeClass('d-none');
 
         });
+
+        // // Hide reply form when clicking "submit" button
+        // $('#submit-reply-btn').on('click', function() {
+        //     $('.submit-reply-comment').trigger('click');
+        // });
+
+        // $('.submit-reply-comment').on('click', function() {
+        //     var parentId = $(this).data('parent-id');
+        //     // var commentId = $(this).data('comment-id');
+        //     console.log(parentId);
+        //     $('#reply-form-' + parentId).addClass('d-none');
+        //     // $('#reply-form-' + commentId).addClass('d-none');
+        //     console.log('#reply-form-' + parentId);
+        //     $('.delete-form').removeClass('d-none');
+        //     $('.edit-comment').removeClass('d-none');
+        //     $('.reply-comment').removeClass('d-none');
+            
+
+
+        //     console.log(submitReplyBtn);
+
+
+
+        // });
+
+         
     });
+
+    // Hide the reply form and show the comment form when the reply is submitted
+    // Livewire.on('replyAdded', function (parentId) {
+    //     $('#reply-form-' + parentId).hide();
+    //     // $('#comment-form').show();
+    // });
+
+    // $(document).ready(function() {
+    //     // Set the data-parent-id attribute to the "Submit reply" button
+    //     $('#submit-reply-btn').attr('data-parent-id', '{{ $item->id }}');
+    // });
+
 
 
     $(document).ready(function() {
     // Show/hide replies
-    $('.show-replies').click(function() {
-            var commentId = $(this).data('comment-id');
-            var repliesSection = $('#replies-' + commentId);
-            var show = $(this).data('show');
+        $('.show-replies').click(function() {
+                var commentId = $(this).data('comment-id');
+                var repliesSection = $('#replies-' + commentId);
+                var show = $(this).data('show');
 
-            if (show == 'false') {
-                repliesSection.removeClass('d-none');
-                $(this).text('Hide Replies');
-                $(this).data('show', 'true');
-            } else {
-                repliesSection.addClass('d-none');
-                $(this).text('Show Replies');
-                $(this).data('show', 'false');
-            }
+                if (show == 'false') {
+                    repliesSection.removeClass('d-none');
+                    $(this).text('Hide Replies');
+                    $(this).data('show', 'true');
+                } else {
+                    repliesSection.addClass('d-none');
+                    $(this).text('Show Replies');
+                    $(this).data('show', 'false');
+                }
         });
+    });
+
+    Livewire.on('commentAdded', () => {
+        window.location.reload();
+    });
+
+    document.addEventListener('livewire:load', function () {
+        Livewire.on('replyAdded', () => {
+            Livewire.emit('refreshComments');
+        });
+    });
+
+    Livewire.on('replyAdded', function() {
+        $('#form-reply').hide();
+        window.location.reload();
+        $('.cancel-reply-comment').trigger('click');
     });
 
 

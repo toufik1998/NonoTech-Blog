@@ -4,11 +4,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubcategoryController;
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\PostLikeController;
-;
 
 
 
@@ -36,7 +37,11 @@ Route::resource('/blog', PostController::class);
 Route::resource('/adminboard', MenuController::class);
 
 Route::resource('/category', CategoryController::class);
+Route::resource('/subcategory', SubcategoryController::class);
+
 Route::resource('/comments', CommentController::class);
+
+
 Route::post('/comments/reply', [CommentController::class, 'reply'])->name('comments.reply');
 
 Route::resource('/tag', TagController::class);

@@ -190,6 +190,7 @@
                                             <div class="article-text mt-3">
                                                 <span class="article-category">
                                                     {{$item->category->category}}
+                                                    {{-- {{$item->SubCategory->subcategory}} --}}
                                                 </span>
                                                 <h5 class="article-title">
                                                     {{$item->title}}

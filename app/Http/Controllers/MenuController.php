@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Subcategory;
+
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
-
-
-
 
 
 
@@ -53,7 +52,8 @@ class MenuController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-        return view("menu.create", compact('categories', 'tags'));
+        $subcategories = Subcategory::all();
+        return view("menu.create", compact('categories', 'tags', 'subcategories'));
     }
 
     /**
@@ -69,6 +69,7 @@ class MenuController extends Controller
             'description' => 'required',
             'image_path' => 'required|mimes:jpg,png,jpeg',
             'category_id' => 'required',
+            'subcategory_id' => 'required',
             'tags' => 'required'
         ]);
 
@@ -78,6 +79,7 @@ class MenuController extends Controller
         $post->title = $request->input('title');
         // $post->category_option = $request->input('category_option');
         $post->category_id =  $request->input('category_id');
+        $post->subcategory_id =  $request->input('subcategory_id');
         $post->description = $request->input('description');
         $slug = Str::slug($request->input('title'), '-');
         $post->slug = $slug;
@@ -137,11 +139,12 @@ class MenuController extends Controller
 
         $categories = Category::all();
         $tags = Tag::all();
+        $subcategories = Subcategory::all();
 
         // dd($post);
 
         // return view('menu.edit')->with('post', $post);
-        return view('menu.edit', compact('post', 'categories', 'tags'));
+        return view('menu.edit', compact('post', 'categories', 'tags', 'subcategories'));
 
     }
 
@@ -159,6 +162,7 @@ class MenuController extends Controller
             'description' => 'required',
             'image_path' => 'required|mimes:jpg,png,jpeg',
             'category_id' => 'required',
+            'subcategory_id' => 'required',
             'tags' => 'required'
         ]);
 
@@ -166,6 +170,8 @@ class MenuController extends Controller
         // dd($post_update);
         $post_update->title = $request->input('title');
         $post_update->category_id = $request->input('category_id');
+        $post_update->subcategory_id = $request->input('subcategory_id');
+
 
         $slug = Str::slug($request->title, '-');
         $post_update->description = $request->input('description');

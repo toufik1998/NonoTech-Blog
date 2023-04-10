@@ -110,6 +110,7 @@
 							<li><a href={{route('category.index')}} class="btn category-btn  my-1" style="width: 100%; border-bottom-right-radius: 0;">Categories</a></li>
 							<li><a href="#" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
                             <li><a href="{{ url('/tag') }}" class="btn post-btn mt-1 tag-btn" style="width: 100%; border-bottom-right-radius: 0;">Tags</a></li>
+                            <li><a href="{{ url('/subcategory') }}" class="btn post-btn mt-1 tag-btn" style="width: 100%; border-bottom-right-radius: 0;">Subcategories</a></li>
 
 
 						</ul>
@@ -173,6 +174,8 @@
 				<a href={{ url('/adminboard/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Post</a>
                 <a href={{ url('/category/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Category</a>
                 <a href={{ url('/tag/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Tag</a>
+                <a href={{ url('/subcategory/create') }} id="addButton"  class="btn btn-rounded text-white px-4 rounded-pill mb-2" style="background-color: #ff8906"><i class="fa fa-plus fa-lg me-2 ms-n2 text-white"></i> Add Subcategory</a>
+
 
 
 			</div>
