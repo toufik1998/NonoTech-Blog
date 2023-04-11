@@ -413,7 +413,7 @@
                             <div class="opinions-card">
                                 <h5>{{$item->title}}</h5>
                                 <div class="user-info">
-                                <img src="../../images/{{$item->image_path}}" alt="...">
+                                <img src="../../images/{{ $item->user->profile_picture }}" alt="...">
                                 <span>{{$item->user->name}}</span>
                                 </div>
                             </div>
