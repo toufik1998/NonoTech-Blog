@@ -204,7 +204,7 @@
                                         </div>
 
 
-                                        <div class="mb-3">
+                                        {{-- <div class="mb-3">
                                             <label class="form-label text-white">Post Category</label>
                                             <select class="form-select @error('category_id') is-invalid @enderror" name="category_id" id="post-status">
                                                 <option value="">Please select</option>
@@ -233,7 +233,15 @@
                                             @error('subcategory_id')
                                                 <div class="invalid-feedback text-danger">{{ $message }}</div>
                                             @enderror
-                                        </div>
+                                        </div> --}}
+
+                                        {{-- <livewire:dynamic-subcategories /> --}}
+
+                                        <livewire:dynamic-subcategories
+                                            :selected-category="$post->category_id ?? null"
+                                            :selected-subcategory="$post->subcategory_id ?? null"
+                                        />
+
 
 
                                         <div class="form-group mb-3">

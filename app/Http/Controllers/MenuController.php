@@ -53,6 +53,7 @@ class MenuController extends Controller
         $categories = Category::all();
         $tags = Tag::all();
         $subcategories = Subcategory::all();
+
         return view("menu.create", compact('categories', 'tags', 'subcategories'));
     }
 
@@ -188,18 +189,11 @@ class MenuController extends Controller
         $tags = $request->input('tags');
         $post_update->tags()->sync($tags);
 
-        // //tags
-        // $tags = $request->input('tags');
-        // // dd($tags);
-
-        // $post_update->tags()->detach();
-        // $post_update->tags()->attach($post_update->id,$tags);
-
-        // $post_update->update();
+       
 
 
 
-        return redirect('adminboard')->with('flash message', 'student updated');
+        return redirect('adminboard')->with('flash message', 'Post updated');
     }
 
     /**
@@ -211,6 +205,6 @@ class MenuController extends Controller
     public function destroy($id)
     {
         Post::destroy($id);
-        return redirect('adminboard')->with('flash_message', 'plat deleted succefully');
+        return redirect('adminboard')->with('flash_message', 'Post deleted succefully');
     }
 }

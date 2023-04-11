@@ -288,6 +288,7 @@
 									<thead class="text-white-50" style="background-color:  #2F3843; border-radius: 1rem;">
 										<tr style="color: #8D949D;">
 										<th>Title</th>
+                                        <th>Category</th>
 
 										<th>Actions</th>
 										</tr>
@@ -301,6 +302,15 @@
 
                                                             <div class="ms-3">
                                                                 <p class="fw-bold mb-1">{{ $item->subcategory }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+
+                                                            <div class="ms-3">
+                                                                <p class="fw-bold mb-1">{{ $item->category->category }}</p>
                                                             </div>
                                                         </div>
                                                     </td>

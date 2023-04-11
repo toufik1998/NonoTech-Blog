@@ -624,7 +624,7 @@
         //     $('.delete-form').removeClass('d-none');
         //     $('.edit-comment').removeClass('d-none');
         //     $('.reply-comment').removeClass('d-none');
-            
+
 
 
         //     console.log(submitReplyBtn);
@@ -633,7 +633,7 @@
 
         // });
 
-         
+
     });
 
     // Hide the reply form and show the comment form when the reply is submitted

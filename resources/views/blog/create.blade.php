@@ -395,18 +395,9 @@
                                         </div>
 
 
+
+
                                         {{-- <div class="mb-3">
-                                            <label class="form-label text-white">Post Category</label>
-                                            <select class="form-select" name="category_id" id="post-status">
-                                                <option value="">Please select</option>
-
-                                                @foreach($categories as $item)
-                                                    <option value={{$item->id}}> {{$item->category}} </option>
-                                                @endforeach
-                                            </select>
-                                        </div> --}}
-
-                                        <div class="mb-3">
                                             <label class="form-label text-white">Post Category</label>
                                             <select class="form-select @error('category_id') is-invalid @enderror" name="category_id" id="post-status">
                                                 <option value="">Please select</option>
@@ -419,20 +410,9 @@
                                             @error('category_id')
                                                 <div class="invalid-feedback text-danger">{{ $message }}</div>
                                             @enderror
-                                        </div>
-
-                                        {{-- <div class="form-group mb-3">
-                                            <label for="tags" class="text-white d-block mb-3 form-label">Tags:</label>
-                                            @foreach($tags as $item)
-                                            <div class="form-check form-check-inline">
-                                              <input class="form-check-input cursor-pointer" type="checkbox" name="tags[]" value="{{ $item->id }}" id="{{ $item->name }}"
-                                                {{ collect(old('tags'))->contains($item->id) ? 'checked' : '' }}>
-                                              <label class="form-check-label text-white" for="{{ $item->name }}">
-                                                {{ $item->name }}
-                                              </label>
-                                            </div>
-                                            @endforeach
                                         </div> --}}
+
+                                        <livewire:dynamic-subcategories />
 
                                         <div class="form-group mb-3">
                                             <label for="tags" class="text-white d-block mb-3 form-label">Tags:</label>
@@ -450,10 +430,7 @@
                                             @endif
                                         </div>
 
-                                        {{-- <div class="mb-3">
-                                            <label class="form-label text-white">Post Content</label>
-                                            <textarea class="form-control" name="description" rows="10" id="editor"></textarea>
-                                        </div> --}}
+
 
 
                                         <div class="mb-3">
@@ -468,10 +445,7 @@
 
 
 
-                                        {{-- <div class="mb-0">
-                                            <label class="form-label text-white">Post Image</label>
-                                            <input type="file" name="image_path" class="form-control" id="plat-image"/>
-                                        </div> --}}
+                                        
 
                                         <div class="mb-0">
                                             <label class="form-label text-white">Post Image</label>

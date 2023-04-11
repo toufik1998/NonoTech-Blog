@@ -366,7 +366,7 @@
 									<thead class="text-white-50" style="background-color:  #2F3843; border-radius: 1rem;">
 										<tr style="color: #8D949D;">
 										<th>Title</th>
-										<th>Description</th>
+										{{-- <th>Description</th> --}}
                                         <th>Category</th>
 										<th>Created By:</th>
 										<th>Actions</th>
@@ -395,9 +395,9 @@
                                                         </div>
                                                     </td>
 
-                                                    <td>
+                                                    {{-- <td>
                                                         <span class="badge badge-success rounded-pill ms-4">{!! $item->description !!}</span>
-                                                    </td>
+                                                    </td> --}}
 
                                                     <td>
                                                         <span class="badge badge-success rounded-pill ms-4">{{ $item->category->category }}</span>

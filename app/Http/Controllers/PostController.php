@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Subcategory;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\User;
+
 
 
 
@@ -54,8 +57,9 @@ class PostController extends Controller
 
         $categories = Category::all();
         $tags = Tag::all();
+        $subcategories = Subcategory::all();
 
-        return view('blog.create', compact('categories', 'tags', 'postCount'));
+        return view('blog.create', compact('categories', 'tags', 'postCount', 'subcategories'));
     }
 
     /**
@@ -71,6 +75,7 @@ class PostController extends Controller
             'description' => 'required',
             'image_path' => 'required|mimes:jpg,png,jpeg',
             'category_id' => 'required',
+            'subcategory_id' => 'required',
             'tags' => 'required'
         ]);
 
@@ -78,6 +83,7 @@ class PostController extends Controller
         $post = new Post();
         $post->title = $request->input('title');
         $post->category_id = $request->input('category_id');
+        $post->subcategory_id =  $request->input('subcategory_id');
         $post->description = $request->input('description');
         $slug = Str::slug($request->input('title'), '-');
         $post->slug = $slug;
@@ -132,8 +138,9 @@ class PostController extends Controller
         $categories = Category::all();
         $post = POST::where('id', $id)->first();
         $tags = Tag::all();
-        return view('blog.edit', compact('post','categories', 'tags', 'postCount'));
-        // return view('blog.edit')->with('post', POST::where('slug', $slug)->first());
+        $subcategories = Subcategory::all();
+
+        return view('blog.edit', compact('post','categories', 'tags', 'postCount', 'subcategories'));
     }
 
     /**
@@ -151,6 +158,7 @@ class PostController extends Controller
             'description' => 'required',
             'image_path' => 'required|mimes:jpg,png,jpeg',
             'category_id' => 'required',
+            'subcategory_id' => 'required',
             'tags' => 'required'
         ]);
 
@@ -158,6 +166,7 @@ class PostController extends Controller
         // dd($post_update);
         $post_update->title = $request->input('title');
         $post_update->category_id = $request->input('category_id');
+        $post_update->subcategory_id = $request->input('subcategory_id');
         $slug = Str::slug($request->title, '-');
         $post_update->description = $request->input('description');
         $post_update->slug = $slug;

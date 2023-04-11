@@ -13,4 +13,10 @@ class Category extends Model
     public function articles(){
         return $this->hasMany(Post::class);
     }
+
+    public function subcategories()
+    {
+        return $this->hasMany(Subcategory::class);
+    }
+
 }

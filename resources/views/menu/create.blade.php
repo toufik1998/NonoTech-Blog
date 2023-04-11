@@ -203,14 +203,14 @@
                                             @enderror
                                         </div>
 
-                                        <div class="mb-3">
+                                        {{-- <div class="mb-3">
                                             <label class="form-label text-white">Post Category</label>
-                                            <select class="form-select @error('category_id') is-invalid @enderror" name="category_id" id="post-status">
+                                            <select class="form-select @error('category_id') is-invalid @enderror" name="category_id" id="post-category">
                                                 <option value="">Please select</option>
 
                                                 @foreach($categories as $item)
                                                     <option value={{$item->id}} {{ old('category_id') == $item->id ? 'selected' : '' }}> {{$item->category}} </option>
-                                                @endforeach
+                                                    @endforeach
                                             </select>
 
                                             @error('category_id')
@@ -218,21 +218,26 @@
                                             @enderror
                                         </div>
 
-
                                         <div class="mb-3">
                                             <label class="form-label text-white">Post SubCategory</label>
-                                            <select class="form-select @error('subcategory_id') is-invalid @enderror" name="subcategory_id" id="post-status">
-                                                <option value="">Please select</option>
+                                                <select class="form-select @error('subcategory_id') is-invalid @enderror" name="subcategory_id" id="post-status">
+                                                    <option value="">Please select</option>
 
-                                                @foreach($subcategories as $item)
-                                                    <option value={{$item->id}} {{ old('subcategory_id') == $item->id ? 'selected' : '' }}> {{$item->subcategory}} </option>
-                                                @endforeach
-                                            </select>
+
+
+                                                    @foreach($subcategories as $item)
+                                                        <option value={{$item->id}} {{ old('subcategory_id') == $item->id ? 'selected' : '' }}> {{$item->subcategory}} </option>
+
+                                                    @endforeach
+                                                </select>
 
                                             @error('subcategory_id')
                                                 <div class="invalid-feedback text-danger">{{ $message }}</div>
                                             @enderror
-                                        </div>
+                                        </div> --}}
+
+                                        <livewire:dynamic-subcategories />
+
 
                                         <div class="form-group mb-3">
                                             <label for="tags" class="text-white d-block mb-3 form-label">Tags:</label>
@@ -300,6 +305,7 @@
 
 @section('script')
 <script>
+
     ClassicEditor
         .create( document.querySelector( '#editor' ) )
         .catch( error => {
