@@ -1,43 +1,3 @@
-{{-- <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
-    </body>
-</html> --}}
-
-
-
 @extends('layouts.common-dash')
 
 @section('title', 'Dashboard || Admin page')
@@ -150,8 +110,9 @@
 						<ul>
 
 							<li><a href="#" class="btn category-btn  my-1" style="width: 100%; border-bottom-right-radius: 0;">More settings</a></li>
-                            <li><a href="#" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
-
+							<li><a href="#" class="btn post-btn" style="width: 100%; border-bottom-right-radius: 0;">Mapping</a></li>
+                            <li><a href="{{ url('/') }}" class="btn  mt-1 tag-btn" style="width: 100%; border-bottom-right-radius: 0;">Home</a></li>
+                            <li><a href="#" class="btn subcategory-btn  my-1" style="width: 100%; border-bottom-right-radius: 0;">More Features</a></li>
 
 						</ul>
 
@@ -159,8 +120,15 @@
 							<i class="fa-solid fa-blog  fa-2x text-warning"></i>
 						</a>
 
-                        <a href="#" class="icon-post2 text-center">
+                        <a href="#" class="icon-post2 text-center mb-3">
 							<i class="fa-brands fa-typo3 fa-2x text-warning"></i>
+						</a>
+
+                        <a href="#" class="icon-post3 text-center mb-3">
+                            <i class="fa-solid fa-house fa-2x text-warning"></i>
+						</a>
+                        <a href="#" class="icon-post4 text-center">
+                            <i class="fa-solid fa-shapes fa-2x text-warning"></i>
 						</a>
 
 					</div>
@@ -176,6 +144,18 @@
                     <!-- BEGIN minify-button -->
 					<div class="menu-item d-flex">
 						<a href="javascript:;"  class="app-sidebar-minify-btn ms-auto toggler-btn2" data-toggle="app-sidebar-minify"><i class="fa fa-angle-double-left"></i></a>
+					</div>
+					<!-- END minify-button -->
+
+                    <!-- BEGIN minify-button -->
+					<div class="menu-item d-flex">
+						<a href="javascript:;"  class="app-sidebar-minify-btn ms-auto toggler-btn3" data-toggle="app-sidebar-minify"><i class="fa fa-angle-double-left"></i></a>
+					</div>
+					<!-- END minify-button -->
+
+                    <!-- BEGIN minify-button -->
+					<div class="menu-item d-flex">
+						<a href="javascript:;"  class="app-sidebar-minify-btn ms-auto toggler-btn4" data-toggle="app-sidebar-minify"><i class="fa fa-angle-double-left"></i></a>
 					</div>
 					<!-- END minify-button -->
 
