@@ -19,12 +19,6 @@ class DynamicSubcategories extends Component
     ];
 
 
-    // public function mount()
-    // {
-    //     // Fetch all categories and assign to $categories property
-    //     $this->categories = Category::all();
-    // }
-
     public function mount($selectedCategory = null, $selectedSubcategory = null)
     {
         $this->categories = Category::all();

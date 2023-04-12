@@ -14,7 +14,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Web</a>
@@ -73,7 +73,7 @@
         <div class="article-header" style="margin-top: 5rem">
             <div class="container">
                 <div class="header-category">
-                    <span class="me-1">Technology</span> | <span class="ms-1">Microsoft</span>
+                    <span class="me-1">{{ $post->category->category }}</span> | <span class="ms-1">{{ $post->SubCategory->subcategory }}</span>
                 </div>
                 <div class="header-title">
                     <h2>
@@ -201,7 +201,7 @@
                                                             class="d-flex justify-content-between align-items-center mb-2">
                                                             <span class="user-name">{{ $item->user->name }}</span>
 
-                                                            {{-- <span class="d-flex justify-content-between align-items-center mb-2">
+                                                            <span class="d-flex justify-content-between align-items-center mb-2">
                                                                     @if (Auth::check() && Auth::user()->id == $item->user_id)
                                                                         <form action="{{ url('/comments' . '/' . $item->id) }}" method="post" class="delete-form">
                                                                             @csrf
@@ -225,9 +225,9 @@
                                                                         @endif
                                                                     @endforeach
 
-                                                            </span> --}}
+                                                            </span>
 
-                                                            <span
+                                                            {{-- <span
                                                                 class="d-flex justify-content-between align-items-center mb-2">
                                                                 <i class="fa-solid fa-ellipsis edit-delete-reply-icon"></i>
                                                                 <div class="edit-delete-reply-container"
@@ -266,7 +266,7 @@
                                                                         @endif
                                                                     @endforeach
                                                                 </div>
-                                                            </span>
+                                                            </span> --}}
 
                                                         </div>
                                                         <p class="comment-paragraph"
@@ -428,20 +428,20 @@
 
     <script>
         // show, hide the icon of edit , delete reply
-        const icon = document.querySelector('.edit-delete-reply-icon');
-        const container = document.querySelector('.edit-delete-reply-container');
+        // const icon = document.querySelector('.edit-delete-reply-icon');
+        // const container = document.querySelector('.edit-delete-reply-container');
 
-        icon.addEventListener('click', () => {
-            container.style.display = container.style.display === 'none' ? 'flex' : 'none';
-        });
+        // icon.addEventListener('click', () => {
+        //     container.style.display = container.style.display === 'none' ? 'flex' : 'none';
+        // });
 
-        const buttons = container.querySelectorAll('button');
-        buttons.forEach((button) => {
-            button.addEventListener('click', () => {
-                container.style.display = 'none';
-                icon.style.display = 'block';
-            });
-        });
+        // const buttons = container.querySelectorAll('button');
+        // buttons.forEach((button) => {
+        //     button.addEventListener('click', () => {
+        //         container.style.display = 'none';
+        //         icon.style.display = 'block';
+        //     });
+        // });
 
 
         // Handle edit comment button click

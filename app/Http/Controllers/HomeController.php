@@ -75,8 +75,6 @@ class HomeController extends Controller
     public function show($id)
     {
 
-
-
         $post = Post::find($id);
         $post->increment('views');
         $random_posts = Post::inRandomOrder()->limit(3)->get();
@@ -89,19 +87,12 @@ class HomeController extends Controller
         ->take(3)
         ->get();
 
-        // $comments = Comment::where('post_id', $id)->get();
-         // Fetch parent comments and their child comments
-        //  $comments = Comment::where('post_id', $id)->where('parent_id', null)->with('replies')->get();
+        // Fetch parent comments and their child comments
         $replies = Reply::all();
         $comments = Comment::where('post_id', $id)->get();
 
 
-         return view('home.show', compact('post', 'random_posts', 'most_read_posts', 'comments','replies', 'related_posts'));
-
-
-
-        // return view('home.show', compact('post', 'random_posts', 'most_read_posts', 'comments', 'related_posts'));
-
+        return view('home.show', compact('post', 'random_posts', 'most_read_posts', 'comments','replies', 'related_posts'));
 
     }
 
@@ -142,12 +133,6 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $searchTerm = $request->input('search');
-
-        // if ($request->input('ranking_by') == 'alphabet') {
-        //     $posts = Post::where('title', 'like', '%'.$searchTerm.'%')->orderBy('title')->get();
-        // }else{
-        //     $posts = Post::where('title', 'like', '%'.$searchTerm.'%')->orderBy('created_at', 'desc')->get();
-        // }
 
         $posts = Post::where('title', 'like', '%'.$searchTerm.'%')->orderBy('created_at', 'desc')->paginate(5);
 

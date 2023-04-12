@@ -17,7 +17,7 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
 
     public function index(Request $request)
     {
@@ -111,6 +111,10 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'category' => 'required',
+
+        ]);
 
         $category_update = Category::where('id', $id)->first();
         $category_update->category = $request->input('category');

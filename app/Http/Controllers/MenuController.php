@@ -78,7 +78,6 @@ class MenuController extends Controller
 
         $post = new Post();
         $post->title = $request->input('title');
-        // $post->category_option = $request->input('category_option');
         $post->category_id =  $request->input('category_id');
         $post->subcategory_id =  $request->input('subcategory_id');
         $post->description = $request->input('description');
@@ -121,7 +120,6 @@ class MenuController extends Controller
         $userCount = User::count();
 
         $post = Post::find($id);
-        // return view('menu.show')->with('post', POST::where('id', $id)->first());
 
         return view('menu.show', compact('post', 'categoryCount', 'tagCount', 'postCount', 'userCount'));
 
@@ -142,9 +140,7 @@ class MenuController extends Controller
         $tags = Tag::all();
         $subcategories = Subcategory::all();
 
-        // dd($post);
 
-        // return view('menu.edit')->with('post', $post);
         return view('menu.edit', compact('post', 'categories', 'tags', 'subcategories'));
 
     }
@@ -168,7 +164,6 @@ class MenuController extends Controller
         ]);
 
         $post_update = Post::where('id', $id)->first();
-        // dd($post_update);
         $post_update->title = $request->input('title');
         $post_update->category_id = $request->input('category_id');
         $post_update->subcategory_id = $request->input('subcategory_id');
@@ -177,7 +172,6 @@ class MenuController extends Controller
         $slug = Str::slug($request->title, '-');
         $post_update->description = $request->input('description');
         $post_update->slug = $slug;
-        // // $menu->uploadfile = $request->input('uploadfile');
 
         $file= $request->file('image_path');
         $filename= date('YmdHi').$file->getClientOriginalName();
@@ -188,9 +182,6 @@ class MenuController extends Controller
 
         $tags = $request->input('tags');
         $post_update->tags()->sync($tags);
-
-       
-
 
 
         return redirect('adminboard')->with('flash message', 'Post updated');

@@ -60,7 +60,7 @@
                         @csrf
                         <input class="form-control me-2" type="search" name="search" placeholder="Search"
                             aria-label="Search">
-                        <button type="submit" class="search-icon">
+                        <button type="submit" class="search-icon bg-white">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </form>
@@ -146,7 +146,7 @@
         <section class="news">
             <div class="container">
                 <h2 class="section-title">
-                    Top Articles
+                    Top Random Articles
                 </h2>
 
                 <div class="row">

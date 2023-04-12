@@ -69,17 +69,9 @@ class TagController extends Controller
             'tag' => 'required|unique:App\Models\Tag,name|max:255',
         ]);
 
-        // $tag = Tag::create([
-        //     'name' => $request->input('name'),
-        // ]);
-
-        // return redirect()->route('tags.index')
-        //     ->with('success', 'Tag created successfully.');
-
 
         $tag = new Tag();
         $tag->name = $request->input('tag');
-        // dd($tag);
 
         $tag->save();
 
@@ -134,7 +126,6 @@ class TagController extends Controller
         $tag_update->update();
 
         return redirect('tag')->with('flash message', 'tag updated');
-        // return view('tags.index')->with('flash_message', 'tag updated succefully');
     }
 
     /**

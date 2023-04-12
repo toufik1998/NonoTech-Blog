@@ -9,8 +9,6 @@ use App\Models\Tag;
 use App\Models\User;
 
 
-
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -23,12 +21,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    // public function index()
-    // {
-    //     $posts = Post::all();
-    //     return view('blog.index')->with('posts', $posts);
-    //     // return view('blog.index', compact('posts', 'categories'));
-    // }
+
 
     public function index(Request $request)
     {
@@ -114,7 +107,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        // return view('blog.show')->with('post', POST::where('id', $id)->first());
+
         $posts = Post::all();
         $postCount = $posts->where('user_id', auth()->user()->id)->count();
 
@@ -163,14 +156,13 @@ class PostController extends Controller
         ]);
 
         $post_update = Post::where('id', $id)->first();
-        // dd($post_update);
+
         $post_update->title = $request->input('title');
         $post_update->category_id = $request->input('category_id');
         $post_update->subcategory_id = $request->input('subcategory_id');
         $slug = Str::slug($request->title, '-');
         $post_update->description = $request->input('description');
         $post_update->slug = $slug;
-        // // $menu->uploadfile = $request->input('uploadfile');
 
         $file= $request->file('image_path');
         $filename= date('YmdHi').$file->getClientOriginalName();
@@ -182,8 +174,6 @@ class PostController extends Controller
         $tags = $request->input('tags');
         $post_update->tags()->sync($tags);
 
-
-        // return redirect('blog/'.$slug)->with('Success', 'Update Post succefully');
         return redirect('/blog')->with('Success', 'Update Post succefully');
 
     }

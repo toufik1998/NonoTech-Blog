@@ -106,7 +106,7 @@
 
                         <ul>
 
-                            <li><a href="#" class="btn category-btn  my-1"
+                            <li><a href="{{ url('/category') }}" class="btn category-btn  my-1"
                                     style="width: 100%; border-bottom-right-radius: 0;"> Categories</a></li>
                             <li><a href="{{ url('/adminboard') }}" class="btn post-btn"
                                     style="width: 100%; border-bottom-right-radius: 0;">Articles</a></li>
@@ -131,8 +131,6 @@
                         </a>
 
                     </div>
-
-
 
                     <!-- BEGIN minify-button -->
                     <div class="menu-item d-flex">

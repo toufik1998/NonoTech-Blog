@@ -48,19 +48,10 @@ class AddReply extends Component
         $comment->save();
 
 
-
-        // $comment->replies()->save($reply);
-
         $this->reset(['reply']);
-
-        // $this->emit('replyAdded', $this->parent_id);
-
-        // $this->dispatchBrowserEvent('hideReplyForm');
 
         $this->emit('replyAdded');
         $this->reset('reply');
-
-
 
     }
 }

@@ -27,8 +27,6 @@ class PostLikeController extends Controller
             ->where('post_id', $post->id)
             ->first();
 
-            
-
         if ($like) {
             $like->delete();
 
