@@ -17,7 +17,7 @@
         <div class="form-group">
 
             <textarea class="form-control" wire:model="reply" id="reply" rows="3" placeholder="Write your reply here..."></textarea>
-            <button type="submit" id="submit-reply-btn" class="btn btn-primary btn-sm rounded-pill mt-2 d-inline ">Submit replyy</button>
+            <button type="submit" id="submit-reply-btn" class="btn btn-primary btn-sm rounded-pill mt-2 d-inline ">Submit reply</button>
             {{-- <button type="button" class="btn btn-secondary btn-sm rounded-pill mt-2 ml-2 cancel-reply-comment" data-parent-id="{{ $item->id }}">Cancel</button> --}}
 
             @error('reply') <span class="text-danger">{{ $message }}</span>@enderror

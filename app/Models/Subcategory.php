@@ -11,7 +11,7 @@ class Subcategory extends Model
 
     protected $fillable = ['subcategory', 'category_id'];
 
-    public function articles(){
+    public function posts(){
         return $this->hasMany(Post::class);
     }
 

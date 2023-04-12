@@ -233,8 +233,8 @@
                                             <img src="../../images/{{$item->image_path}}" alt="..." class="img-fluid" style="width: 100%; height: 170px">
                                             <div class="article-text mt-3">
                                                 <span class="article-category">
-                                                    {{$item->category->category}}
-                                                    {{-- {{$item->SubCategory->subcategory}} --}}
+                                                    {{-- {{$item->category->category}} --}}
+                                                    {{$item->SubCategory->subcategory}}
                                                 </span>
                                                 <h5 class="article-title">
                                                     {{$item->title}}
@@ -277,7 +277,8 @@
                                             <img src="../../images/{{$item->image_path}}" alt="..." class="img-fluid" style="width: 100%; height: 170px">
                                             <div class="article-text mt-3">
                                                 <span class="article-category">
-                                                    {{$item->category->category}}
+                                                    {{-- {{$item->category->category}} --}}
+                                                    {{$item->SubCategory->subcategory}}
                                                 </span>
                                                 <h5 class="article-title">
                                                     {{$item->title}}
@@ -320,7 +321,8 @@
                                             <img src="../../images/{{$item->image_path}}" alt="..." class="img-fluid" style="width: 100%; height: 170px">
                                             <div class="article-text mt-3">
                                                 <span class="article-category">
-                                                    {{$item->category->category}}
+                                                    {{-- {{$item->category->category}} --}}
+                                                    {{$item->SubCategory->subcategory}}
                                                 </span>
                                                 <h5 class="article-title">
                                                     {{$item->title}}
