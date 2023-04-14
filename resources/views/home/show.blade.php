@@ -29,10 +29,98 @@
                             <a class="nav-link" href="#">Game</a>
                         </li>
 
+                        {{-- @if(Route::has('login'))
+
+                            <div class="ms-5">
+                                @auth
+                                    @if (Auth::user()->is_admin == 1)
+                                        <li class="nav-item navbar-user dropdown">
+                                            <a href="#" class="nav-link dropdown-toggle d-flex align-items-center"
+                                                data-bs-toggle="dropdown">
+                                                <img src="/images/{{ Auth::user()->profile_picture }}" alt=""
+                                                    class="rounded-circle" style="width: 25px;">
+
+                                                <span>
+                                                    <span class="d-none d-md-inline text-danger">{{ Auth::user()->name }}</span>
+                                                    <b class="caret text-warning"></b>
+                                                </span>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-end me-1">
+                                                <x-responsive-nav-link :href="route('profile.edit')" class="dropdown-item">
+                                                    {{ __('Profile') }}
+                                                </x-responsive-nav-link>
+                                                <a href="javascript:;" class="dropdown-item">Setting</a>
+                                                <a href="{{ url('/adminboard') }}" class="btn dropdown-item">Dashboard</a>
+                                                <div class="dropdown-divider"></div>
+                                                <!-- Authentication -->
+                                                <form method="POST" action="{{ route('logout') }}">
+                                                    @csrf
+
+                                                    <x-responsive-nav-link :href="route('logout')"
+                                                        onclick="event.preventDefault();
+                                                                        this.closest('form').submit();"
+                                                        class="dropdown-item">
+                                                        {{ __('Log Out') }}
+                                                    </x-responsive-nav-link>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    @else
+                                        <li class="nav-item navbar-user dropdown">
+                                            <a href="#" class="nav-link dropdown-toggle d-flex align-items-center"
+                                                data-bs-toggle="dropdown">
+                                                <img src="/images/{{ Auth::user()->profile_picture }}" alt=""
+                                                    class="rounded-circle" style="width: 25px;">
+
+                                                <span>
+                                                    <span class="d-none d-md-inline text-danger">{{ Auth::user()->name }}</span>
+                                                    <b class="caret text-warning"></b>
+                                                </span>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-end me-1">
+                                                <x-responsive-nav-link :href="route('profile.edit')" class="dropdown-item">
+                                                    {{ __('Profile') }}
+                                                </x-responsive-nav-link>
+                                                <a href="javascript:;" class="dropdown-item">Setting</a>
+                                                <a href="{{ url('/blog') }}" class="btn dropdown-item">Dashboard</a>
+                                                <div class="dropdown-divider"></div>
+                                                <!-- Authentication -->
+                                                <form method="POST" action="{{ route('logout') }}">
+                                                    @csrf
+
+                                                    <x-responsive-nav-link :href="route('logout')"
+                                                        onclick="event.preventDefault();
+                                                                        this.closest('form').submit();"
+                                                        class="dropdown-item">
+                                                        {{ __('Log Out') }}
+                                                    </x-responsive-nav-link>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    @endif
+                                @else
+                                    <div class="login">
+                                        <i class="fa-solid fa-user"></i>
+                                        <div class="login-container">
+                                            <a href="{{ route('login') }}" class="button">Sign In</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="login-button">
+                                        <a href="{{ route('login') }}" class="button">Sign In</a>
+                                    </div>
+                                @endauth
+                            </div>
+
+                        @endif --}}
+
                     </ul>
 
 
-                    @if (Route::has('login'))
+
+                    {{-- @if (Route::has('login'))
                         <div class="">
                             @auth
                                 @if (Auth::user()->is_admin == 1)
@@ -54,6 +142,93 @@
 
                             @endauth
                         </div>
+                    @endif --}}
+
+                    @if (Route::has('login'))
+
+                            <div class="me-3">
+                                @auth
+                                    @if (Auth::user()->is_admin == 1)
+                                        <div class="nav-item navbar-user dropdown">
+                                            <a href="#" class="nav-link dropdown-toggle d-flex align-items-center"
+                                                data-bs-toggle="dropdown">
+                                                <img src="/images/{{ Auth::user()->profile_picture }}" alt=""
+                                                    class="rounded-circle" style="width: 25px;">
+
+                                                <span>
+                                                    <span class="d-none d-md-inline text-danger">{{ Auth::user()->name }}</span>
+                                                    <b class="caret text-warning"></b>
+                                                </span>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-end me-1">
+                                                <x-responsive-nav-link :href="route('profile.edit')" class="dropdown-item">
+                                                    {{ __('Profile') }}
+                                                </x-responsive-nav-link>
+                                                <a href="javascript:;" class="dropdown-item">Setting</a>
+                                                <a href="{{ url('/adminboard') }}" class="btn dropdown-item">Dashboard</a>
+                                                <div class="dropdown-divider"></div>
+                                                <!-- Authentication -->
+                                                <form method="POST" action="{{ route('logout') }}">
+                                                    @csrf
+
+                                                    <x-responsive-nav-link :href="route('logout')"
+                                                        onclick="event.preventDefault();
+                                                                        this.closest('form').submit();"
+                                                        class="dropdown-item">
+                                                        {{ __('Log Out') }}
+                                                    </x-responsive-nav-link>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="nav-item navbar-user dropdown">
+                                            <a href="#" class="nav-link dropdown-toggle d-flex align-items-center"
+                                                data-bs-toggle="dropdown">
+                                                <img src="/images/{{ Auth::user()->profile_picture }}" alt=""
+                                                    class="rounded-circle" style="width: 25px;">
+
+                                                <span>
+                                                    <span class="d-none d-md-inline text-danger">{{ Auth::user()->name }}</span>
+                                                    <b class="caret text-warning"></b>
+                                                </span>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-end me-1">
+                                                <x-responsive-nav-link :href="route('profile.edit')" class="dropdown-item">
+                                                    {{ __('Profile') }}
+                                                </x-responsive-nav-link>
+                                                <a href="javascript:;" class="dropdown-item">Setting</a>
+                                                <a href="{{ url('/blog') }}" class="btn dropdown-item">Dashboard</a>
+                                                <div class="dropdown-divider"></div>
+                                                <!-- Authentication -->
+                                                <form method="POST" action="{{ route('logout') }}">
+                                                    @csrf
+
+                                                    <x-responsive-nav-link :href="route('logout')"
+                                                        onclick="event.preventDefault();
+                                                                        this.closest('form').submit();"
+                                                        class="dropdown-item">
+                                                        {{ __('Log Out') }}
+                                                    </x-responsive-nav-link>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @else
+                                    <div class="login">
+                                        <i class="fa-solid fa-user"></i>
+                                        <div class="login-container">
+                                            <a href="{{ route('login') }}" class="button">Sign In</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="login-button">
+                                        <a href="{{ route('login') }}" class="button">Sign In</a>
+                                    </div>
+                                @endauth
+                            </div>
+
                     @endif
 
                     <form class="d-flex" role="search" action="{{ route('home.search') }}" method="POST">
@@ -73,7 +248,8 @@
         <div class="article-header" style="margin-top: 5rem">
             <div class="container">
                 <div class="header-category">
-                    <span class="me-1">{{ $post->category->category }}</span> | <span class="ms-1">{{ $post->SubCategory->subcategory }}</span>
+                    <span class="me-1">{{ $post->category->category }}</span> | <span
+                        class="ms-1">{{ $post->SubCategory->subcategory }}</span>
                 </div>
                 <div class="header-title">
                     <h2>
@@ -201,29 +377,42 @@
                                                             class="d-flex justify-content-between align-items-center mb-2">
                                                             <span class="user-name">{{ $item->user->name }}</span>
 
-                                                            <span class="d-flex justify-content-between align-items-center mb-2">
-                                                                    @if (Auth::check() && Auth::user()->id == $item->user_id)
-                                                                        <form action="{{ url('/comments' . '/' . $item->id) }}" method="post" class="delete-form">
-                                                                            @csrf
-                                                                            @method('DELETE')
-                                                                            <button type="submit" onclick="return confirm('Confirm delete?')" class="btn btn-danger btn-sm rounded-pill ml-2 delete-form" >
-                                                                                <i class="fas fa-trash text-white"></i>
-                                                                            </button>
-                                                                        </form>
-                                                                        <button class="btn btn-info btn-sm rounded-pill ml-2 edit-comment" data-comment-id="{{ $item->id }}" data-post-id="{{ $item->post_id }}">
-                                                                            <i class="fas fa-edit text-white"></i>
+                                                            <span
+                                                                class="d-flex justify-content-between align-items-center mb-2">
+                                                                @if (Auth::check() && Auth::user()->id == $item->user_id)
+                                                                    <form
+                                                                        action="{{ url('/comments' . '/' . $item->id) }}"
+                                                                        method="post" class="delete-form">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="submit"
+                                                                            onclick="return confirm('Confirm delete?')"
+                                                                            class="btn btn-danger btn-sm rounded-pill ml-2 delete-form">
+                                                                            <i class="fas fa-trash text-white"></i>
                                                                         </button>
+                                                                    </form>
+                                                                    <button
+                                                                        class="btn btn-info btn-sm rounded-pill ml-2 edit-comment"
+                                                                        data-comment-id="{{ $item->id }}"
+                                                                        data-post-id="{{ $item->post_id }}">
+                                                                        <i class="fas fa-edit text-white"></i>
+                                                                    </button>
+                                                                @endif
+                                                                <button
+                                                                    class="btn btn-primary btn-sm rounded-pill ml-2 reply-comment"
+                                                                    data-comment-id="{{ $item->id }}"
+                                                                    wire:click="$emit('openReplyForm', {{ $item->id }})">Reply</button>
+
+
+
+                                                                @foreach ($replies as $reply)
+                                                                    @if ($item->id == $reply->comment_id)
+                                                                        <button
+                                                                            class="btn btn-secondary btn-sm rounded-pill ml-2 show-replies"
+                                                                            data-comment-id="{{ $item->id }}"
+                                                                            data-show="false">Show Replies</button>
                                                                     @endif
-                                                                    <button class="btn btn-primary btn-sm rounded-pill ml-2 reply-comment" data-comment-id="{{ $item->id }}" wire:click="$emit('openReplyForm', {{ $item->id }})">Reply</button>
-
-
-
-                                                                    @foreach ($replies as $reply)
-                                                                        @if ($item->id == $reply->comment_id)
-                                                                            <button class="btn btn-secondary btn-sm rounded-pill ml-2 show-replies" data-comment-id="{{ $item->id }}" data-show="false">Show Replies</button>
-
-                                                                        @endif
-                                                                    @endforeach
+                                                                @endforeach
 
                                                             </span>
 

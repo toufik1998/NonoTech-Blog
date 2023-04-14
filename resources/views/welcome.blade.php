@@ -30,10 +30,95 @@
                             <a class="nav-link" href="#game">Game</a>
                         </li>
 
+                        {{-- @if (Route::has('login'))
+
+                            <div class="ms-5">
+                                @auth
+                                    @if (Auth::user()->is_admin == 1)
+                                        <li class="nav-item navbar-user dropdown">
+                                            <a href="#" class="nav-link dropdown-toggle d-flex align-items-center"
+                                                data-bs-toggle="dropdown">
+                                                <img src="/images/{{ Auth::user()->profile_picture }}" alt="" class="rounded-circle" style="width: 25px;">
+
+                                                <span>
+                                                    <span class="d-none d-md-inline text-danger">{{ Auth::user()->name }}</span>
+                                                    <b class="caret text-warning"></b>
+                                                </span>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-end me-1">
+                                                <x-responsive-nav-link :href="route('profile.edit')" class="dropdown-item">
+                                                    {{ __('Profile') }}
+                                                </x-responsive-nav-link>
+                                                <a href="javascript:;" class="dropdown-item">Setting</a>
+                                                <a href="{{ url('/adminboard') }}" class="btn dropdown-item">Dashboard</a>
+                                                <div class="dropdown-divider"></div>
+                                                <!-- Authentication -->
+                                                <form method="POST" action="{{ route('logout') }}">
+                                                    @csrf
+
+                                                    <x-responsive-nav-link :href="route('logout')"
+                                                        onclick="event.preventDefault();
+                                                                        this.closest('form').submit();"
+                                                        class="dropdown-item">
+                                                        {{ __('Log Out') }}
+                                                    </x-responsive-nav-link>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    @else
+                                        <li class="nav-item navbar-user dropdown">
+                                            <a href="#" class="nav-link dropdown-toggle d-flex align-items-center"
+                                                data-bs-toggle="dropdown">
+                                                <img src="/images/{{ Auth::user()->profile_picture }}" alt="" class="rounded-circle" style="width: 25px;">
+
+                                                <span>
+                                                    <span class="d-none d-md-inline text-danger">{{ Auth::user()->name }}</span>
+                                                    <b class="caret text-warning"></b>
+                                                </span>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-end me-1">
+                                                <x-responsive-nav-link :href="route('profile.edit')" class="dropdown-item">
+                                                    {{ __('Profile') }}
+                                                </x-responsive-nav-link>
+                                                <a href="javascript:;" class="dropdown-item">Setting</a>
+                                                <a href="{{ url('/blog') }}" class="btn dropdown-item">Dashboard</a>
+                                                <div class="dropdown-divider"></div>
+                                                <!-- Authentication -->
+                                                <form method="POST" action="{{ route('logout') }}">
+                                                    @csrf
+
+                                                    <x-responsive-nav-link :href="route('logout')"
+                                                        onclick="event.preventDefault();
+                                                                        this.closest('form').submit();"
+                                                        class="dropdown-item">
+                                                        {{ __('Log Out') }}
+                                                    </x-responsive-nav-link>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    @endif
+                                @else
+                                    <div class="login">
+                                        <i class="fa-solid fa-user"></i>
+                                        <div class="login-container">
+                                            <a href="{{ route('login') }}" class="button">Sign In</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="login-button">
+                                        <a href="{{ route('login') }}" class="button">Sign In</a>
+                                    </div>
+                                @endauth
+                            </div>
+
+                        @endif --}}
+
                     </ul>
 
 
-                    @if (Route::has('login'))
+                    {{-- @if (Route::has('login'))
                         <div class="">
                             @auth
                                 @if (Auth::user()->is_admin == 1)
@@ -54,6 +139,93 @@
                                 </div>
                             @endauth
                         </div>
+                    @endif --}}
+
+                    @if (Route::has('login'))
+
+                            <div class="me-3">
+                                @auth
+                                    @if (Auth::user()->is_admin == 1)
+                                        <div class="nav-item navbar-user dropdown">
+                                            <a href="#" class="nav-link dropdown-toggle d-flex align-items-center"
+                                                data-bs-toggle="dropdown">
+                                                <img src="/images/{{ Auth::user()->profile_picture }}" alt=""
+                                                    class="rounded-circle" style="width: 25px;">
+
+                                                <span>
+                                                    <span class="d-none d-md-inline text-danger">{{ Auth::user()->name }}</span>
+                                                    <b class="caret text-warning"></b>
+                                                </span>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-end me-1">
+                                                <x-responsive-nav-link :href="route('profile.edit')" class="dropdown-item">
+                                                    {{ __('Profile') }}
+                                                </x-responsive-nav-link>
+                                                <a href="javascript:;" class="dropdown-item">Setting</a>
+                                                <a href="{{ url('/adminboard') }}" class="btn dropdown-item">Dashboard</a>
+                                                <div class="dropdown-divider"></div>
+                                                <!-- Authentication -->
+                                                <form method="POST" action="{{ route('logout') }}">
+                                                    @csrf
+
+                                                    <x-responsive-nav-link :href="route('logout')"
+                                                        onclick="event.preventDefault();
+                                                                        this.closest('form').submit();"
+                                                        class="dropdown-item">
+                                                        {{ __('Log Out') }}
+                                                    </x-responsive-nav-link>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="nav-item navbar-user dropdown">
+                                            <a href="#" class="nav-link dropdown-toggle d-flex align-items-center"
+                                                data-bs-toggle="dropdown">
+                                                <img src="/images/{{ Auth::user()->profile_picture }}" alt=""
+                                                    class="rounded-circle" style="width: 25px;">
+
+                                                <span>
+                                                    <span class="d-none d-md-inline text-danger">{{ Auth::user()->name }}</span>
+                                                    <b class="caret text-warning"></b>
+                                                </span>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-end me-1">
+                                                <x-responsive-nav-link :href="route('profile.edit')" class="dropdown-item">
+                                                    {{ __('Profile') }}
+                                                </x-responsive-nav-link>
+                                                <a href="javascript:;" class="dropdown-item">Setting</a>
+                                                <a href="{{ url('/blog') }}" class="btn dropdown-item">Dashboard</a>
+                                                <div class="dropdown-divider"></div>
+                                                <!-- Authentication -->
+                                                <form method="POST" action="{{ route('logout') }}">
+                                                    @csrf
+
+                                                    <x-responsive-nav-link :href="route('logout')"
+                                                        onclick="event.preventDefault();
+                                                                        this.closest('form').submit();"
+                                                        class="dropdown-item">
+                                                        {{ __('Log Out') }}
+                                                    </x-responsive-nav-link>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @else
+                                    <div class="login">
+                                        <i class="fa-solid fa-user"></i>
+                                        <div class="login-container">
+                                            <a href="{{ route('login') }}" class="button">Sign In</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="login-button">
+                                        <a href="{{ route('login') }}" class="button">Sign In</a>
+                                    </div>
+                                @endauth
+                            </div>
+
                     @endif
 
                     <form class="d-flex" role="search" action="{{ route('home.search') }}" method="POST">
