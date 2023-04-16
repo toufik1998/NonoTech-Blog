@@ -87,6 +87,10 @@ The project was built using the following technologies:
 - MySQL: A relational database management system
 - Blade Templating Engine: A simple yet powerful templating engine provided with Laravel
 - Bootstrap 5: A popular CSS framework for building responsive and mobile-first websites
+- SCSS: A popular CSS preprocessor for writing modular and maintainable CSS
+- JavaScript: A programming language used for creating interactive and dynamic web pages
+- jQuery: A fast and feature-rich JavaScript library for DOM manipulation and AJAX calls
+- Livewire: A full-stack framework for building dynamic and reactive web interfaces in Laravel
 
 ## Contributing
 
